@@ -12,7 +12,7 @@ export default function NotFound() {
         <div className="mt-9 flex flex-col justify-center gap-4 sm:flex-row">
           <Button href="/">Go to home page</Button>
           <Button href="/conditions/" variant="outline">
-            Hair loss conditions
+            Pigmentation concerns
           </Button>
         </div>
       </div>

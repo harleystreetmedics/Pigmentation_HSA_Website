@@ -1,681 +1,427 @@
-// Hair loss conditions. General, widely accepted descriptions written in cautious language.
+// Pigmentation concerns. General, widely accepted descriptions in cautious language, aligned with the
+// main website's pigmentation content and the Copilot playbooks (docs/research.md).
+// These pages explain conditions; they never tell a reader which condition they have (decision #11).
 // Clinical sign-off for all condition copy is listed in docs/review-checklist.md.
 
 import type { Faq } from "./faqs";
 
-export const RX_SENTENCE =
-  "Prescription treatments may be discussed at your consultation if clinically appropriate.";
+export const RX_SENTENCE = "Prescription treatments may be discussed at your consultation if clinically appropriate.";
+
+export const SKIN_CHECK =
+  "Any new, changing, irregular, bleeding or itchy dark spot or mole must be checked by a doctor before any cosmetic treatment. We look for this at every consultation, and we will advise you to see your GP or a dermatologist if a mark needs medical assessment.";
 
 export type Condition = {
   slug: string;
   name: string;
   shortName: string;
-  audience: "men" | "women" | "all";
+  group: "Face" | "Body" | "Assess & refer";
   summary: string;
   metaTitle: string;
   metaDescription: string;
   intro: string[];
-  symptoms: string[];
+  appearance: string[];
   causes: string[];
   assessment: string[];
-  /** Treatment slugs we may discuss. Empty for referral-led conditions. */
+  /** Treatment slugs we may discuss. Empty for assess-and-refer concerns. */
   treatments: string[];
   options: string[];
+  prevention: string[];
   referral?: string;
-  urgent?: string;
+  /** Amber notices for facts we still need to confirm. */
+  tbc?: string[];
   faqs: Faq[];
   related: string[];
 };
 
 const STANDARD_ASSESSMENT = [
-  "A consultation about when your hair loss started, how it has changed, your general health, medicines, diet, stress and family history",
-  "A close look at your scalp and hair, including the pattern and density of thinning",
-  "Blood tests where your history suggests they would help (arranged by us or through your GP)",
+  "A consultation about when the pigmentation started, how it has changed, your skincare, sun exposure, medicines, hormones and any previous treatments",
+  "A close look at your skin, including the pattern, depth and edges of the pigmentation, sometimes with a magnifying light",
+  "Skin typing (Fitzpatrick type) and any history of darkening after spots, waxing or treatments",
+  "A check of any mark that is new, changing, raised or irregular, with referral to a doctor where needed",
 ];
+
+const SPF = "Daily broad-spectrum, high-factor sunscreen, reapplied when outdoors";
+const TONE_NOTE = "Treatment is chosen after assessing your skin type, because some peels, lasers and light treatments carry a higher risk of new pigment changes in darker skin.";
 
 export const CONDITIONS: Condition[] = [
   {
-    slug: "male-pattern-hair-loss",
-    name: "Male pattern baldness",
-    shortName: "Male pattern baldness",
-    audience: "men",
-    summary: "Gradual thinning at the temples and crown, linked to genetics and hormones.",
-    metaTitle: "Male Pattern Baldness Treatment London & Glasgow",
+    slug: "melasma",
+    name: "Melasma",
+    shortName: "Melasma",
+    group: "Face",
+    summary: "Soft-edged brown or grey-brown patches, often on both cheeks, the forehead or the upper lip, influenced by hormones, sunlight and heat.",
+    metaTitle: "Melasma Treatment London & Glasgow",
     metaDescription:
-      "Assessment and treatment options for male pattern baldness at Harley Street Medical Wellness in London and Glasgow. Diagnosis first, then a personal plan. Results vary.",
+      "Melasma assessment and treatment options at Harley Street Aesthetics in London and Glasgow. Melasma is long-term and can return, so we plan gentle treatment and maintenance. Results vary.",
     intro: [
-      "Male pattern baldness (androgenetic alopecia) is the most common type of hair loss in men. It usually develops gradually, often starting with a receding hairline or thinning at the crown.",
-      "It is linked to genetics and to how hair follicles respond to male hormones (androgens). Over time, affected follicles produce finer, shorter hairs.",
+      "Melasma is a common, long-term skin condition that causes patches of brown or grey-brown pigmentation, usually on both sides of the face. It is more common in women and in medium to deeper skin tones.",
+      "It is driven by overactive pigment cells that respond to hormones, ultraviolet and visible light, and heat. Melasma can be improved and managed, but it is not cured, and it tends to return with sun, heat, hormonal change or pregnancy. A maintenance plan is part of treating it.",
     ],
-    symptoms: [
-      "A hairline that moves back at the temples, often in an M shape",
-      "Thinning on the crown (the top and back of the head)",
-      "Finer, shorter hairs in affected areas",
-      "A gradual change over months or years rather than sudden loss",
+    appearance: [
+      "Symmetrical, soft-edged patches rather than individual spots",
+      "Common areas: cheeks, forehead, bridge of the nose, upper lip and chin",
+      "Often darker in summer, during pregnancy or after starting hormonal contraception",
     ],
     causes: [
-      "Inherited sensitivity of hair follicles to androgens",
-      "Age: it becomes more common as men get older",
-      "Other factors, such as illness, stress or low iron, can make shedding worse at the same time",
+      "Sunlight, including visible light through windows",
+      "Hormonal changes: pregnancy, the contraceptive pill or hormone treatment",
+      "Heat, for example from saunas, hot yoga or cooking",
+      "Genetics and skin type",
+      "Irritating skincare or treatments that inflame the skin",
     ],
     assessment: STANDARD_ASSESSMENT,
-    treatments: ["prp-hair-treatment", "scalp-microneedling", "low-level-laser-therapy", "exosome-hair-treatment"],
-    options: [RX_SENTENCE, "If you're interested in surgical options such as hair transplantation, we can talk through whether a referral would be appropriate."],
-    faqs: [
-      {
-        q: "Can male pattern baldness be stopped?",
-        a: "It is a progressive condition. Some treatments aim to slow it or improve how thinning areas look, but results vary and no treatment works for everyone. Your practitioner will explain what is realistic for you.",
-      },
-      {
-        q: "Am I too young to be losing my hair?",
-        a: "Pattern hair loss can start in your late teens or twenties. If you're 18 or over and worried about thinning, a consultation can help you understand what's happening.",
-      },
-    ],
-    related: ["receding-hairline", "crown-thinning", "diffuse-thinning"],
-  },
-  {
-    slug: "female-pattern-hair-loss",
-    name: "Female pattern hair loss",
-    shortName: "Female pattern hair loss",
-    audience: "women",
-    summary: "Gradual thinning over the top of the scalp, often with a widening parting.",
-    metaTitle: "Female Pattern Hair Loss Treatment London & Glasgow",
-    metaDescription:
-      "Female pattern hair loss assessment and treatment options in London and Glasgow. A clinician-led consultation looks for the cause first. Results vary.",
-    intro: [
-      "Female pattern hair loss is the most common cause of thinning hair in women. Rather than a receding hairline, it usually shows as gradual thinning over the top of the scalp, with the front hairline kept.",
-      "It can be linked to genetics and hormones, and it can become more noticeable around the menopause. Other causes of shedding can happen at the same time, which is why we look at the whole picture.",
-    ],
-    symptoms: [
-      "A wider parting or more visible scalp on top",
-      "Less volume, or a thinner ponytail",
-      "Finer hairs over the crown and top of the head",
-      "Gradual change rather than sudden loss",
-    ],
-    causes: [
-      "Genetic factors",
-      "Hormonal changes, including around the menopause",
-      "Contributing factors such as low iron, thyroid problems, stress or recent illness, which can be checked",
-    ],
-    assessment: STANDARD_ASSESSMENT,
-    treatments: ["prp-hair-treatment", "scalp-microneedling", "low-level-laser-therapy", "exosome-hair-treatment"],
-    options: [RX_SENTENCE],
-    faqs: [
-      {
-        q: "Is female pattern hair loss common?",
-        a: "Yes. It is one of the most common reasons women notice thinning hair, and you're not alone in finding it upsetting. A consultation is a good first step.",
-      },
-      {
-        q: "Will I go bald?",
-        a: "Female pattern hair loss usually causes thinning rather than complete baldness. How it progresses varies between individuals.",
-      },
-    ],
-    related: ["menopause-hair-loss", "diffuse-thinning", "medical-causes"],
-  },
-  {
-    slug: "receding-hairline",
-    name: "Receding hairline",
-    shortName: "Receding hairline",
-    audience: "all",
-    summary: "A hairline that moves back over time, most often at the temples.",
-    metaTitle: "Receding Hairline Treatment London & Glasgow",
-    metaDescription:
-      "Worried about a receding hairline? Get a clinician-led assessment at our London or Glasgow clinic and talk through non-surgical options. Results vary.",
-    intro: [
-      "A receding hairline is when the hairline moves back from the forehead, often at the temples first. In men it is usually part of male pattern baldness.",
-      "In women, a receding hairline is less common and can have other causes, such as tight hairstyles (traction alopecia) or, rarely, a scarring condition. That's why assessment matters.",
-    ],
-    symptoms: [
-      "Hairline moving back at the temples or across the front",
-      "Finer, shorter hairs along the hairline",
-      "A change you notice in photos over months or years",
-    ],
-    causes: [
-      "Male pattern baldness",
-      "Traction from tight hairstyles, extensions or headwear",
-      "Less commonly, scarring conditions affecting the front hairline, which need specialist assessment",
-    ],
-    assessment: STANDARD_ASSESSMENT,
-    treatments: ["prp-hair-treatment", "scalp-microneedling", "low-level-laser-therapy"],
-    options: [RX_SENTENCE],
-    urgent:
-      "If your hairline is receding along with redness, scaling, itching or shiny skin, or your eyebrows are thinning too, please get a medical assessment. These can be signs of a scarring condition that needs early specialist care.",
-    faqs: [
-      {
-        q: "Is a receding hairline always male pattern baldness?",
-        a: "Not always. It's the most common reason in men, but tight hairstyles and, rarely, scarring conditions can also cause it. A consultation helps work out the cause.",
-      },
-    ],
-    related: ["male-pattern-hair-loss", "traction-alopecia", "scarring-alopecia"],
-  },
-  {
-    slug: "crown-thinning",
-    name: "Crown thinning",
-    shortName: "Crown thinning",
-    audience: "all",
-    summary: "Thinning at the top and back of the head, often noticed in photos or under bright light.",
-    metaTitle: "Crown Thinning Treatment London & Glasgow",
-    metaDescription:
-      "Thinning at the crown? Book a clinician-led hair loss consultation in London or Glasgow to find the cause and discuss options. Results vary.",
-    intro: [
-      "Crown thinning means less hair density at the top and back of the head. It's often first noticed in photos, in a mirror under bright light, or by a hairdresser.",
-      "In men, it's commonly part of male pattern baldness. In women, thinning on top is more often part of female pattern hair loss.",
-    ],
-    symptoms: ["More scalp visible at the crown", "A widening 'whorl' at the back of the head", "Finer hairs on top"],
-    causes: ["Pattern hair loss in men or women", "Increased shedding from illness, stress or deficiencies, which can make thinning more noticeable"],
-    assessment: STANDARD_ASSESSMENT,
-    treatments: ["prp-hair-treatment", "scalp-microneedling", "low-level-laser-therapy", "exosome-hair-treatment"],
-    options: [RX_SENTENCE],
-    faqs: [
-      {
-        q: "Can crown thinning be treated without surgery?",
-        a: "There are non-surgical options we may discuss, depending on the cause. Results vary and we'll explain what's realistic for you.",
-      },
-    ],
-    related: ["male-pattern-hair-loss", "female-pattern-hair-loss", "diffuse-thinning"],
-  },
-  {
-    slug: "diffuse-thinning",
-    name: "Diffuse thinning",
-    shortName: "Diffuse thinning",
-    audience: "all",
-    summary: "Thinning spread across the whole scalp rather than in one area.",
-    metaTitle: "Thinning Hair Treatment London & Glasgow",
-    metaDescription:
-      "Diffuse thinning hair across the scalp has several possible causes. Get assessed at our London or Glasgow clinic and discuss suitable options. Results vary.",
-    intro: [
-      "Diffuse thinning means hair is thinner all over the scalp rather than in one patch. It can be gradual or happen over a few months.",
-      "There are several possible causes, from pattern hair loss to shedding after illness or a deficiency, and more than one can be present. Finding the cause is the first step.",
-    ],
-    symptoms: ["Less volume all over", "More hair in the brush or shower", "A thinner ponytail or more visible scalp"],
-    causes: [
-      "Pattern hair loss",
-      "Telogen effluvium (shedding after stress, illness, surgery or childbirth)",
-      "Thyroid problems, low iron or other deficiencies",
-      "Some medicines",
-    ],
-    assessment: STANDARD_ASSESSMENT,
-    treatments: ["prp-hair-treatment", "scalp-microneedling", "low-level-laser-therapy"],
-    options: [RX_SENTENCE, "If a medical cause is found, treating that comes first. We may ask you to see your GP."],
-    faqs: [
-      {
-        q: "How do I know what is causing my thinning?",
-        a: "You can't always tell from the pattern alone. A consultation, a scalp check and sometimes blood tests help narrow it down.",
-      },
-    ],
-    related: ["telogen-effluvium", "medical-causes", "female-pattern-hair-loss"],
-  },
-  {
-    slug: "alopecia-areata",
-    name: "Alopecia areata",
-    shortName: "Alopecia areata",
-    audience: "all",
-    summary: "Patches of hair loss caused by the immune system affecting hair follicles.",
-    metaTitle: "Alopecia Areata Assessment London & Glasgow",
-    metaDescription:
-      "Alopecia areata causes patchy hair loss. Our doctors can assess your scalp in London or Glasgow, explain options and refer where needed. Results vary.",
-    intro: [
-      "Alopecia areata is a condition where the immune system affects hair follicles, causing hair to fall out, usually in round or oval patches. It can affect the scalp, beard, eyebrows or other areas.",
-      "Its course is unpredictable. Hair can regrow on its own, and patches can come and go. Because patchy hair loss has several possible causes, it should be medically assessed.",
-    ],
-    symptoms: [
-      "Smooth, round or oval bald patches",
-      "Short broken hairs at the edge of a patch",
-      "Patches in the beard or eyebrows",
-      "Nail pitting or ridges in some people",
-    ],
-    causes: [
-      "An autoimmune reaction affecting hair follicles",
-      "It can run in families and is more common in people with other autoimmune conditions",
-    ],
-    assessment: [
-      "A medical consultation and close scalp examination",
-      "Checks for other causes of patchy hair loss",
-      "Referral to your GP or a dermatologist where specialist treatment is needed",
-    ],
-    treatments: [],
+    treatments: ["signature-pigmentation-programme", "cosmelan-peel", "vi-peel", "chemical-peels", "q-switched-laser"],
     options: [
-      RX_SENTENCE,
-      "Some people with alopecia areata need specialist dermatology care. We'll explain your options and refer you if that's the best route.",
-    ],
-    urgent: "Patchy or sudden hair loss should always be assessed by a doctor. If you're losing hair quickly or in several patches, please book a consultation or see your GP.",
-    faqs: [
-      {
-        q: "Will my hair grow back?",
-        a: "Many people do see regrowth, sometimes without treatment, but it's unpredictable and can't be guaranteed. Your doctor will talk through what is known about your situation.",
-      },
-      {
-        q: "Is alopecia areata contagious?",
-        a: "No. It is not contagious and is not caused by anything you did.",
-      },
-    ],
-    related: ["beard-and-eyebrow-thinning", "scarring-alopecia", "telogen-effluvium"],
-  },
-  {
-    slug: "telogen-effluvium",
-    name: "Telogen effluvium",
-    shortName: "Stress & illness shedding",
-    audience: "all",
-    summary: "Increased shedding a few months after stress, illness (including COVID-19), surgery or other triggers.",
-    metaTitle: "Telogen Effluvium: Shedding After Stress or Illness",
-    metaDescription:
-      "Sudden extra hair shedding after stress, illness or COVID-19 is often telogen effluvium. Get assessed in London or Glasgow and understand your options.",
-    intro: [
-      "Telogen effluvium is a common cause of extra hair shedding. A shock to the body pushes more hairs than usual into the resting phase of the hair cycle, and they shed a few months later.",
-      "Triggers include severe stress, a high fever or illness (including COVID-19), surgery, childbirth, crash dieting and some medicines. In many people, shedding settles once the trigger has passed, but it can take months, and it can sometimes uncover pattern hair loss.",
-    ],
-    symptoms: [
-      "Noticeably more hair in the shower, brush or on the pillow",
-      "All-over thinning rather than bald patches",
-      "Shedding that starts a few months after a stressful event or illness",
-    ],
-    causes: [
-      "Physical or emotional stress",
-      "Illness or fever, including COVID-19",
-      "Surgery, childbirth or significant weight loss",
-      "Low iron or other deficiencies",
-      "Starting or stopping some medicines",
-    ],
-    assessment: STANDARD_ASSESSMENT,
-    treatments: ["prp-hair-treatment", "low-level-laser-therapy"],
-    options: [
-      "Often the first step is finding and addressing the trigger. Nutritional support may be discussed when clinically indicated.",
+      "Melasma can darken if the skin is irritated or overheated, so it needs a gentle approach. We don't use IPL for melasma.",
+      "A home skincare plan and strict daily sun protection are as important as in-clinic treatment.",
       RX_SENTENCE,
     ],
+    prevention: [SPF, "A tinted sunscreen can help protect against visible light", "A hat and shade in strong sun", "Avoiding heat where you can", "Gentle, non-irritating skincare"],
     faqs: [
-      {
-        q: "Will the shedding stop?",
-        a: "In many people it settles once the trigger has passed, though this can take several months. If it continues, it's worth checking for another cause.",
-      },
-      {
-        q: "Do vitamin drips help?",
-        a: "Vitamin drips are not a proven general treatment for hair loss. If a deficiency is found, it can be treated in the appropriate way.",
-      },
+      { q: "Can melasma be cured?", a: "No. Melasma is a long-term condition. It can often be improved and kept under control, but it tends to come back with sun, heat or hormonal change, so maintenance is part of the plan." },
+      { q: "Why do some treatments make melasma worse?", a: "Pigment cells in melasma are easily triggered. Heat or irritation from an overly aggressive treatment can make them produce more pigment, so we choose gentler options." },
+      { q: "Can I have treatment while pregnant?", a: "Most in-clinic treatments are not carried out during pregnancy or breastfeeding. Sun protection and gentle skincare help in the meantime, and we can plan treatment for later." },
     ],
-    related: ["postpartum-hair-loss", "medical-causes", "diffuse-thinning"],
+    related: ["hormonal-pigmentation", "sun-spots", "uneven-skin-tone"],
   },
   {
-    slug: "postpartum-hair-loss",
-    name: "Postpartum hair loss",
-    shortName: "Postpartum hair loss",
-    audience: "women",
-    summary: "Extra shedding in the months after having a baby, as hormone levels change.",
-    metaTitle: "Postpartum Hair Loss Advice London & Glasgow",
+    slug: "sun-spots",
+    name: "Sun spots (solar lentigines)",
+    shortName: "Sun spots",
+    group: "Face",
+    summary: "Flat, clearly defined brown spots on areas that get the most sun, such as the face, hands and chest.",
+    metaTitle: "Sun Spot Removal London & Glasgow",
     metaDescription:
-      "Postpartum hair shedding is common in the months after birth. Find out when to get it checked and how a consultation in London or Glasgow can help.",
+      "Sun spot (solar lentigo) treatment at Harley Street Aesthetics in London and Glasgow: laser, IPL, peels and our Signature Programme, after a skin check. Results vary.",
     intro: [
-      "Many people notice extra shedding a few months after giving birth. During pregnancy, hormone changes can mean fewer hairs shed; after birth, more hairs move into the shedding phase at once.",
-      "Postpartum shedding is a form of telogen effluvium and often settles on its own over time. If it doesn't, or if you're worried, it's sensible to check for other causes such as low iron or thyroid changes.",
+      "Sun spots, also called solar lentigines, are flat, well-defined brown spots caused by years of sun exposure. They are very common from middle age onwards, especially in lighter skin.",
+      "They often respond well to treatment, although new spots can form with further sun exposure. Because some skin cancers can look like a dark spot, every spot is checked before cosmetic treatment.",
     ],
-    symptoms: ["Heavy shedding a few months after birth", "Thinning around the hairline or temples", "All-over loss of volume"],
-    causes: ["Hormonal change after pregnancy", "Low iron, thyroid changes, stress and lack of sleep can add to it"],
+    appearance: ["Flat, light to dark brown spots with clear edges", "On the face, backs of the hands, forearms, chest and shoulders", "Usually more numerous with age and sun exposure"],
+    causes: ["Cumulative sun exposure over many years", "Sunbed use", "Lighter skin types are more prone"],
+    assessment: STANDARD_ASSESSMENT,
+    treatments: ["q-switched-laser", "ipl-photofacial", "signature-pigmentation-programme", "cosmelan-peel", "chemical-peels", "co2-laser-resurfacing"],
+    options: ["The right option depends on your skin type and how many spots you have. IPL is only suitable for lighter, untanned skin.", RX_SENTENCE],
+    prevention: [SPF, "Covering up and seeking shade between 11am and 3pm", "Avoiding sunbeds"],
+    faqs: [
+      { q: "Will sun spots come back?", a: "Treated spots often stay faded with good sun protection, but new spots can appear with further sun exposure." },
+      { q: "How do I know it's a sun spot and not something else?", a: "You can't be sure from appearance alone. A clinician checks each mark, and anything new, changing, irregular, raised or bleeding is referred for medical assessment first." },
+    ],
+    related: ["age-spots", "freckles", "hands-and-chest-pigmentation"],
+  },
+  {
+    slug: "age-spots",
+    name: "Age spots",
+    shortName: "Age spots",
+    group: "Face",
+    summary: "Flat brown marks that build up with age and sun exposure. Raised or crusty spots are a different thing and are assessed first.",
+    metaTitle: "Age Spot Removal London & Glasgow",
+    metaDescription:
+      "Age spot treatment on the face and hands at Harley Street Aesthetics London and Glasgow. Every spot is checked first. Laser, IPL and peel options. Results vary.",
+    intro: [
+      "'Age spots' and 'liver spots' are everyday names for flat brown marks that become more common with age. Most are sun spots (solar lentigines) caused by sun exposure over the years.",
+      "Some marks that people call age spots are actually raised growths, such as seborrhoeic keratoses, or other skin changes that need a different approach. That's why we look at each mark before suggesting treatment.",
+    ],
+    appearance: ["Flat brown marks on the face, hands, forearms or chest", "Gradually more numerous over time", "Raised, rough or crusty marks are assessed separately"],
+    causes: ["Sun exposure over many years", "Age", "Lighter skin types are more prone"],
+    assessment: STANDARD_ASSESSMENT,
+    treatments: ["q-switched-laser", "ipl-photofacial", "chemical-peels", "co2-laser-resurfacing", "signature-pigmentation-programme"],
+    options: ["Flat spots assessed as harmless may be treated cosmetically. Raised or changing marks are not treated as cosmetic pigmentation.", RX_SENTENCE],
+    prevention: [SPF, "Sunscreen on the backs of your hands, which are often missed", "Hats and covering up"],
+    faqs: [
+      { q: "Are age spots dangerous?", a: "Flat age spots (sun spots) are harmless, but they show that skin has had a lot of sun. A mark that is new, changing, irregular, bleeding or itchy should be checked by a doctor." },
+      { q: "Can you treat age spots on my hands?", a: "Possibly. See our page on hands and chest pigmentation; whether a treatment suits that area is decided at consultation." },
+    ],
+    related: ["sun-spots", "hands-and-chest-pigmentation", "uneven-skin-tone"],
+  },
+  {
+    slug: "freckles",
+    name: "Freckles",
+    shortName: "Freckles",
+    group: "Face",
+    summary: "Small, light-brown flecks that darken in summer. They are inherited and harmless, and tend to return each summer after treatment.",
+    metaTitle: "Freckle Treatment London & Glasgow",
+    metaDescription:
+      "Freckle treatment options at Harley Street Aesthetics in London and Glasgow. Freckles are inherited and can reappear each summer, so we set realistic expectations. Results vary.",
+    intro: [
+      "Freckles (ephelides) are small, light-brown flecks that appear in childhood and darken with sun exposure. They are inherited and harmless, and many people like them.",
+      "If you'd like them to look softer, some treatments can fade them, but freckles tend to reappear each summer. Being realistic about this helps you choose a plan that suits your skin and budget.",
+    ],
+    appearance: ["Small, flat, light-brown flecks", "Mostly on the nose, cheeks, shoulders and arms", "Darker in summer and lighter in winter"],
+    causes: ["Genetics, especially in fair or red-haired people", "Sun exposure, which darkens existing freckles"],
+    assessment: STANDARD_ASSESSMENT,
+    treatments: ["q-switched-laser", "ipl-photofacial", "signature-pigmentation-programme", "chemical-peels"],
+    options: ["Freckles fade with some treatments but usually return with sun exposure.", RX_SENTENCE],
+    prevention: [SPF, "Hats and shade in summer"],
+    faqs: [{ q: "Will treated freckles come back?", a: "Usually, yes, especially in summer. Sun protection slows this down." }],
+    related: ["sun-spots", "uneven-skin-tone", "age-spots"],
+  },
+  {
+    slug: "post-inflammatory-hyperpigmentation",
+    name: "Post-inflammatory hyperpigmentation (acne marks and marks after injury)",
+    shortName: "Acne marks & PIH",
+    group: "Face",
+    summary: "Darker marks left after a spot, rash, injury or procedure has healed. More common and longer-lasting in deeper skin tones.",
+    metaTitle: "Acne Marks & Hyperpigmentation Treatment London & Glasgow",
+    metaDescription:
+      "Treatment for post-inflammatory hyperpigmentation, acne marks and marks after injury or procedures at Harley Street Aesthetics London and Glasgow. Skin-type-safe plans. Results vary.",
+    intro: [
+      "Post-inflammatory hyperpigmentation (PIH) is the flat, darker mark left behind after the skin has been inflamed or injured, for example by a spot, eczema, a cut, a burn, waxing or a cosmetic procedure.",
+      "It is more common and lasts longer in medium and darker skin tones. PIH often fades slowly by itself, and treatment can help, but new breakouts or irritation can leave new marks. Calming the cause, such as active acne, is part of the plan.",
+    ],
+    appearance: [
+      "Flat brown, dark brown or grey marks where a spot or injury used to be",
+      "No raised scar or indentation (those are scars, treated differently)",
+      "Can last months, especially without sun protection",
+    ],
+    causes: ["Acne and spots, especially if picked", "Eczema, insect bites, rashes, cuts or burns", "Waxing, threading or shaving irritation", "Lasers, peels or other procedures that inflamed the skin"],
+    assessment: STANDARD_ASSESSMENT,
+    treatments: ["chemical-peels", "signature-pigmentation-programme", "vi-peel", "cosmelan-peel", "virtue-rf-microneedling", "peel-and-mesotherapy"],
+    options: ["Treating active acne or irritation first helps prevent new marks.", "In darker skin, gentle options and careful preparation are used to avoid causing more inflammation.", RX_SENTENCE],
+    prevention: [SPF, "Not picking or squeezing spots", "Gentle skincare that doesn't sting or burn", "Getting acne treated early"],
+    faqs: [
+      { q: "Will my acne marks fade on their own?", a: "Many do over months, but it can take a long time, especially in darker skin. Sun protection helps them fade, and treatment can speed things up for some people." },
+      { q: "I got darker marks after a previous treatment. Can you help?", a: "Possibly. We'll look at what happened, wait for the skin to settle where needed, and choose a gentler approach." },
+    ],
+    related: ["uneven-skin-tone", "melasma", "dark-circles"],
+  },
+  {
+    slug: "hormonal-pigmentation",
+    name: "Hormonal pigmentation (pregnancy, the pill and menopause)",
+    shortName: "Hormonal pigmentation",
+    group: "Face",
+    summary: "Pigmentation that appears or darkens with pregnancy, hormonal contraception, hormone treatment or around the menopause.",
+    metaTitle: "Hormonal Pigmentation & Pregnancy Mask Treatment London & Glasgow",
+    metaDescription:
+      "Pigmentation linked to pregnancy (chloasma), the contraceptive pill and menopause: assessment and treatment planning at Harley Street Aesthetics London and Glasgow. Results vary.",
+    intro: [
+      "Hormones can switch pigment cells on. Pigmentation that appears in pregnancy is sometimes called chloasma or 'the mask of pregnancy', and similar patches can appear with the contraceptive pill, hormone treatment or around the menopause. These are often forms of melasma.",
+      "Pregnancy pigmentation sometimes fades after the baby is born. Other hormonal pigmentation can persist and tends to return with sun exposure or further hormonal change.",
+    ],
+    appearance: ["Symmetrical patches on the cheeks, forehead, upper lip or chin", "Darkening of existing pigmentation", "Changes that started with a pregnancy or a new hormonal medicine"],
+    causes: ["Pregnancy", "Combined contraceptive pill or other hormonal contraception", "Hormone treatment, including HRT", "Sun exposure, which makes hormonal pigmentation darker"],
+    assessment: [...STANDARD_ASSESSMENT, "Questions about pregnancy, breastfeeding and hormonal medicines, which affect which treatments are suitable and when"],
+    treatments: ["signature-pigmentation-programme", "cosmelan-peel", "vi-peel", "chemical-peels"],
+    options: [
+      "Most in-clinic treatments wait until after pregnancy and breastfeeding. Sun protection and gentle skincare help in the meantime.",
+      "Never stop a prescribed medicine without talking to the doctor who prescribed it.",
+      RX_SENTENCE,
+    ],
+    prevention: [SPF, "A tinted sunscreen for visible light", "Avoiding heat and sunbeds"],
+    faqs: [
+      { q: "Will pregnancy pigmentation go away after birth?", a: "It sometimes fades over the months after pregnancy, but not always. If it stays, we can talk about options once you've finished breastfeeding." },
+      { q: "Should I stop the pill?", a: "Don't stop any medicine without speaking to your GP or prescriber first. We can talk about how hormones may be affecting your skin." },
+    ],
+    related: ["melasma", "uneven-skin-tone", "post-inflammatory-hyperpigmentation"],
+  },
+  {
+    slug: "uneven-skin-tone",
+    name: "Uneven skin tone and dull skin",
+    shortName: "Uneven tone & dullness",
+    group: "Face",
+    summary: "Blotchy, mottled or dull-looking skin, often from sun damage, a build-up of surface cells or a mix of pigment concerns.",
+    metaTitle: "Uneven Skin Tone Treatment London & Glasgow",
+    metaDescription:
+      "Treatment for uneven skin tone, mottled sun damage and dull skin at Harley Street Aesthetics in London and Glasgow. Peels, light and laser options after assessment. Results vary.",
+    intro: [
+      "Uneven skin tone is a broad term for skin that looks blotchy, patchy or mottled rather than even. It often comes from years of sun exposure (photodamage), but can also be a mix of sun spots, marks after spots and early melasma.",
+      "Dull skin is often about texture and the way light reflects off the surface. Treatments that renew the surface can help skin look brighter and more even.",
+    ],
+    appearance: ["Mottled or blotchy colour across the face", "A tired, dull look", "Rough texture alongside colour changes"],
+    causes: ["Long-term sun exposure", "A build-up of dead surface cells", "A mix of different pigmentation types", "Smoking and lifestyle factors"],
+    assessment: STANDARD_ASSESSMENT,
+    treatments: ["chemical-peels", "peel-and-mesotherapy", "carbon-laser-facial", "signature-pigmentation-programme", "ipl-photofacial", "co2-laser-resurfacing"],
+    options: [TONE_NOTE, RX_SENTENCE],
+    prevention: [SPF, "A consistent, gentle skincare routine", "Not smoking"],
+    faqs: [{ q: "Which treatment helps dull skin?", a: "It depends on whether the main issue is texture, pigment or both. Your clinician will look at your skin and suggest options." }],
+    related: ["sun-spots", "post-inflammatory-hyperpigmentation", "melasma"],
+  },
+  {
+    slug: "dark-circles",
+    name: "Dark circles (periorbital pigmentation)",
+    shortName: "Dark circles",
+    group: "Face",
+    summary: "Darkness under or around the eyes from pigment, thin skin, shadowing from hollows, or a mix.",
+    metaTitle: "Dark Circles & Under-Eye Pigmentation Treatment London & Glasgow",
+    metaDescription:
+      "Dark circles and periorbital pigmentation treatment at Harley Street Aesthetics London and Glasgow. We find the cause first: pigment, thin skin or hollowness. Results vary.",
+    intro: [
+      "Dark circles have several possible causes. Brown darkness is often pigment in the skin, which is common in medium and darker skin tones and can run in families. Blue or purple darkness can be blood vessels showing through thin skin. Shadows can come from hollowness under the eye.",
+      "The right approach depends on the cause, so we assess this first. Dark circles can return with sleep, allergies, rubbing, sun and age.",
+    ],
+    appearance: ["Brown, grey, blue or purple darkness under the eyes", "Sometimes extends to the upper eyelids", "Can look worse when tired or unwell"],
+    causes: ["Inherited pigmentation", "Thin skin showing blood vessels", "Hollowness or shadowing", "Rubbing, allergies or eczema around the eyes", "Sun exposure"],
+    assessment: [...STANDARD_ASSESSMENT.slice(0, 3), "Working out whether pigment, thin skin, hollowness or a mix is involved"],
+    treatments: ["dark-circles-treatment"],
+    options: ["If darkness is mainly a shadow from hollowness, other options may be discussed at consultation.", "Treating allergies or eczema around the eyes can help.", RX_SENTENCE],
+    prevention: ["Sunscreen and sunglasses", "Not rubbing the eyes", "Managing allergies"],
+    faqs: [{ q: "Can dark circles be removed permanently?", a: "We can't promise that. Dark circles have several causes and often return to some degree. Your clinician will explain what is realistic." }],
+    related: ["post-inflammatory-hyperpigmentation", "melasma", "uneven-skin-tone"],
+  },
+  {
+    slug: "body-pigmentation",
+    name: "Dark underarms, inner thighs, knees and elbows",
+    shortName: "Body pigmentation",
+    group: "Body",
+    summary: "Darker skin in body folds and over joints, often from friction, shaving or skin type. Sometimes linked to health conditions that need a GP check.",
+    metaTitle: "Dark Underarms & Inner Thigh Pigmentation London & Glasgow",
+    metaDescription:
+      "Assessment for dark underarms, inner thighs, knees and elbows at Harley Street Aesthetics London and Glasgow. We look for the cause and advise on options. Results vary.",
+    intro: [
+      "Darker skin in the underarms, inner thighs, groin, knees and elbows is very common, especially in medium and darker skin tones. It is often caused by friction, shaving or waxing irritation, or is simply natural for your skin.",
+      "Sometimes, velvety darkening in body folds (acanthosis nigricans) can be linked to insulin resistance or other health conditions. If that's possible, we'll suggest you see your GP for a check.",
+    ],
+    appearance: ["Darker, sometimes thicker skin in the underarms, groin or inner thighs", "Darker skin over the knees and elbows", "A velvety texture in body folds, which needs a GP check"],
+    causes: ["Friction from skin rubbing or clothing", "Shaving, waxing or deodorant irritation", "Natural skin tone", "Sometimes insulin resistance, hormonal conditions or medicines"],
+    assessment: [...STANDARD_ASSESSMENT.slice(0, 3), "Whether a GP check for an underlying cause would be sensible"],
+    treatments: [],
+    options: ["Reducing friction and irritation often helps.", RX_SENTENCE],
+    tbc: ["whether we offer in-clinic treatment for underarm, inner thigh, knee or elbow pigmentation, and which treatments"],
+    referral: "We'll assess the area, explain the likely cause and advise on skincare. If an underlying health condition is possible, we'll recommend a GP check before any cosmetic treatment.",
+    prevention: ["Gentle hair removal, or switching method if it irritates", "Loose, breathable clothing", "Fragrance-free products in body folds"],
+    faqs: [{ q: "Why are my underarms darker?", a: "Common reasons include friction, shaving irritation and natural skin tone. Velvety darkening can sometimes be linked to health conditions, so we may suggest a GP check." }],
+    related: ["post-inflammatory-hyperpigmentation", "hands-and-chest-pigmentation", "drug-and-heat-induced-pigmentation"],
+  },
+  {
+    slug: "hands-and-chest-pigmentation",
+    name: "Pigmentation on the hands, neck and chest",
+    shortName: "Hands, neck & chest",
+    group: "Body",
+    summary: "Sun spots and mottled tone on the backs of the hands, the neck and the chest, areas that get a lot of sun and are often missed with sunscreen.",
+    metaTitle: "Pigmentation on Hands & Chest London & Glasgow",
+    metaDescription:
+      "Assessment for sun spots and uneven tone on the hands, neck and chest at Harley Street Aesthetics London and Glasgow. Every mark is checked first. Results vary.",
+    intro: [
+      "The backs of the hands, the neck and the chest (décolletage) get a lot of sun over the years and are easy to miss with sunscreen. Sun spots, freckling and mottled, uneven tone are common here.",
+      "Skin on these areas can be thinner and slower to heal than facial skin, so treatment is chosen carefully.",
+    ],
+    appearance: ["Flat brown spots on the backs of the hands", "Mottled brown and red tone on the chest and neck", "Freckling on the shoulders and upper chest"],
+    causes: ["Cumulative sun exposure", "Sunbeds", "Age"],
     assessment: STANDARD_ASSESSMENT,
     treatments: [],
-    options: [
-      "Reassurance and checking for other causes are often the first step.",
-      "Some treatments aren't suitable while breastfeeding. We'll discuss what's appropriate for you.",
-    ],
-    faqs: [
-      {
-        q: "Is postpartum hair loss permanent?",
-        a: "It is usually temporary. If shedding continues for a long time or your hair doesn't recover, a consultation can check for other causes.",
-      },
-      {
-        q: "Can I have treatment while breastfeeding?",
-        a: "Some treatments are not recommended while breastfeeding. Your practitioner will advise you at consultation.",
-      },
-    ],
-    related: ["telogen-effluvium", "medical-causes", "female-pattern-hair-loss"],
+    options: ["Options used for sun spots on the face may be considered for some body areas after assessment.", RX_SENTENCE],
+    tbc: ["which treatments we offer for the hands, neck and chest (the CO2 price list includes the neck; nothing else is documented for these areas)"],
+    referral: "We'll check each mark and explain which options may suit these areas.",
+    prevention: [SPF, "Sunscreen on the backs of the hands and the chest", "Covering up in strong sun"],
+    faqs: [{ q: "Can you treat sun spots on my hands?", a: "We'll check each spot first. Whether a treatment suits the hands is decided at consultation." }],
+    related: ["sun-spots", "age-spots", "uneven-skin-tone"],
   },
   {
-    slug: "menopause-hair-loss",
-    name: "Menopause-related hair loss",
-    shortName: "Menopause hair loss",
-    audience: "women",
-    summary: "Thinning or changes in hair texture around the perimenopause and menopause.",
-    metaTitle: "Menopause Hair Loss Treatment London & Glasgow",
+    slug: "lip-and-perioral-pigmentation",
+    name: "Lip and perioral pigmentation",
+    shortName: "Lips & around the mouth",
+    group: "Face",
+    summary: "Darker skin above the upper lip or around the mouth, and darker patches on the lips themselves.",
+    metaTitle: "Upper Lip & Lip Pigmentation London & Glasgow",
     metaDescription:
-      "Hair thinning around the menopause is common. Get a clinician-led assessment in London or Glasgow and talk through suitable options. Results vary.",
+      "Assessment for upper lip, perioral and lip pigmentation at Harley Street Aesthetics London and Glasgow. We look for the cause first and check any new or changing mark. Results vary.",
     intro: [
-      "Changes in hormone levels around the perimenopause and menopause can affect hair. Many women notice thinning on top, a wider parting, or hair that feels finer or drier.",
-      "Female pattern hair loss can become more noticeable at this time, and other causes such as thyroid problems or low iron can also play a part. A full assessment helps separate these.",
+      "Pigmentation around the mouth is common. A band of darker skin above the upper lip is often part of melasma or caused by hair removal irritation. Darkening around the mouth can also follow eczema or lip-licking.",
+      "Dark patches on the lips themselves can be natural, linked to sun or smoking, or occasionally linked to medicines or medical conditions. A new or changing dark spot on the lip must be checked by a doctor.",
     ],
-    symptoms: ["Thinning on the top of the scalp", "A wider parting", "Finer or drier hair", "Increased shedding"],
-    causes: ["Hormonal change", "Female pattern hair loss", "Thyroid problems or low iron, which can be checked"],
+    appearance: ["A darker band above the upper lip", "Darker skin around the corners of the mouth", "Dark patches or spots on the lips"],
+    causes: ["Melasma and sun exposure", "Waxing, threading or other hair removal", "Eczema, lip-licking or irritation", "Smoking", "Some medicines or medical conditions"],
     assessment: STANDARD_ASSESSMENT,
-    treatments: ["prp-hair-treatment", "scalp-microneedling", "low-level-laser-therapy"],
-    options: [RX_SENTENCE, "If you're having other menopause symptoms, your GP or menopause specialist can advise on them alongside your hair plan."],
-    faqs: [
-      {
-        q: "Is hair loss a normal part of the menopause?",
-        a: "Hair changes are common around the menopause, but it's still worth having thinning assessed, as other causes can contribute and some are treatable.",
-      },
-    ],
-    related: ["female-pattern-hair-loss", "medical-causes", "diffuse-thinning"],
+    treatments: ["signature-pigmentation-programme"],
+    options: ["The area above the upper lip is one of the areas our Signature Programme covers.", RX_SENTENCE],
+    tbc: ["whether we treat pigmentation on the lips themselves"],
+    referral: "Dark spots on the lips, or changes inside the mouth, are checked by a doctor before any cosmetic treatment is considered.",
+    prevention: ["Lip balm with SPF", "Sunscreen above the lip", "Gentle hair removal"],
+    faqs: [{ q: "Why is the skin above my lip darker?", a: "Common reasons include melasma, sun exposure and irritation from hair removal. We'll look at the pattern and your history to understand yours." }],
+    related: ["melasma", "post-inflammatory-hyperpigmentation", "hormonal-pigmentation"],
   },
   {
-    slug: "traction-alopecia",
-    name: "Traction alopecia",
-    shortName: "Traction alopecia",
-    audience: "all",
-    summary: "Hair loss from repeated pulling by tight hairstyles, extensions or headwear.",
-    metaTitle: "Traction Alopecia Assessment London & Glasgow",
+    slug: "cafe-au-lait-and-birthmarks",
+    name: "Café-au-lait marks and pigmented birthmarks",
+    shortName: "Café-au-lait & birthmarks",
+    group: "Assess & refer",
+    summary: "Light-brown, evenly coloured patches or birthmarks, often present from childhood. We assess these and refer where needed.",
+    metaTitle: "Café-au-Lait Marks & Pigmented Birthmarks | Assessment",
     metaDescription:
-      "Traction alopecia is caused by repeated pulling on the hair. Get advice and an assessment at our London or Glasgow clinic. Early changes matter.",
+      "Assessment and referral for café-au-lait marks and pigmented birthmarks at Harley Street Aesthetics London and Glasgow. Several marks, or a changing birthmark, need a doctor's review.",
     intro: [
-      "Traction alopecia is hair loss caused by repeated pulling on the hair follicles, for example from tight braids, ponytails, buns, weaves, extensions or some headwear.",
-      "Early on, it may improve when the pulling stops. If tension continues over a long time, follicles can be permanently damaged, so it's worth acting early.",
+      "Café-au-lait marks are flat, evenly coloured light-brown patches, often present from birth or early childhood. One or two are common and harmless. Pigmented birthmarks include other flat marks present from early life.",
+      "Several café-au-lait marks can sometimes be linked to genetic conditions, and some birthmarks need monitoring. These are assessed by a doctor, and specialist referral may be the right route.",
     ],
-    symptoms: [
-      "Thinning along the hairline, temples or where hair is pulled",
-      "Small bumps or tenderness where hair is tied",
-      "Broken hairs at the edges",
-    ],
-    causes: ["Tight hairstyles, braids, weaves or extensions", "Repeated tension from headwear or hair accessories"],
-    assessment: STANDARD_ASSESSMENT,
-    treatments: ["prp-hair-treatment", "low-level-laser-therapy"],
-    options: [
-      "Reducing tension on the hair is the most important first step. We'll talk through practical changes.",
-      "Treatment options depend on how long it has been present and whether there are signs of scarring.",
-    ],
-    faqs: [
-      {
-        q: "Will my hairline grow back?",
-        a: "It may if the follicles haven't been permanently damaged, especially if the pulling stops early. Long-standing traction can cause permanent loss. Your practitioner will assess this.",
-      },
-    ],
-    related: ["receding-hairline", "scarring-alopecia", "diffuse-thinning"],
-  },
-  {
-    slug: "scarring-alopecia",
-    name: "Scarring alopecia",
-    shortName: "Scarring alopecia",
-    audience: "all",
-    summary: "A group of conditions that can permanently damage hair follicles. Needs early specialist diagnosis.",
-    metaTitle: "Scarring Alopecia: Diagnosis and Referral",
-    metaDescription:
-      "Scarring (cicatricial) alopecia needs early specialist diagnosis. We can assess your scalp in London or Glasgow and arrange onward referral.",
-    intro: [
-      "Scarring alopecia (also called cicatricial alopecia) is a group of uncommon conditions where inflammation damages hair follicles and replaces them with scar tissue, so hair can't regrow in those areas.",
-      "Early diagnosis matters because treatment aims to stop further loss. Diagnosis usually needs a specialist dermatologist and sometimes a scalp biopsy.",
-    ],
-    symptoms: [
-      "Patches of hair loss where the skin looks smooth or shiny",
-      "Redness, scaling, itching, burning or tenderness of the scalp",
-      "A slowly receding frontal hairline, sometimes with eyebrow loss",
-      "Pustules or crusting on the scalp",
-    ],
-    causes: ["Inflammatory conditions of the scalp and hair follicles", "The exact cause varies between the different types"],
-    assessment: [
-      "A medical consultation and scalp examination",
-      "Referral to a consultant dermatologist for diagnosis, which may include a scalp biopsy",
-    ],
+    appearance: ["Flat, evenly coloured light-brown patches with smooth or irregular edges", "Present from birth or childhood", "Some birthmarks are darker, raised or hairy, and need medical review"],
+    causes: ["Present from birth or appear in early childhood", "Sometimes linked to genetic conditions, especially if there are several"],
+    assessment: [...STANDARD_ASSESSMENT.slice(0, 2), "Counting and measuring marks, and asking about family history"],
     treatments: [],
     options: [],
     referral:
-      "We don't offer cosmetic hair treatments for active scarring alopecia. If we think you may have a scarring condition, we'll explain why and help you arrange a specialist dermatology referral, either privately or through your GP.",
-    urgent: "If you have hair loss with a red, scaly, painful, itchy or burning scalp, please get a medical assessment soon.",
-    faqs: [
-      {
-        q: "Can scarring alopecia be reversed?",
-        a: "Hair lost to scarring usually can't regrow. Specialist treatment aims to stop the condition progressing, which is why early diagnosis is important.",
-      },
-    ],
-    related: ["receding-hairline", "scalp-conditions", "alopecia-areata"],
+      "We'll look at the mark and your history. Where a doctor's review or specialist (NHS or private dermatology) referral is appropriate, we'll explain why and advise you to see your GP. We won't offer cosmetic treatment for a birthmark that hasn't been medically assessed.",
+    tbc: ["confirm we assess and refer café-au-lait marks and birthmarks rather than treat them"],
+    prevention: ["Sun protection, which stops marks darkening", "Photographing a birthmark to track any change"],
+    faqs: [{ q: "Should I worry about café-au-lait marks?", a: "One or two are common. If you or your child have several, or a birthmark is changing, see your GP." }],
+    related: ["hypopigmentation-and-vitiligo", "drug-and-heat-induced-pigmentation", "freckles"],
   },
   {
-    slug: "medical-causes",
-    name: "Hair loss linked to thyroid, deficiencies and medical conditions",
-    shortName: "Thyroid & deficiencies",
-    audience: "all",
-    summary: "Thinning or shedding linked to thyroid problems, low iron, other deficiencies, medicines or illness.",
-    metaTitle: "Hair Loss Blood Tests: Thyroid, Iron & Deficiencies",
+    slug: "drug-and-heat-induced-pigmentation",
+    name: "Drug-induced and heat-induced pigmentation",
+    shortName: "Medicine- or heat-related",
+    group: "Assess & refer",
+    summary: "Pigmentation caused by certain medicines, or a net-like pattern from repeated heat exposure (erythema ab igne). The cause is dealt with first.",
+    metaTitle: "Drug-Induced & Heat-Induced Pigmentation | Assessment",
     metaDescription:
-      "Thyroid problems, low iron and other medical issues can contribute to hair loss. Learn how we assess this in London and Glasgow and when we refer to your GP.",
+      "Assessment for pigmentation linked to medicines or heat (erythema ab igne) at Harley Street Aesthetics London and Glasgow. We look for the cause and liaise with your GP. Results vary.",
     intro: [
-      "Hair is sensitive to changes in your general health. Thyroid problems, low iron, some vitamin deficiencies, hormonal conditions, some medicines and other illnesses can all contribute to thinning or shedding.",
-      "Finding and treating an underlying cause comes first. Cosmetic treatments aren't a substitute for this.",
+      "Some medicines can cause pigmentation, either directly or by making skin more sensitive to sunlight. The colour can be brown, grey or blue-grey, and may appear in sun-exposed areas, on the shins or elsewhere.",
+      "Repeated heat on the same patch of skin, for example from a hot water bottle, heat pad or laptop, can cause a net-like brown pattern called erythema ab igne. Stopping the heat source is the first step, and a doctor should look at it.",
     ],
-    symptoms: [
-      "Diffuse thinning or extra shedding",
-      "Other symptoms such as tiredness, weight change, feeling cold, or heavy periods",
-      "Changes in hair texture",
-    ],
-    causes: [
-      "Underactive or overactive thyroid",
-      "Low iron stores",
-      "Some vitamin deficiencies",
-      "Hormonal conditions",
-      "Some prescribed medicines",
-      "Recent or ongoing illness",
-    ],
-    assessment: [
-      "A consultation about your symptoms, health, diet and medicines",
-      "Blood tests where clinically indicated, arranged by us or through your GP",
-      "Referral back to your GP if a medical condition needs treatment",
-    ],
+    appearance: ["Brown, grey or blue-grey patches", "A net-like brown pattern where heat has been applied repeatedly", "Darkening after starting a new medicine"],
+    causes: ["Some medicines, including some antibiotics, antimalarials, heart medicines and chemotherapy", "Medicines that make the skin sensitive to light", "Repeated heat from hot water bottles, heat pads, laptops or heaters"],
+    assessment: [...STANDARD_ASSESSMENT.slice(0, 2), "A full list of your medicines and supplements", "Questions about heat sources on the affected skin"],
     treatments: [],
-    options: [
-      "Nutritional support may be discussed when clinically indicated.",
-      "Vitamin drips are not a proven general treatment for hair loss.",
-      "Once any medical cause is managed, treatments for remaining thinning can be discussed.",
-    ],
-    faqs: [
-      {
-        q: "Should I take supplements for my hair?",
-        a: "Only if you have a deficiency. Taking supplements you don't need won't help your hair and some can cause problems. Ask us or your GP before starting any.",
-      },
-      {
-        q: "Can I stop my medicine if I think it is causing hair loss?",
-        a: "No. Please don't stop any prescribed medicine without talking to the doctor who prescribed it.",
-      },
-    ],
-    related: ["telogen-effluvium", "diffuse-thinning", "female-pattern-hair-loss"],
+    options: ["Never stop a prescribed medicine without speaking to the doctor who prescribed it."],
+    referral:
+      "We'll look at the pattern and your medicines and advise you to speak to your GP or prescriber about the possible cause. Heat-related pigmentation should be checked by a doctor. Cosmetic treatment, if any, is only considered once the cause has been addressed.",
+    tbc: ["confirm whether we offer treatment once the cause has been dealt with, or refer only"],
+    prevention: ["Sun protection if a medicine makes you light-sensitive", "Avoiding direct, repeated heat on the same patch of skin"],
+    faqs: [{ q: "Will the pigmentation fade if I stop the medicine?", a: "Sometimes, slowly, but you should never stop a prescribed medicine without advice. Talk to your GP or prescriber first." }],
+    related: ["hypopigmentation-and-vitiligo", "body-pigmentation", "hormonal-pigmentation"],
   },
   {
-    slug: "scalp-conditions",
-    name: "Scalp conditions",
-    shortName: "Scalp conditions",
-    audience: "all",
-    summary: "Dandruff, seborrhoeic dermatitis, scalp psoriasis and itchy or sore scalps.",
-    metaTitle: "Itchy Scalp, Dandruff & Scalp Psoriasis Assessment",
+    slug: "hypopigmentation-and-vitiligo",
+    name: "White patches, hypopigmentation and vitiligo",
+    shortName: "White patches & vitiligo",
+    group: "Assess & refer",
+    summary: "Patches of skin lighter than the surrounding skin. These have different causes, including vitiligo, and are assessed and referred where needed.",
+    metaTitle: "White Patches, Hypopigmentation & Vitiligo | Assessment",
     metaDescription:
-      "Itchy, flaky or sore scalp? Dandruff, seborrhoeic dermatitis and scalp psoriasis can be assessed at our London and Glasgow clinics alongside hair concerns.",
+      "Assessment for white patches, hypopigmentation and vitiligo at Harley Street Aesthetics London and Glasgow. We explain likely causes and refer to your GP or dermatology where needed.",
     intro: [
-      "A healthy scalp is part of healthy-looking hair. Common scalp conditions include dandruff and seborrhoeic dermatitis (flaking and itching, sometimes with redness), and scalp psoriasis (thicker, scaly patches).",
-      "Scratching and inflammation can lead to broken hairs or extra shedding. Some scalp symptoms can also be signs of conditions that need specialist care, so it's worth having them checked.",
+      "Hypopigmentation means skin that is lighter than the skin around it. Causes include vitiligo (where pigment cells stop working, giving well-defined white patches), lighter marks after inflammation or a treatment, fungal infections and other skin conditions.",
+      "Our cosmetic pigmentation treatments are designed for darker marks, not for white patches. We'll help you understand what may be causing them and point you to the right medical care.",
     ],
-    symptoms: [
-      "Flaking, itching or redness",
-      "Thick, silvery or scaly patches",
-      "A sore, burning or tender scalp",
-      "Broken hairs or extra shedding",
-    ],
-    causes: [
-      "Seborrhoeic dermatitis, linked to a yeast that lives on the skin",
-      "Psoriasis",
-      "Reactions to hair products or dyes",
-      "Fungal infection, especially in children (who should see their GP)",
-    ],
-    assessment: [
-      "A consultation and close scalp examination",
-      "Advice on scalp care and products",
-      "Referral to your GP or a dermatologist where needed",
-    ],
+    appearance: ["Pale or white patches", "Well-defined white patches, sometimes symmetrical (possible vitiligo)", "Lighter marks after a rash, burn or treatment"],
+    causes: ["Vitiligo, an autoimmune condition", "Lighter marks after inflammation or a procedure", "Fungal infections such as pityriasis versicolor", "Other skin conditions"],
+    assessment: [...STANDARD_ASSESSMENT.slice(0, 2), "Questions about family history and autoimmune conditions"],
     treatments: [],
-    options: [
-      "Treating the scalp condition comes first; some hair treatments aren't suitable on an inflamed scalp.",
-      RX_SENTENCE,
-    ],
-    urgent: "A very painful scalp, spreading redness, pus or fever needs prompt medical attention from your GP or NHS 111.",
-    faqs: [
-      {
-        q: "Does dandruff cause hair loss?",
-        a: "Dandruff itself doesn't usually cause permanent hair loss, but itching, scratching and inflammation can lead to broken hairs and extra shedding.",
-      },
-    ],
-    related: ["scarring-alopecia", "diffuse-thinning", "medical-causes"],
-  },
-  {
-    slug: "hair-loss-after-chemotherapy",
-    name: "Hair loss after chemotherapy",
-    shortName: "After chemotherapy",
-    audience: "all",
-    summary: "Support and assessment for hair regrowth after cancer treatment, in coordination with your oncology team.",
-    metaTitle: "Hair Loss After Chemotherapy: Support and Advice",
-    metaDescription:
-      "Hair changes after chemotherapy are common. Learn how we can support you in coordination with your oncology team in London and Glasgow.",
-    intro: [
-      "Many chemotherapy treatments cause temporary hair loss. For most people hair starts to regrow after treatment ends, though it can grow back with a different texture or density.",
-      "If you're concerned about regrowth after cancer treatment, we can talk it through with you. Any treatment would be planned with your oncology team's advice.",
-    ],
-    symptoms: ["Slow or patchy regrowth after treatment", "Changes in texture, colour or density", "Ongoing thinning months after treatment ended"],
-    causes: ["Chemotherapy and some other cancer treatments", "Hormonal treatments used for some cancers"],
-    assessment: [
-      "A consultation about your treatment history and current health",
-      "Liaison with, or advice to speak to, your oncology team before any treatment",
-    ],
-    treatments: [],
-    options: ["Treatment options, if any, depend on your medical history and your oncology team's advice."],
-    faqs: [
-      {
-        q: "Can I have treatment during chemotherapy?",
-        a: "Please speak to your oncology team first. We won't start any hair treatment without their agreement.",
-      },
-    ],
-    related: ["diffuse-thinning", "medical-causes", "telogen-effluvium"],
-  },
-  {
-    slug: "beard-and-eyebrow-thinning",
-    name: "Beard and eyebrow thinning",
-    shortName: "Beard & eyebrows",
-    audience: "all",
-    summary: "Patchy or thinning beard and eyebrow hair, and when it needs checking.",
-    metaTitle: "Beard and Eyebrow Thinning Assessment",
-    metaDescription:
-      "Patchy beard or thinning eyebrows can have several causes, including alopecia areata and thyroid problems. Get assessed in London or Glasgow.",
-    intro: [
-      "Thinning or patches in the beard or eyebrows can have several causes. Patchy loss in the beard is often alopecia areata. Eyebrow thinning can follow over-plucking, and it can also be linked to thyroid problems or, rarely, scarring conditions.",
-      "An assessment helps work out the cause before any treatment is discussed.",
-    ],
-    symptoms: ["Round patches in the beard", "Thinning of the outer eyebrows", "Gaps that haven't filled in over time"],
-    causes: ["Alopecia areata", "Over-plucking or waxing", "Thyroid problems", "Rarely, scarring conditions"],
-    assessment: STANDARD_ASSESSMENT,
-    treatments: [],
-    options: ["Options depend on the cause and are discussed at consultation."],
-    faqs: [
-      {
-        q: "Is a patchy beard a sign of alopecia areata?",
-        a: "It can be, but there are other causes too. A consultation can help work out what's going on.",
-      },
-    ],
-    related: ["alopecia-areata", "medical-causes", "scarring-alopecia"],
-  },
-  {
-    slug: "pcos-hair-loss",
-    name: "Hair thinning linked to PCOS and hormones",
-    shortName: "PCOS & hormonal thinning",
-    audience: "women",
-    summary: "Thinning on the top of the scalp linked to polycystic ovary syndrome (PCOS) or other hormonal changes.",
-    metaTitle: "PCOS Hair Loss Assessment London & Glasgow",
-    metaDescription:
-      "Thinning hair with PCOS or other hormonal changes? Get a clinician-led assessment in London or Glasgow and talk through suitable options. Results vary.",
-    intro: [
-      "Polycystic ovary syndrome (PCOS) is a common hormonal condition. In some women, higher levels of androgens (male-type hormones) can lead to thinning on the top of the scalp, in a similar pattern to female pattern hair loss.",
-      "Because hormones affect the whole body, hair thinning with PCOS should be looked at alongside your general health. Your GP or specialist can help manage PCOS itself, while we focus on your hair and scalp.",
-    ],
-    symptoms: [
-      "Thinning over the top of the scalp or a wider parting",
-      "Irregular periods, acne or extra facial or body hair",
-      "Gradual change over months or years",
-    ],
-    causes: [
-      "Higher androgen levels or increased sensitivity to them",
-      "Other hormonal conditions, such as thyroid problems, which can be checked",
-      "Other contributors such as low iron or recent stress",
-    ],
-    assessment: [
-      "A consultation about your hair, periods, general health and any PCOS diagnosis or treatment",
-      "A close look at your scalp and the pattern of thinning",
-      "Blood tests where clinically indicated, arranged by us or through your GP",
-    ],
-    treatments: ["prp-hair-treatment", "scalp-microneedling", "low-level-laser-therapy", "exosome-hair-treatment"],
-    options: [
-      RX_SENTENCE,
-      "If you haven't been diagnosed with PCOS but have symptoms, we may suggest you see your GP for assessment.",
-    ],
-    faqs: [
-      {
-        q: "Can PCOS cause hair loss?",
-        a: "It can. In some women, hormonal changes linked to PCOS contribute to thinning on the top of the scalp. Other causes can look similar, so an assessment is worthwhile.",
-      },
-      {
-        q: "Should I see my GP as well?",
-        a: "Yes, if you have other PCOS symptoms or haven't been diagnosed. Managing the underlying condition is an important part of your plan.",
-      },
-    ],
-    related: ["female-pattern-hair-loss", "medical-causes", "menopause-hair-loss"],
-  },
-  {
-    slug: "hair-breakage",
-    name: "Hair breakage and damaged hair",
-    shortName: "Hair breakage",
-    audience: "all",
-    summary: "Hair that snaps along its length rather than falling out from the root, often from styling, heat or chemical treatments.",
-    metaTitle: "Hair Breakage or Hair Loss? Get Assessed",
-    metaDescription:
-      "Is your hair breaking or falling out? Learn the difference and get a clinician-led assessment of hair and scalp concerns in London or Glasgow.",
-    intro: [
-      "Not all hair that ends up in your brush is hair loss. Breakage happens when the hair shaft snaps, usually leaving short, uneven pieces, while shedding means the whole hair comes out from the root.",
-      "Breakage is often linked to heat styling, bleaching, relaxers, tight styles or rough handling, and sometimes to nutritional or medical factors. Telling breakage and shedding apart helps decide what will help.",
-    ],
-    symptoms: [
-      "Short, broken pieces of hair, often without a white bulb at the end",
-      "Hair that feels dry, rough or brittle",
-      "Thinner-looking ends or uneven lengths",
-      "Breakage where hair is tied or styled most",
-    ],
-    causes: [
-      "Heat styling, bleaching, colouring and chemical straightening",
-      "Tight hairstyles, extensions and rough brushing",
-      "Low iron, thyroid problems or other deficiencies, which can be checked",
-      "Rarely, inherited conditions affecting the hair shaft",
-    ],
-    assessment: [
-      "A consultation about your hair care, styling and health",
-      "A close look at your hair and scalp to tell breakage from shedding",
-      "Blood tests where clinically indicated",
-    ],
-    treatments: [],
-    options: [
-      "Changes to hair care and styling are usually the first step. We'll talk through practical advice.",
-      "If there is also thinning from the root, treatment options for that cause can be discussed.",
-    ],
-    faqs: [
-      {
-        q: "How do I know if my hair is breaking or falling out?",
-        a: "Hairs that shed from the root usually have a small white bulb at one end and are full length. Broken hairs are shorter and snapped along their length. A consultation can confirm which is happening.",
-      },
-    ],
-    related: ["traction-alopecia", "telogen-effluvium", "medical-causes"],
+    options: [],
+    referral:
+      "We'll assess the patches and, where a medical diagnosis or treatment is needed, advise you to see your GP, who can refer you to NHS dermatology. Vitiligo and many other causes are managed medically.",
+    tbc: ["confirm we assess and refer hypopigmentation and vitiligo rather than treat them"],
+    prevention: ["Sun protection: pale patches burn easily"],
+    faqs: [{ q: "Can you treat vitiligo?", a: "Vitiligo is a medical condition that should be diagnosed and managed by a doctor. We can assess your skin and help you get the right referral." }],
+    related: ["cafe-au-lait-and-birthmarks", "post-inflammatory-hyperpigmentation", "drug-and-heat-induced-pigmentation"],
   },
 ];
 
 export const conditionBySlug = (slug: string) => CONDITIONS.find((c) => c.slug === slug);
 
 export const DIAGNOSIS_STEPS = [
-  { title: "Consultation", text: "We talk about your hair, your health, medicines, family history and what you'd like to achieve." },
-  { title: "Scalp assessment", text: "A close look at your scalp and hair to understand the pattern and likely cause." },
-  { title: "Tests if needed", text: "Blood tests or a referral where your history suggests something else could be contributing." },
-  { title: "Your plan and reviews", text: "We explain suitable options, costs and what's realistic, then review your progress over time." },
+  { title: "Free AI analysis", text: "Optional: a selfie maps where pigmentation shows across six facial zones. It is a guide, not a diagnosis." },
+  { title: "Consultation", text: "A free online consultation, or in clinic, about your skin, history, medicines and goals." },
+  { title: "Skin check & typing", text: "We check for any mark that needs a doctor, assess the type and depth of pigmentation, and your skin type." },
+  { title: "Plan, patch test, review", text: "We explain options and costs. A patch test may be advised, and we review your progress at each visit." },
 ];
 
-/** "Find your hair loss type" picker on the home page. */
+/** "Find your pigmentation type" picker on the home page. */
 export const PATTERNS = [
-  { label: "Receding hairline", text: "Hairline moving back at the temples", href: "/conditions/receding-hairline/" },
-  { label: "Thinning crown", text: "More scalp showing on top or at the back", href: "/conditions/crown-thinning/" },
-  { label: "Wider parting", text: "Thinning over the top, front hairline kept", href: "/conditions/female-pattern-hair-loss/" },
-  { label: "Patches", text: "Round, smooth bald patches", href: "/conditions/alopecia-areata/" },
-  { label: "Sudden shedding", text: "Lots of hair falling out after stress or illness", href: "/conditions/telogen-effluvium/" },
-  { label: "Itchy or flaky scalp", text: "Flaking, redness, itch or soreness", href: "/conditions/scalp-conditions/" },
+  { label: "Patches on both cheeks", text: "Soft-edged patches, worse in summer", href: "/conditions/melasma/" },
+  { label: "Defined brown spots", text: "Flat spots where the sun hits", href: "/conditions/sun-spots/" },
+  { label: "Marks after spots", text: "Dark marks left when acne heals", href: "/conditions/post-inflammatory-hyperpigmentation/" },
+  { label: "Under the eyes", text: "Brown or shadowy darkness", href: "/conditions/dark-circles/" },
+  { label: "Body folds or joints", text: "Underarms, inner thighs, knees", href: "/conditions/body-pigmentation/" },
+  { label: "Pale or white patches", text: "Skin lighter than around it", href: "/conditions/hypopigmentation-and-vitiligo/" },
 ] as const;

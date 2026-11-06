@@ -13,7 +13,7 @@ const sizes = { mobile: { width: 390, height: 844 }, tablet: { width: 820, heigh
     const name = rest[i], url = rest[i + 1];
     for (const s of only) {
       const ctx = await browser.newContext({ viewport: sizes[s], deviceScaleFactor: 1 });
-      if (process.env.SKIPBANNER) await ctx.addInitScript(() => localStorage.setItem('hsw-cookie-consent', JSON.stringify({ analytics: false, marketing: false, ts: 'qa', v: 1 })));
+      if (process.env.SKIPBANNER) await ctx.addInitScript(() => localStorage.setItem('hsa-cookie-consent', JSON.stringify({ analytics: false, marketing: false, ts: 'qa', v: 1 })));
       const page = await ctx.newPage();
       try {
         await page.goto(url, { waitUntil: 'networkidle', timeout: 45000 });

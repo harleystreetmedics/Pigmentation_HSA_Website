@@ -4,7 +4,7 @@ import { BRAND, CONSULTATIONS } from "@/lib/site";
 
 export const metadata = pageMetadata({
   title: "Terms of Use",
-  description: "Terms of use for the Harley Street Aesthetics hair loss website.",
+  description: "Terms of use for the Harley Street Aesthetics pigmentation website.",
   path: "/terms/",
 });
 
@@ -13,7 +13,7 @@ export default function TermsPage() {
     <LegalPage title="Terms of use" path="/terms/">
       <h2>About this website</h2>
       <p>
-        This website provides general information about hair loss and the treatments offered by Harley Street Aesthetics. It does not form
+        This website provides general information about pigmentation and the treatments offered by Harley Street Aesthetics. It does not form
         a contract for treatment. Treatment is only provided after a consultation with a qualified practitioner and your informed consent.
       </p>
       <h2>Prices</h2>

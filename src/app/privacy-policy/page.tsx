@@ -6,7 +6,7 @@ import { BRAND } from "@/lib/site";
 
 export const metadata = pageMetadata({
   title: "Privacy Policy",
-  description: "How Harley Street Aesthetics collects and uses personal information through this hair loss website.",
+  description: "How Harley Street Aesthetics collects and uses personal information through this pigmentation website.",
   path: "/privacy-policy/",
 });
 

@@ -1,12 +1,13 @@
 import Link from "next/link";
-import { REVIEW_RATING } from "@/lib/reviews";
+import { SKIN_CHECK } from "@/lib/conditions";
+import { REVIEW_RATING, REVIEWS } from "@/lib/reviews";
 import { BRAND, CLINIC_LIST, TEAM } from "@/lib/site";
 import { ClinicTabs } from "./location";
 import { ReviewsCarousel } from "./ReviewsCarousel";
 import { Icon } from "./Icon";
 import { Button, Section, SectionHeading, Tbc } from "./ui";
 
-export function CtaBand({ title = "Start with the cause", text }: { title?: string; text?: string }) {
+export function CtaBand({ title = "Start with an assessment of your skin", text }: { title?: string; text?: string }) {
   return (
     <section aria-labelledby="cta-title" className="relative overflow-hidden border-t border-white/5 bg-ink py-16 text-white sm:py-20">
       <div aria-hidden="true" className="pointer-events-none absolute inset-0">
@@ -19,12 +20,12 @@ export function CtaBand({ title = "Start with the cause", text }: { title?: stri
         </h2>
         <p className="mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-white/80">
           {text ??
-            "Talk to our clinical team about your hair. We'll look at what may be contributing and explain the options that could suit you. There's no obligation to go ahead with treatment."}
+            "Talk to our medical team about your pigmentation. We'll look at its type, depth and likely cause, check your skin type, and explain the options that could suit you. There's no obligation to go ahead."}
         </p>
         <div className="mt-9 flex flex-col justify-center gap-4 sm:flex-row">
           <Button href="/book/">Book consultation</Button>
-          <Button href="/which-treatment/" variant="outline">
-            Which treatment is right for me?
+          <Button href={BRAND.aiAnalysisUrl} variant="outline">
+            Free AI pigmentation analysis
           </Button>
         </div>
       </div>
@@ -32,7 +33,64 @@ export function CtaBand({ title = "Start with the cause", text }: { title?: stri
   );
 }
 
-/** Patient reviews as published on the clinic's main website. */
+/** Skin cancer safety notice. Shown on every condition and treatment page, the quiz and the darker-skin page. */
+export function SkinCheckNotice({ className = "" }: { className?: string }) {
+  return (
+    <div role="note" aria-label="Skin check" className={`flex gap-3 rounded-2xl border border-amber-300/50 bg-amber-300/10 p-5 text-cream sm:p-6 ${className}`}>
+      <Icon name="alert" className="mt-0.5 h-5 w-5 shrink-0 text-amber-300" />
+      <p className="text-sm leading-relaxed">
+        <strong>Check changing spots first.</strong> {SKIN_CHECK}
+      </p>
+    </div>
+  );
+}
+
+/** Skin-of-colour note with a link to the dedicated page. */
+export function SkinToneNote({ text, className = "" }: { text: string; className?: string }) {
+  return (
+    <div className={`rounded-2xl border border-gold/30 bg-gradient-to-br from-gold/10 to-transparent p-6 sm:p-7 ${className}`}>
+      <p className="eyebrow text-gold">Skin of colour</p>
+      <p className="mt-3 leading-relaxed text-cream">{text}</p>
+      <Link href="/pigmentation-in-darker-skin/" className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-gold hover:text-cream">
+        Pigmentation in darker skin tones <Icon name="arrow" className="h-4 w-4" />
+      </Link>
+    </div>
+  );
+}
+
+/** Amber notices for facts still to confirm. */
+export function TbcNotes({ items, className = "" }: { items?: string[]; className?: string }) {
+  if (!items?.length) return null;
+  return (
+    <ul className={`space-y-2 ${className}`}>
+      {items.map((t) => (
+        <li key={t}>
+          <Tbc>{t}</Tbc>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+export function AiAnalysisCard({ className = "" }: { className?: string }) {
+  return (
+    <div className={`flex flex-col gap-5 rounded-2xl border border-gold/40 bg-card p-7 shadow-card sm:flex-row sm:items-center sm:justify-between ${className}`}>
+      <div className="max-w-2xl">
+        <p className="eyebrow text-gold">Free online tool</p>
+        <h3 className="mt-2 font-serif text-2xl text-cream">Free AI pigmentation analysis</h3>
+        <p className="mt-3 text-sm leading-relaxed text-stone">
+          Take a selfie and see where visible pigmentation sits across six facial zones, with a report to bring to your free online
+          consultation. It&rsquo;s a guide, not a diagnosis: your pigmentation type and suitability are confirmed by a qualified practitioner.
+        </p>
+      </div>
+      <Button href={BRAND.aiAnalysisUrl} variant="outline" className="shrink-0">
+        Start my analysis
+      </Button>
+    </div>
+  );
+}
+
+/** Reviews: shows the carousel once verified reviews exist; until then an honest placeholder. */
 export function ReviewsSection() {
   return (
     <section aria-labelledby="reviews-title" className="bg-charcoal py-16 text-white sm:py-20 lg:py-24">
@@ -40,14 +98,29 @@ export function ReviewsSection() {
         <div className="mb-10 flex max-w-3xl flex-col gap-4 sm:mb-14">
           <p className="eyebrow text-gold">Patient reviews</p>
           <h2 id="reviews-title" className="text-3xl leading-tight text-white sm:text-4xl lg:text-5xl">
-            Trusted by <span className="text-gold">patients</span>
+            In our patients&rsquo; <span className="text-gold">words</span>
           </h2>
         </div>
-        <ReviewsCarousel />
-        <p className="mt-6 flex items-center gap-2 text-sm text-white/70">
-          <Icon name="star" className="h-4 w-4 text-gold" />
-          {REVIEW_RATING}
-        </p>
+        {REVIEWS.length > 0 ? (
+          <>
+            <ReviewsCarousel />
+            {REVIEW_RATING && (
+              <p className="mt-6 flex items-center gap-2 text-sm text-white/70">
+                <Icon name="star" className="h-4 w-4 text-gold" />
+                {REVIEW_RATING}
+              </p>
+            )}
+          </>
+        ) : (
+          <div className="rounded-2xl border border-cream/10 bg-card p-7 text-stone">
+            <p>
+              We only show verified reviews from patients who have agreed to share them, and we never edit what they say.
+            </p>
+            <p className="mt-3">
+              <Tbc>verified pigmentation patient reviews with permission to publish</Tbc>
+            </p>
+          </div>
+        )}
       </div>
     </section>
   );
@@ -62,23 +135,33 @@ export function ClinicsSection({ tone = "rich" as "rich" | "soft" }) {
   );
 }
 
-/** Medical team from harleystreetmedicalwellness.co.uk. */
-export function TeamGrid() {
+/** Medical team from harleystreetaesthetic.co.uk/london/team (initials instead of photos). */
+export function TeamGrid({ limit }: { limit?: number }) {
+  const people = limit ? TEAM.slice(0, limit) : TEAM;
   return (
     <>
-      <ul className="grid gap-5 md:grid-cols-3">
-        {TEAM.map((p) => (
-          <li key={p.name} className="overflow-hidden rounded-2xl border border-cream/10 bg-card shadow-card">
-            {/* eslint-disable-next-line @next/next/no-img-element -- static export; the clinic's own photos are served from its website */}
-            <img src={p.photo} alt={`${p.name}, ${p.role}`} width={600} height={720} loading="lazy" decoding="async" className="aspect-[5/6] w-full object-cover object-top" />
-            <div className="p-7">
-              <p className="eyebrow text-gold">{p.role} · GMC registered</p>
-              <h3 className="mt-2 font-serif text-2xl text-cream">{p.name}</h3>
-              <p className="mt-3 text-sm leading-relaxed text-stone">{p.bio}</p>
-            </div>
+      <ul className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+        {people.map((p) => (
+          <li key={p.name} className="rounded-2xl border border-cream/10 bg-card p-7 shadow-card">
+            <span aria-hidden="true" className="flex h-16 w-16 items-center justify-center rounded-full border border-gold/40 bg-black-soft font-serif text-xl text-gold">
+              {p.name.replace(/^(Mr|Dr) /, "").split(" ").map((w) => w[0]).join("").slice(0, 2)}
+            </span>
+            <h3 className="mt-5 font-serif text-2xl text-cream">{p.name}</h3>
+            <p className="mt-1 text-sm font-semibold text-gold">
+              {p.role}
+              {p.post && <span className="font-normal text-stone"> · {p.post}</span>}
+            </p>
+            <p className="mt-4 text-sm leading-relaxed text-stone">{p.bio}</p>
           </li>
         ))}
       </ul>
+      <p className="mt-6 text-sm text-stone">
+        Our medical team is GMC-registered.{" "}
+        <a href={`${BRAND.mainSite}/london/team`} className="text-gold underline underline-offset-2 hover:text-cream">
+          Read full profiles on our main website
+        </a>
+        . <Tbc>which team members see pigmentation patients, and GMC numbers</Tbc>
+      </p>
     </>
   );
 }
@@ -87,12 +170,7 @@ export function TeamGrid() {
 export function BookingCalendar() {
   return (
     <div className="overflow-hidden rounded-2xl bg-card shadow-card">
-      <iframe
-        src={BRAND.bookingUrl}
-        title="Book your free online consultation"
-        loading="lazy"
-        className="block h-[900px] w-full border-0"
-      />
+      <iframe src={BRAND.bookingUrl} title="Book your free online consultation" loading="lazy" className="block h-[900px] w-full border-0" />
       <p className="border-t border-cream/10 p-4 text-center text-sm text-stone">
         Calendar not loading?{" "}
         <a href={BRAND.bookingUrl} target="_blank" rel="noopener" className="inline-flex items-center gap-1 font-semibold text-gold hover:text-cream">
@@ -120,18 +198,14 @@ export function ClinicCards({ stacked = false }: { stacked?: boolean }) {
                   {a.line2 && `, ${a.line2}`}
                   <br />
                   {a.locality} {a.postcode}
-                  {a.tbc && (
-                    <>
-                      <br />
-                      <Tbc>{a.tbc}</Tbc>
-                    </>
-                  )}
                 </span>
               </p>
             ))}
             <p className="flex gap-3">
               <Icon name="clock" className="mt-0.5 h-5 w-5 shrink-0 text-gold" />
-              <span>{c.hours}</span>
+              <span>
+                {c.hours} <Tbc>confirm opening hours</Tbc>
+              </span>
             </p>
           </address>
           <div className="mt-6 flex flex-wrap gap-3">

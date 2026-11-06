@@ -1,17 +1,14 @@
 import { notFound } from "next/navigation";
 import { FactStrip, FaqAccordion, RiskList, StepTimeline } from "@/components/cards";
-import { FollicleArt } from "@/components/FollicleArt";
-import { Icon } from "@/components/Icon";
-import { CtaBand, RelatedLinks } from "@/components/sections";
-import { Button, CheckList, Disclaimer, JsonLd, PageHero, Section, SectionHeading } from "@/components/ui";
+import { CtaBand, RelatedLinks, SkinCheckNotice, SkinToneNote, TbcNotes } from "@/components/sections";
+import { SkinToneArt } from "@/components/SkinToneArt";
+import { Button, CheckList, Disclaimer, JsonLd, PageHero, Section, SectionHeading, Tbc } from "@/components/ui";
 import { CONDITIONS, RX_SENTENCE } from "@/lib/conditions";
 import { faqSchema, treatmentSchema } from "@/lib/schema";
 import { pageMetadata } from "@/lib/seo";
 import { TREATMENTS, treatmentBySlug } from "@/lib/treatments";
 
 export const dynamicParams = false;
-
-const plainName = (t: { shortName: string; name: string }) => (t.shortName === "PRP" ? "PRP" : t.name.toLowerCase());
 
 export function generateStaticParams() {
   return TREATMENTS.map((t) => ({ slug: t.slug }));
@@ -33,7 +30,7 @@ export default async function TreatmentPage({ params }: PageProps<"/treatments/[
     <>
       <JsonLd data={[treatmentSchema(t), faqSchema(t.faqs)]} />
       <PageHero
-        eyebrow="Hair loss treatment"
+        eyebrow={`Pigmentation treatment · ${t.category}`}
         title={t.name}
         intro={t.summary}
         crumbs={[
@@ -52,38 +49,29 @@ export default async function TreatmentPage({ params }: PageProps<"/treatments/[
       <section className="border-t border-white/5 bg-black-rich">
         <div className="container-x py-4">
           <FactStrip facts={t.facts} />
+          {t.tbc && (
+            <div className="mt-6">
+              <TbcNotes items={t.tbc} />
+            </div>
+          )}
         </div>
       </section>
-
-      {t.evidenceNote && (
-        <div className="bg-black-rich">
-          <div className="container-x">
-            <div className="flex gap-3 rounded-2xl border border-amber-300/50 bg-amber-300/10 p-6 text-cream">
-              <Icon name="info" className="mt-0.5 h-5 w-5 shrink-0 text-amber-300" />
-              <p className="leading-relaxed">{t.evidenceNote}</p>
-            </div>
-          </div>
-        </div>
-      )}
 
       <Section labelledBy="what-title">
         <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
           <div className="lg:col-span-7">
-            <SectionHeading id="what-title" eyebrow="How it works" title={<>What is {plainName(t)}?</>} />
+            <SectionHeading id="what-title" eyebrow="How it works" title={<>About {t.shortName === "IPL" || t.shortName === "VI Peel" ? t.shortName : t.name.charAt(0).toLowerCase() + t.name.slice(1)}</>} />
             <div className="space-y-5 text-lg leading-relaxed text-stone">
               {[...t.intro, ...t.howItWorks].map((p) => (
                 <p key={p}>{p}</p>
               ))}
-              <p>
-                Hair grows slowly. Any change usually builds over 3–6 months as the hair cycle progresses, and a course is often followed by
-                maintenance sessions every few months. Results vary and are not guaranteed.
-              </p>
+              <p>Changes are gradual, and how long results last depends on your type of pigmentation and on sun protection. Results vary and are not guaranteed.</p>
               <p>{RX_SENTENCE}</p>
             </div>
           </div>
           <div className="hidden lg:col-span-5 lg:block">
             <div className="overflow-hidden rounded-3xl border border-gold/20 bg-card shadow-card">
-              <FollicleArt className="aspect-[4/5] w-full" />
+              <SkinToneArt className="aspect-[4/5] w-full" swatches={false} />
             </div>
           </div>
         </div>
@@ -94,7 +82,7 @@ export default async function TreatmentPage({ params }: PageProps<"/treatments/[
           id="suit-title"
           eyebrow="Suitability"
           title={<>Is it right for <span className="text-gold">you</span>?</>}
-          intro="Suitability is assessed at consultation by a qualified practitioner, based on your diagnosis, medical history and goals."
+          intro="Suitability is assessed at consultation by a qualified practitioner, based on your skin, your type of pigmentation, your medical history and your goals."
         />
         <div className="grid gap-5 md:grid-cols-2">
           <div className="rounded-2xl bg-card p-7 shadow-card">
@@ -106,10 +94,11 @@ export default async function TreatmentPage({ params }: PageProps<"/treatments/[
           <div className="rounded-2xl bg-card p-7 shadow-card">
             <h3 className="font-sans text-base font-semibold">It may not suit</h3>
             <div className="mt-4">
-              <CheckList items={t.mayNotSuit} tone="x" />
+              <CheckList items={[...t.mayNotSuit, "Anyone under 18"]} tone="x" />
             </div>
           </div>
         </div>
+        <SkinToneNote text={t.skinTone} className="mt-8" />
       </Section>
 
       <Section labelledBy="day-title">
@@ -135,7 +124,28 @@ export default async function TreatmentPage({ params }: PageProps<"/treatments/[
         <RiskList risks={t.risks} />
       </Section>
 
-      <Section labelledBy="faq-title">
+      <Section labelledBy="price-title">
+        <SectionHeading id="price-title" eyebrow="Price" title="Guide prices" intro="Your plan and its cost are confirmed after your consultation. A £50 deposit secures appointments and is redeemable against treatment." />
+        {t.prices.length > 0 ? (
+          <ul className="divide-y divide-cream/10 rounded-2xl border border-cream/10 bg-card">
+            {t.prices.map((p) => (
+              <li key={p.option} className="flex items-center justify-between gap-4 px-6 py-4">
+                <span className="text-cream">
+                  {p.option}
+                  {p.note && <span className="block text-xs text-stone">{p.note}</span>}
+                </span>
+                <span className="font-serif text-xl text-gold">{p.price}</span>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p>
+            <Tbc>{t.pricesTbc ?? "price"}</Tbc>
+          </p>
+        )}
+      </Section>
+
+      <Section tone="soft" labelledBy="faq-title">
         <div className="grid gap-12 lg:grid-cols-12">
           <div className="lg:col-span-4">
             <SectionHeading id="faq-title" eyebrow="FAQ" title={<>{t.shortName}: your questions</>} />
@@ -145,13 +155,14 @@ export default async function TreatmentPage({ params }: PageProps<"/treatments/[
           </div>
         </div>
         {forConditions.length > 0 && (
-          <RelatedLinks title="Conditions it may be discussed for" links={forConditions.map((c) => ({ href: `/conditions/${c.slug}/`, label: c.shortName }))} />
+          <RelatedLinks title="Pigmentation it may be discussed for" links={forConditions.map((c) => ({ href: `/conditions/${c.slug}/`, label: c.shortName }))} />
         )}
-        <RelatedLinks title="Other treatments" links={others.map((o) => ({ href: `/treatments/${o.slug}/`, label: o.name }))} />
-        <Disclaimer className="mt-12" />
+        <RelatedLinks title="Other treatments" links={others.map((o) => ({ href: `/treatments/${o.slug}/`, label: o.shortName }))} />
+        <SkinCheckNotice className="mt-12" />
+        <Disclaimer className="mt-6" />
       </Section>
 
-      <CtaBand title={`Is ${plainName(t)} right for you?`} />
+      <CtaBand title={`Is ${t.shortName === "IPL" || t.shortName === "VI Peel" ? t.shortName : t.shortName.toLowerCase()} right for you?`} />
     </>
   );
 }

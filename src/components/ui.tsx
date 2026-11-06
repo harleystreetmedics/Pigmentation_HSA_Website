@@ -116,8 +116,8 @@ export function Disclaimer({ className = "" }: { className?: string }) {
         <span>
           <strong className="text-cream">Important:</strong> this information is general and is not medical advice. Treatments are for
           adults aged 18 and over and require a consultation, where a qualified practitioner assesses your suitability. Results vary
-          between individuals and are not guaranteed. Sudden, patchy or rapidly worsening hair loss, or hair loss with a sore or inflamed
-          scalp, should be assessed by a doctor.{" "}
+          between individuals and are not guaranteed. Any new, changing, irregular, bleeding or itchy dark spot or mole should be checked by a
+          doctor before any cosmetic treatment.{" "}
           <Link className="text-gold underline underline-offset-2" href="/medical-disclaimer/">
             Read our medical disclaimer
           </Link>
@@ -132,7 +132,7 @@ export function JsonLd({ data }: { data: object | object[] }) {
   return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(data).replace(/</g, "\\u003c") }} />;
 }
 
-export function Wordmark({ sub = "Medical Wellness" }: { sub?: string }) {
+export function Wordmark({ sub = "Aesthetics" }: { sub?: string }) {
   return (
     <span className="flex flex-col leading-none">
       <span className="font-serif text-[1.15rem] tracking-[0.18em] text-white uppercase sm:text-xl">Harley Street</span>{" "}

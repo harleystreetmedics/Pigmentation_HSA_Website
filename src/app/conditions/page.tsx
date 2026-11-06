@@ -1,23 +1,24 @@
 import { ConditionCard } from "@/components/cards";
-import { CtaBand } from "@/components/sections";
+import { CtaBand, SkinCheckNotice } from "@/components/sections";
 import { Disclaimer, PageHero, Section, SectionHeading } from "@/components/ui";
-import { CONDITIONS } from "@/lib/conditions";
+import { CONDITIONS, type Condition } from "@/lib/conditions";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
-  title: "Types of Hair Loss We Assess",
+  title: "Types of Pigmentation We Assess",
   description:
-    "From male and female pattern hair loss to alopecia areata, shedding after illness, postpartum and menopause hair loss and scalp conditions. Assessed in London and Glasgow.",
+    "Melasma, sun spots, age spots, freckles, acne marks, hormonal pigmentation, dark circles, body and lip pigmentation, birthmarks and white patches. Assessed in London and Glasgow.",
   path: "/conditions/",
 });
 
-const GROUPS = [
-  { id: "pattern", title: "Pattern and gradual thinning", slugs: ["male-pattern-hair-loss", "female-pattern-hair-loss", "receding-hairline", "crown-thinning", "diffuse-thinning"] },
-  { id: "shedding", title: "Shedding and hormonal changes", slugs: ["telogen-effluvium", "postpartum-hair-loss", "menopause-hair-loss", "pcos-hair-loss", "medical-causes"] },
+const GROUPS: { id: string; title: string; intro: string; group: Condition["group"] }[] = [
+  { id: "face", title: "Facial pigmentation", intro: "The most common concerns we see, from sun spots to melasma.", group: "Face" },
+  { id: "body", title: "Body areas", intro: "Pigmentation on the body, where we assess the cause and advise on options.", group: "Body" },
   {
-    id: "patchy",
-    title: "Patchy loss, scalp and specialist conditions",
-    slugs: ["alopecia-areata", "traction-alopecia", "scarring-alopecia", "scalp-conditions", "hair-breakage", "hair-loss-after-chemotherapy", "beard-and-eyebrow-thinning"],
+    id: "refer",
+    title: "Assessed, and referred where needed",
+    intro: "Concerns that usually need a medical diagnosis first. We'll help you understand them and point you to the right care.",
+    group: "Assess & refer",
   },
 ];
 
@@ -26,27 +27,25 @@ export default function ConditionsIndex() {
     <>
       <PageHero
         eyebrow="Conditions"
-        title="Types of hair loss"
-        intro="Hair loss has many causes, and some need medical care before any cosmetic treatment. Read about the most common types, then book a consultation for an assessment."
+        title="Types of pigmentation"
+        intro="Pigmentation has many types and causes, and some need medical care before any cosmetic treatment. Read about each one, then book a consultation for an assessment."
         crumbs={[{ name: "Conditions", path: "/conditions/" }]}
       />
       {GROUPS.map((g, i) => (
         <Section key={g.id} tone={i % 2 ? "soft" : "rich"} labelledBy={`${g.id}-title`}>
-          <SectionHeading id={`${g.id}-title`} eyebrow="Conditions" title={g.title} />
+          <SectionHeading id={`${g.id}-title`} eyebrow="Conditions" title={g.title} intro={g.intro} />
           <ul className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {g.slugs.map((s) => {
-              const c = CONDITIONS.find((x) => x.slug === s)!;
-              return (
-                <li key={s}>
-                  <ConditionCard c={c} />
-                </li>
-              );
-            })}
+            {CONDITIONS.filter((c) => c.group === g.group).map((c) => (
+              <li key={c.slug}>
+                <ConditionCard c={c} />
+              </li>
+            ))}
           </ul>
         </Section>
       ))}
       <Section tone="soft">
-        <Disclaimer />
+        <SkinCheckNotice />
+        <Disclaimer className="mt-8" />
       </Section>
       <CtaBand />
     </>

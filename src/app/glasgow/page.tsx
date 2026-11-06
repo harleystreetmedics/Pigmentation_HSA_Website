@@ -2,9 +2,9 @@ import { LocationPage } from "@/components/LocationPage";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
-  title: "Hair Loss Clinic Glasgow | Ingram Street",
+  title: "Pigmentation Treatment Glasgow | Ingram Street",
   description:
-    "Hair loss treatment in Glasgow city centre at Ingram House, 227 Ingram Street. Clinician-led assessment for men and women, with options such as PRP. Results vary.",
+    "Pigmentation treatment in Glasgow city centre at Ingram House, 227 Ingram Street: melasma, sun spots, acne marks and uneven tone, for all skin tones. Results vary.",
   path: "/glasgow/",
 });
 

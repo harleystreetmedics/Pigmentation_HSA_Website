@@ -17,7 +17,7 @@ export function ReviewsCarousel() {
   return (
     <div>
       <div className="mb-8 flex flex-wrap items-center justify-between gap-4">
-        <p className="text-sm text-white/75">Real experiences from our clinics in London &amp; Glasgow, as published on our main website.</p>
+        <p className="text-sm text-white/75">Verified reviews from patients at our London &amp; Glasgow clinics, shared with their permission.</p>
         <div className="flex gap-2">
           <button
             type="button"

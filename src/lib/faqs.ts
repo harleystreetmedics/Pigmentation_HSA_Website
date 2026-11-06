@@ -3,35 +3,43 @@ export type Faq = { q: string; a: string };
 export const GENERAL_FAQS: Faq[] = [
   {
     q: "Why do I need a consultation before treatment?",
-    a: "Hair loss has many different causes, and the right approach depends on which one applies to you. A consultation lets a qualified practitioner look at your scalp, ask about your health and history, and decide whether any tests or a referral are needed before suggesting a plan.",
+    a: "Pigmentation has different types, depths and causes, and some treatments can make certain types worse. A consultation lets a qualified practitioner look at your skin, check that no mark needs medical attention, assess your skin type and suggest a plan that suits you.",
   },
   {
-    q: "Do you treat both men and women?",
-    a: "Yes. We see adults (18+) of all genders with thinning hair, hair shedding and scalp concerns at our London and Glasgow clinics.",
+    q: "Is the free AI pigmentation analysis a diagnosis?",
+    a: "No. The free AI analysis looks at a selfie and shows where pigmentation appears across six facial zones. It can't examine your skin or review your medical history, so your pigmentation type and suitability are only confirmed by a qualified practitioner.",
   },
   {
-    q: "Which treatments do you offer?",
-    a: "Depending on your diagnosis, options we may discuss include PRP, scalp microneedling and low-level laser therapy. We also offer autologous exosome treatment, prepared from your own blood, where evidence is still developing. Prescription treatments may be discussed at your consultation if clinically appropriate.",
+    q: "Which treatments do you offer for pigmentation?",
+    a: "Depending on your skin, options we may discuss include our Signature Pigmentation Programme, chemical peels, VI Peel, Cosmelan, IPL (lighter skin only), a Q-switched laser, Virtue RF microneedling, a carbon laser facial, CO2 resurfacing and a dark circles treatment. Prescription treatments may be discussed at your consultation if clinically appropriate.",
   },
   {
-    q: "Can you guarantee my hair will grow back?",
-    a: "No. No honest clinic can guarantee results for hair loss. Some types of hair loss improve on their own, some respond to treatment and some don't. Results vary from person to person, and we'll be clear with you about what is realistic.",
+    q: "Can you guarantee my pigmentation will go?",
+    a: "No. Some pigmentation fades well and stays faded with good sun protection. Other types, such as melasma, are long-term and can return with sun, heat or hormonal change. Results vary, and we'll be clear about what is realistic for your skin.",
   },
   {
-    q: "How long until I see a difference?",
-    a: "Hair grows slowly, so changes usually take 3–6 months to judge. We plan review appointments so we can track your progress together. Results vary.",
+    q: "Is pigmentation treatment safe for darker skin?",
+    a: "Pigmentation can be treated in all skin tones, but darker skin needs particular care, because it reacts more strongly to heat and irritation. Some treatments, such as IPL, aren't suitable for darker skin types. Your clinician chooses and adjusts treatment for your skin and may recommend a patch test.",
   },
   {
-    q: "My hair loss started suddenly or comes in patches. What should I do?",
-    a: "Sudden, patchy or rapidly worsening hair loss, or hair loss with a sore, scarred or inflamed scalp, should be assessed by a doctor. Book a consultation or speak to your GP. If you feel unwell, see your GP or call NHS 111.",
+    q: "I have a dark spot that has changed. What should I do?",
+    a: "If a spot or mole is new, changing in size, shape or colour, irregular, raised, bleeding or itchy, see your GP or a dermatologist before any cosmetic treatment. We check for this at every consultation.",
   },
   {
-    q: "Do you need blood tests?",
-    a: "Sometimes. If your history suggests that something like a thyroid problem or a low iron level could be contributing, blood tests may be recommended or you may be asked to arrange them with your GP.",
+    q: "Will treatment lighten my skin colour?",
+    a: "No. The aim is a clearer, more even-looking complexion at your natural skin tone, not a lighter skin colour.",
+  },
+  {
+    q: "How many sessions will I need?",
+    a: "It depends on the treatment and your pigmentation. For example, our Signature Programme is usually 2–6 sessions and chemical peels 3–6, a few weeks apart. Your clinician recommends a plan at consultation.",
   },
   {
     q: "How much does treatment cost?",
-    a: "PRP starts from £399 a session and autologous exosome treatment from £599, with lower prices per session for a course of three. Your online consultation is free. Every treatment includes a consultation, and a standalone in-clinic consultation is £295. Your plan and its cost are confirmed in writing after your consultation.",
+    a: "Your online consultation is free. Chemical peels start at £149, the Signature Pigmentation Programme is £349 a session, and other treatments are listed on our pricing page. Your plan and its cost are confirmed after your consultation, and a £50 deposit secures appointments.",
+  },
+  {
+    q: "Can I have treatment while pregnant or breastfeeding?",
+    a: "Most in-clinic pigmentation treatments aren't carried out during pregnancy or breastfeeding. Sun protection and gentle skincare help in the meantime, and we can plan treatment for later.",
   },
   {
     q: "Where are your clinics?",
@@ -39,6 +47,6 @@ export const GENERAL_FAQS: Faq[] = [
   },
   {
     q: "Is my information kept private?",
-    a: "Yes. We handle your personal and health information confidentially and in line with UK data protection law. Please don't include detailed medical information when you book; we'll ask about this privately at your consultation.",
+    a: "Yes. We handle your personal and health information confidentially and in line with UK data protection law. Please don't include detailed medical information in the enquiry form; we'll ask about this privately at your consultation.",
   },
 ];

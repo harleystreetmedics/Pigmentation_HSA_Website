@@ -1,5 +1,5 @@
 ﻿/* eslint-disable @typescript-eslint/no-require-imports */
-// Browser QA: cookie consent, clinic switcher, quiz, booking calendar, FAQ and console errors.
+// Browser QA: cookie consent, clinic switcher, quiz, enquiry form, FAQ and console errors.
 // Needs playwright-core (npm i -D playwright-core) and Chrome; serve ./out on port 4173 first (npx serve out -l 4173).
 const { chromium } = require('playwright-core');
 const B = 'http://127.0.0.1:4173';
@@ -54,15 +54,28 @@ const ok = (c, m) => console.log((c ? 'PASS ' : 'FAIL ') + m);
   await p.getByRole('button', { name: /open to in-clinic/ }).click();
   const txt2 = await p.locator('main').innerText();
   ok(txt2.includes('PRP hair treatment') && txt2.includes('Male pattern baldness'), 'quiz standard path suggests PRP and male pattern reading');
-  const quizReq = requests.filter((u) => u.includes('which-treatment') === false && /\/api|submit/.test(u));
+  const quizReq = requests.filter((u) => u.includes('which-treatment') === false && /\/api|__forms/.test(u));
   ok(quizReq.length === 0, 'quiz sends no network requests');
 
-  // Booking calendar embedded
+  // Enquiry form validation + submit
   await p.goto(B + '/book/', { waitUntil: 'networkidle' });
-  const cal = p.locator('iframe[title="Book your free online consultation"]');
-  ok((await cal.count()) === 1, 'booking calendar iframe present');
-  ok((await cal.getAttribute('src')).startsWith('https://link.harleystreetmedicalwellness.co.uk/widget/bookings/'), 'calendar points at the clinic booking widget');
-  ok((await p.locator('form').count()) === 0, 'no enquiry form on the booking page');
+  await p.getByRole('button', { name: 'Request my consultation' }).click();
+  const errs = await p.locator('form [aria-invalid="true"]').count();
+  ok(errs === 5, 'empty form shows 5 field errors (got ' + errs + ')');
+  await p.getByLabel('Full name').fill('Test Person');
+  await p.getByLabel('Phone', { exact: true }).fill('07700 900123');
+  await p.getByLabel('Email', { exact: true }).fill('test@example.com');
+  await p.getByLabel('Main concern').selectOption('Thinning crown');
+  await p.getByRole('checkbox').check();
+  let posted = null;
+  await p.route('**/__forms.html', async (route) => {
+    if (route.request().method() === 'POST') { posted = route.request().postData(); return route.fulfill({ status: 200, body: 'ok' }); }
+    return route.continue();
+  });
+  await p.getByRole('button', { name: 'Request my consultation' }).click();
+  await p.getByRole('status').waitFor({ timeout: 5000 });
+  ok(posted && posted.includes('form-name=hair-enquiry') && posted.includes('concern=Thinning+crown') && posted.includes('consent=yes'), 'form posts Netlify-encoded data');
+  ok((await p.getByRole('status').innerText()).includes('Thank you'), 'thank-you message shown');
 
   // FAQ accordion
   await p.goto(B + '/faq/', { waitUntil: 'networkidle' });
@@ -78,7 +91,6 @@ const ok = (c, m) => console.log((c ? 'PASS ' : 'FAIL ') + m);
   ok(errors.length === 0, 'no console errors' + (errors.length ? ': ' + errors.slice(0, 3).join(' | ') : ''));
   await b.close();
 })();
-
 
 
 

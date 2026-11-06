@@ -7,7 +7,7 @@ import { useLocation } from "./location";
 import { Icon } from "./Icon";
 
 // TODO(enquiries): Netlify Forms is a stand-in until the clinic confirms where enquiries should go
-// (CRM / webhook). See docs/open-questions.md #17 and docs/deployment.md.
+// (CRM / webhook). See docs/open-questions.md #18 and docs/deployment.md.
 
 type Status = "idle" | "sending" | "sent" | "error";
 
@@ -155,7 +155,7 @@ export function EnquiryForm() {
           <label className="flex cursor-pointer items-start gap-3 text-sm text-stone">
             <input name="consent" type="checkbox" value="yes" required className="mt-1 h-5 w-5 shrink-0 accent-[var(--color-gold)]" {...aria("consent")} />
             <span>
-              I agree to Harley Street Medical Wellness contacting me about my enquiry by phone, email or text, and I have read the{" "}
+              I agree to Harley Street Aesthetics contacting me about my enquiry by phone, email or text, and I have read the{" "}
               <Link href="/privacy-policy/" className="text-gold underline underline-offset-2">
                 privacy policy
               </Link>

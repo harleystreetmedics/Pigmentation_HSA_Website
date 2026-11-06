@@ -6,12 +6,12 @@ import { TREATMENTS } from "@/lib/treatments";
 export const dynamic = "force-static";
 
 const STATIC = [
-  "/hair-loss-in-men/",
-  "/hair-loss-in-women/",
   "/conditions/",
   "/treatments/",
+  "/pigmentation-in-darker-skin/",
   "/diagnosis/",
   "/which-treatment/",
+  "/prevention-and-aftercare/",
   "/pricing/",
   "/results/",
   "/faq/",

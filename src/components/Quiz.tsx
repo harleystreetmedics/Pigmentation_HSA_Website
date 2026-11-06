@@ -2,43 +2,38 @@
 
 import Link from "next/link";
 import { useRef, useState } from "react";
+import { SKIN_CHECK, conditionBySlug } from "@/lib/conditions";
+import { BRAND } from "@/lib/site";
+import { treatmentBySlug } from "@/lib/treatments";
 import { Icon } from "./Icon";
 
-// Runs entirely in the browser. Answers are never stored or sent anywhere (docs/decisions.md #15).
+// Runs entirely in the browser. Answers are never stored or sent anywhere (docs/decisions.md #20).
 
 type Option = { id: string; label: string };
 type Question = { id: string; title: string; hint?: string; multi?: boolean; options: Option[] };
 
 const QUESTIONS: Question[] = [
   {
-    id: "who",
-    title: "Which best describes you?",
+    id: "what",
+    title: "What are you noticing most?",
     options: [
-      { id: "man", label: "Man" },
-      { id: "woman", label: "Woman" },
-      { id: "other", label: "Prefer to self-describe or not say" },
+      { id: "patches", label: "Soft-edged patches, e.g. on both cheeks or the upper lip" },
+      { id: "spots", label: "Flat brown spots with clear edges" },
+      { id: "freckles", label: "Freckles" },
+      { id: "marks", label: "Dark marks left after spots, a rash or an injury" },
+      { id: "uneven", label: "Uneven, blotchy or dull skin tone" },
+      { id: "eyes", label: "Darkness under the eyes" },
+      { id: "white", label: "Pale or white patches" },
     ],
   },
   {
-    id: "pattern",
-    title: "What have you noticed most?",
+    id: "where",
+    title: "Where is it?",
     options: [
-      { id: "hairline", label: "My hairline is moving back" },
-      { id: "crown", label: "Thinning at the crown" },
-      { id: "parting", label: "A wider parting or thinning on top" },
-      { id: "allover", label: "Thinning or shedding all over" },
-      { id: "patches", label: "Round or smooth bald patches" },
-      { id: "scalp", label: "An itchy, flaky or sore scalp" },
-      { id: "beard", label: "Beard or eyebrow thinning" },
-    ],
-  },
-  {
-    id: "duration",
-    title: "How long has this been going on?",
-    options: [
-      { id: "short", label: "Less than 3 months" },
-      { id: "medium", label: "3 to 12 months" },
-      { id: "long", label: "More than a year" },
+      { id: "face", label: "Face" },
+      { id: "lips", label: "Lips or around the mouth" },
+      { id: "hands", label: "Hands, neck or chest" },
+      { id: "body", label: "Underarms, inner thighs, knees or elbows" },
     ],
   },
   {
@@ -47,57 +42,102 @@ const QUESTIONS: Question[] = [
     hint: "Choose all that apply.",
     multi: true,
     options: [
-      { id: "sudden", label: "It started suddenly or is getting worse quickly" },
-      { id: "inflamed", label: "My scalp is red, scaly, painful or burning" },
-      { id: "unwell", label: "I have other symptoms, like tiredness or weight change" },
-      { id: "trigger", label: "I've recently had a baby, an illness or a stressful time" },
+      { id: "changing", label: "A spot or mole is new, growing or changing" },
+      { id: "irregular", label: "A mark is raised, has irregular edges or several colours" },
+      { id: "bleeding", label: "A mark bleeds, itches or crusts" },
+      { id: "hormonal", label: "It started with pregnancy, the pill or hormone treatment" },
+      { id: "medicine", label: "It started after a new medicine, or where heat is applied often" },
+      { id: "none", label: "None of these" },
+    ],
+  },
+  {
+    id: "tone",
+    title: "Which best describes your skin in the sun?",
+    hint: "This helps us point you to the right information. Your skin type is confirmed at consultation.",
+    options: [
+      { id: "t1", label: "Always burns, rarely tans" },
+      { id: "t2", label: "Sometimes burns, tans gradually" },
+      { id: "t3", label: "Rarely burns, tans easily (medium to olive or light brown skin)" },
+      { id: "t4", label: "Very rarely or never burns (brown to deep brown or black skin)" },
+      { id: "unsure", label: "Not sure" },
+    ],
+  },
+  {
+    id: "now",
+    title: "Do any of these apply right now?",
+    hint: "Choose all that apply.",
+    multi: true,
+    options: [
+      { id: "pregnant", label: "I'm pregnant or breastfeeding" },
+      { id: "tan", label: "I have a tan, use sunbeds or have a sunny holiday coming up" },
       { id: "none", label: "None of these" },
     ],
   },
   {
     id: "priority",
-    title: "What matters most to you right now?",
+    title: "What matters most to you?",
     options: [
-      { id: "cause", label: "Understanding what's causing it" },
-      { id: "noninvasive", label: "Non-invasive options" },
-      { id: "injections", label: "I'm open to in-clinic treatments, including injections" },
+      { id: "downtime", label: "As little downtime as possible" },
+      { id: "programme", label: "A structured programme" },
       { id: "unsure", label: "I'm not sure yet" },
     ],
   },
 ];
 
 type Answers = Record<string, string[]>;
+type LinkItem = { href: string; label: string };
 
-const CONDITION_FOR: Record<string, { href: string; label: string }> = {
-  hairline: { href: "/conditions/receding-hairline/", label: "Receding hairline" },
-  crown: { href: "/conditions/crown-thinning/", label: "Crown thinning" },
-  parting: { href: "/conditions/female-pattern-hair-loss/", label: "Female pattern hair loss" },
-  allover: { href: "/conditions/diffuse-thinning/", label: "Diffuse thinning" },
-  patches: { href: "/conditions/alopecia-areata/", label: "Alopecia areata" },
-  scalp: { href: "/conditions/scalp-conditions/", label: "Scalp conditions" },
-  beard: { href: "/conditions/beard-and-eyebrow-thinning/", label: "Beard and eyebrow thinning" },
+const CONDITION_FOR: Record<string, string> = {
+  patches: "melasma",
+  spots: "sun-spots",
+  freckles: "freckles",
+  marks: "post-inflammatory-hyperpigmentation",
+  uneven: "uneven-skin-tone",
+  eyes: "dark-circles",
+  white: "hypopigmentation-and-vitiligo",
+};
+const AREA_FOR: Record<string, string> = { lips: "lip-and-perioral-pigmentation", hands: "hands-and-chest-pigmentation", body: "body-pigmentation" };
+const HIGH_DOWNTIME = ["cosmelan-peel", "vi-peel", "co2-laser-resurfacing"];
+const PROGRAMMES = ["signature-pigmentation-programme", "cosmelan-peel"];
+
+const link = (slug: string, kind: "conditions" | "treatments"): LinkItem | null => {
+  const item = kind === "conditions" ? conditionBySlug(slug) : treatmentBySlug(slug);
+  return item ? { href: `/${kind}/${slug}/`, label: item.shortName } : null;
 };
 
 function buildResult(a: Answers) {
-  const pattern = a.pattern?.[0] ?? "allover";
+  const what = a.what?.[0] ?? "uneven";
+  const where = a.where?.[0] ?? "face";
   const flags = a.flags ?? [];
-  const reads: { href: string; label: string }[] = [CONDITION_FOR[pattern]];
-  if (a.who?.[0] === "man" && ["hairline", "crown"].includes(pattern)) reads.push({ href: "/conditions/male-pattern-hair-loss/", label: "Male pattern baldness" });
-  if (a.who?.[0] === "woman" && ["parting", "allover"].includes(pattern)) reads.push({ href: "/conditions/menopause-hair-loss/", label: "Menopause-related hair loss" });
-  if (flags.includes("trigger")) reads.push({ href: "/conditions/telogen-effluvium/", label: "Shedding after stress or illness" });
-  if (flags.includes("unwell")) reads.push({ href: "/conditions/medical-causes/", label: "Thyroid, deficiencies and medical causes" });
-  if (flags.includes("inflamed")) reads.push({ href: "/conditions/scarring-alopecia/", label: "Scarring alopecia" });
+  const now = a.now ?? [];
+  const tone = a.tone?.[0];
 
-  const medicalFirst = flags.some((f) => ["sudden", "inflamed", "unwell"].includes(f)) || pattern === "patches";
-  const treatments: { href: string; label: string }[] = [];
-  if (!medicalFirst && ["hairline", "crown", "parting", "allover"].includes(pattern)) {
-    const p = a.priority?.[0];
-    if (p === "noninvasive") treatments.push({ href: "/treatments/low-level-laser-therapy/", label: "Low-level laser therapy" });
-    if (p === "injections" || p === "unsure") treatments.push({ href: "/treatments/prp-hair-treatment/", label: "PRP hair treatment" }, { href: "/treatments/scalp-microneedling/", label: "Scalp microneedling" });
-    if (p === "cause" || treatments.length === 0) treatments.push({ href: "/treatments/", label: "Overview of all treatments" });
+  const slugs = [CONDITION_FOR[what]];
+  if (AREA_FOR[where]) slugs.push(AREA_FOR[where]);
+  if (flags.includes("hormonal")) slugs.push("hormonal-pigmentation");
+  if (flags.includes("medicine")) slugs.push("drug-and-heat-induced-pigmentation");
+  const uniqueSlugs = [...new Set(slugs)];
+  const reads = uniqueSlugs.map((s) => link(s, "conditions")).filter((x): x is LinkItem => Boolean(x));
+
+  const doctorFirst = flags.some((f) => ["changing", "irregular", "bleeding"].includes(f));
+  const referFirst = what === "white" || flags.includes("medicine");
+  const pregnant = now.includes("pregnant");
+  const tan = now.includes("tan");
+  const deeper = tone === "t3" || tone === "t4";
+
+  let treatments: LinkItem[] = [];
+  if (!doctorFirst && !referFirst && !pregnant) {
+    let pool = [...new Set(uniqueSlugs.flatMap((s) => conditionBySlug(s)?.treatments ?? []))];
+    if (deeper || tan) pool = pool.filter((t) => t !== "ipl-photofacial");
+    if (a.priority?.[0] === "downtime") pool = pool.filter((t) => !HIGH_DOWNTIME.includes(t));
+    if (a.priority?.[0] === "programme") pool = [...pool.filter((t) => PROGRAMMES.includes(t)), ...pool.filter((t) => !PROGRAMMES.includes(t))];
+    treatments = pool
+      .slice(0, 4)
+      .map((t) => link(t, "treatments"))
+      .filter((x): x is LinkItem => Boolean(x));
+    if (treatments.length === 0) treatments.push({ href: "/treatments/", label: "Overview of all treatments" });
   }
-  const unique = reads.filter((r, i, arr) => arr.findIndex((x) => x.href === r.href) === i);
-  return { reads: unique, treatments, medicalFirst };
+  return { reads, treatments, doctorFirst, referFirst, pregnant, deeper, tan };
 }
 
 export function Quiz() {
@@ -140,21 +180,48 @@ export function Quiz() {
           The next step is a consultation
         </h2>
         <p className="mt-4 text-stone">
-          This is not a diagnosis. It suggests pages that may be useful to read before you talk to us. Only a qualified practitioner can
-          assess the cause of your hair loss and whether any treatment is suitable.
+          This is not a diagnosis. Based on what you told us, these pages may be useful to read before you talk to us. Only a qualified
+          practitioner can assess your pigmentation, your skin type and whether any treatment is suitable.
         </p>
-        {r.medicalFirst && (
+        {r.doctorFirst && (
           <div className="mt-6 flex gap-3 rounded-2xl border border-amber-300/50 bg-amber-300/10 p-5 text-cream">
             <Icon name="alert" className="mt-0.5 h-5 w-5 shrink-0 text-amber-300" />
             <p>
-              Some of your answers suggest your hair loss should be medically assessed before any cosmetic treatment is considered. Please
-              book a consultation or speak to your GP. If you feel unwell, contact your GP or NHS 111.
+              <strong>Please see a doctor first.</strong> A spot or mole that is new, changing, irregular, raised, bleeding or itchy needs a
+              medical check before any cosmetic treatment. Please see your GP or a dermatologist. You&rsquo;re welcome to book a
+              consultation with us too, and we will check this first.
             </p>
           </div>
         )}
+        {r.referFirst && !r.doctorFirst && (
+          <div className="mt-6 flex gap-3 rounded-2xl border border-amber-300/50 bg-amber-300/10 p-5 text-cream">
+            <Icon name="info" className="mt-0.5 h-5 w-5 shrink-0 text-amber-300" />
+            <p>
+              What you described is usually assessed medically first. We can look at your skin and explain the likely cause, and we may
+              suggest seeing your GP. Never stop a prescribed medicine without speaking to your prescriber.
+            </p>
+          </div>
+        )}
+        {r.pregnant && (
+          <p className="mt-6 rounded-2xl border border-cream/10 bg-black-soft p-5 text-stone">
+            Most in-clinic pigmentation treatments aren&rsquo;t carried out during pregnancy or breastfeeding. Daily sun protection and gentle
+            skincare help in the meantime, and we can plan treatment for later.
+          </p>
+        )}
+        {(r.deeper || r.tan) && (
+          <p className="mt-6 rounded-2xl border border-gold/30 bg-gold/5 p-5 text-stone">
+            {r.deeper
+              ? "Medium and darker skin needs particular care, because some peels, lasers and light treatments carry a higher risk of new pigment changes. IPL isn't suitable for darker skin types. "
+              : "Light and laser treatments aren't carried out on tanned skin. "}
+            <Link href="/pigmentation-in-darker-skin/" className="text-gold underline underline-offset-2">
+              Read about pigmentation in darker skin tones
+            </Link>
+            .
+          </p>
+        )}
         <div className="mt-8 grid gap-6 md:grid-cols-2">
           <div>
-            <h3 className="font-sans text-base font-semibold text-cream">Conditions to read about</h3>
+            <h3 className="font-sans text-base font-semibold text-cream">Pages to read</h3>
             <ul className="mt-3 space-y-2">
               {r.reads.map((l) => (
                 <li key={l.href}>
@@ -180,6 +247,7 @@ export function Quiz() {
             </div>
           )}
         </div>
+        <p className="mt-8 text-sm text-stone">{SKIN_CHECK}</p>
         <div className="mt-10 flex flex-col gap-4 sm:flex-row">
           <Link
             href="/book/"
@@ -187,6 +255,12 @@ export function Quiz() {
           >
             Book consultation
           </Link>
+          <a
+            href={BRAND.aiAnalysisUrl}
+            className="inline-flex min-h-12 items-center justify-center border border-gold px-8 text-xs font-semibold tracking-[0.2em] text-gold uppercase hover:bg-gold hover:text-on-gold"
+          >
+            Free AI analysis
+          </a>
           <button
             type="button"
             onClick={restart}

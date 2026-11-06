@@ -8,7 +8,7 @@ type PageMeta = { title: string; description: string; path: string; ogAlt?: stri
 /** Per-page metadata with canonical, Open Graph and Twitter tags (same pattern as the Endolift site). */
 export function pageMetadata({ title, description, path, ogAlt }: PageMeta): Metadata {
   const url = absUrl(path);
-  const image = { url: absUrl("/og/og-default.png"), width: 1200, height: 630, alt: ogAlt ?? "Hair loss clinic at Harley Street Medical Wellness" };
+  const image = { url: absUrl("/og/og-default.png"), width: 1200, height: 630, alt: ogAlt ?? "Pigmentation treatment at Harley Street Aesthetics" };
   return {
     title,
     description,

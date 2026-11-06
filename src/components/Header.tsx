@@ -13,6 +13,9 @@ export function Header() {
             ← Harley Street Aesthetics main site
           </a>
           <div className="flex items-center gap-6">
+            <a href={BRAND.aiAnalysisUrl} className="text-gold hover:text-white">
+              Free AI pigmentation analysis
+            </a>
             <a href={BRAND.allTreatments} className="hover:text-gold">
               All treatments
             </a>

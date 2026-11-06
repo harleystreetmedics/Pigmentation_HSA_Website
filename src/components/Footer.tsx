@@ -7,8 +7,8 @@ import { Icon } from "./Icon";
 import { Tbc, Wordmark } from "./ui";
 
 const EXPLORE = [
-  { href: "/hair-loss-in-men/", label: "Hair loss in men" },
-  { href: "/hair-loss-in-women/", label: "Hair loss in women" },
+  { href: "/pigmentation-in-darker-skin/", label: "Pigmentation in darker skin" },
+  { href: "/prevention-and-aftercare/", label: "Prevention & aftercare" },
   { href: "/diagnosis/", label: "Diagnosis" },
   { href: "/which-treatment/", label: "Which treatment is right for me?" },
   { href: "/pricing/", label: "Pricing" },
@@ -34,7 +34,7 @@ export function Footer() {
             <Wordmark />
           </a>
           <p className="mt-5 max-w-sm text-sm leading-relaxed">
-            Clinician-led assessment and non-surgical hair loss treatment for men and women at our London and Glasgow clinics.
+            Doctor-led pigmentation assessment and treatment for all skin tones at our London and Glasgow clinics.
           </p>
           <a href={BRAND.allTreatments} className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-gold hover:text-white">
             All treatments at Harley Street Aesthetics <Icon name="arrow" className="h-4 w-4" />
@@ -43,7 +43,7 @@ export function Footer() {
         <nav aria-label="Conditions" className="lg:col-span-3">
           <h2 className="eyebrow mb-4 font-sans text-white">Conditions</h2>
           <ul className="grid grid-cols-1 gap-2.5 text-sm">
-            {CONDITIONS.slice(0, 9).map((c) => (
+            {CONDITIONS.slice(0, 10).map((c) => (
               <li key={c.slug}>
                 <Link className="hover:text-gold" href={`/conditions/${c.slug}/`}>
                   {c.shortName}

@@ -1,6 +1,6 @@
 import { ConditionCard, StepTimeline, TreatmentCard } from "./cards";
 import { Icon } from "./Icon";
-import { ClinicCards, CtaBand, ContactLinks } from "./sections";
+import { AiAnalysisCard, ClinicCards, CtaBand, ContactLinks, SkinCheckNotice } from "./sections";
 import { Button, Disclaimer, JsonLd, PageHero, Section, SectionHeading, Tbc } from "./ui";
 import { CONDITIONS, DIAGNOSIS_STEPS, RX_SENTENCE } from "@/lib/conditions";
 import { clinicSchema } from "@/lib/schema";
@@ -15,8 +15,8 @@ export function LocationPage({ id }: { id: ClinicId }) {
       <JsonLd data={clinicSchema(c)} />
       <PageHero
         eyebrow={`${c.city} clinic`}
-        title={`Hair loss clinic in ${c.city}`}
-        intro={`Clinician-led hair loss assessment and non-surgical treatment for men and women at our ${c.city} clinic, ${a.line1}${a.line2 ? `, ${a.line2}` : ""}.`}
+        title={`Pigmentation treatment in ${c.city}`}
+        intro={`Doctor-led pigmentation assessment and treatment for all skin tones at our ${c.city} clinic, ${a.line1}${a.line2 ? `, ${a.line2}` : ""}. Start with a free online consultation.`}
         crumbs={[{ name: c.city, path: `/${c.id}/` }]}
       >
         <div className="mt-9 flex flex-col gap-4 sm:flex-row">
@@ -49,7 +49,9 @@ export function LocationPage({ id }: { id: ClinicId }) {
               ))}
               <li className="flex gap-3">
                 <Icon name="clock" className="mt-0.5 h-5 w-5 shrink-0 text-gold" />
-                {c.hours}
+                <span>
+                  {c.hours} <Tbc>confirm opening hours</Tbc>
+                </span>
               </li>
               <li className="flex gap-3">
                 <Icon name="phone" className="mt-0.5 h-5 w-5 shrink-0 text-gold" />
@@ -77,11 +79,11 @@ export function LocationPage({ id }: { id: ClinicId }) {
       <Section tone="soft" labelledBy="tx-title">
         <SectionHeading
           id="tx-title"
-          eyebrow={`Hair loss treatment ${c.city}`}
+          eyebrow={`Pigmentation treatment ${c.city}`}
           title="Options we may discuss"
           intro={<>After your assessment in {c.city}, we&rsquo;ll explain which options may suit you. {RX_SENTENCE}</>}
         />
-        <ul className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <ul className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {TREATMENTS.map((t) => (
             <li key={t.slug}>
               <TreatmentCard t={t} />
@@ -91,9 +93,9 @@ export function LocationPage({ id }: { id: ClinicId }) {
       </Section>
 
       <Section labelledBy="cond-title">
-        <SectionHeading id="cond-title" eyebrow="Conditions" title={`Hair loss we assess in ${c.city}`} />
+        <SectionHeading id="cond-title" eyebrow="Conditions" title={`Pigmentation we assess in ${c.city}`} />
         <ul className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {CONDITIONS.slice(0, 6).map((x) => (
+          {CONDITIONS.slice(0, 9).map((x) => (
             <li key={x.slug}>
               <ConditionCard c={x} />
             </li>
@@ -107,12 +109,14 @@ export function LocationPage({ id }: { id: ClinicId }) {
       <Section tone="soft" labelledBy="steps-title">
         <SectionHeading id="steps-title" eyebrow="Your visit" title="How it works" />
         <StepTimeline steps={DIAGNOSIS_STEPS} />
+        <AiAnalysisCard className="mt-12" />
       </Section>
 
       <Section labelledBy="both-title">
         <SectionHeading id="both-title" eyebrow="Our clinics" title="London and Glasgow" />
         <ClinicCards />
-        <Disclaimer className="mt-12" />
+        <SkinCheckNotice className="mt-12" />
+        <Disclaimer className="mt-6" />
       </Section>
       <CtaBand />
     </>

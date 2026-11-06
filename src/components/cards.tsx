@@ -12,7 +12,7 @@ export function ConditionCard({ c, headingLevel = 3 }: { c: Condition; headingLe
   const H = `h${headingLevel}` as const;
   return (
     <Link className={CARD} href={`/conditions/${c.slug}/`}>
-      <span className="eyebrow text-gold">{c.audience === "men" ? "Men" : c.audience === "women" ? "Women" : "Men & women"}</span>
+      <span className="eyebrow text-gold">{c.group}</span>
       <H className="mt-3 font-serif text-2xl text-cream">{c.shortName}</H>
       <p className="mt-3 flex-1 text-sm leading-relaxed text-stone">{c.summary}</p>
       <span className="mt-6 flex items-center gap-1 border-t border-cream/10 pt-4 text-sm font-semibold text-gold">

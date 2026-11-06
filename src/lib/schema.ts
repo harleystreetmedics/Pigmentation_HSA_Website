@@ -1,4 +1,4 @@
-// JSON-LD builders. Mirrors the Endolift site's schema setup.
+﻿// JSON-LD builders. Mirrors the Endolift site's schema setup.
 import type { Condition } from "./conditions";
 import type { Faq } from "./faqs";
 import { absUrl } from "./seo";
@@ -80,7 +80,7 @@ export const conditionSchema = (c: Condition, treatments: Treatment[]) => ({
   name: c.name,
   description: c.summary,
   url: absUrl(`/conditions/${c.slug}/`),
-  signOrSymptom: c.symptoms.map((s) => ({ "@type": "MedicalSignOrSymptom", name: s })),
+  signOrSymptom: c.appearance.map((s) => ({ "@type": "MedicalSignOrSymptom", name: s })),
   possibleTreatment: treatments.map((t) => ({ "@type": "MedicalTherapy", name: t.name, url: absUrl(`/treatments/${t.slug}/`) })),
 });
 
@@ -88,9 +88,9 @@ export const consultationSchema = () => ({
   "@context": "https://schema.org",
   "@type": "MedicalProcedure",
   "@id": absUrl("/diagnosis/#procedure"),
-  name: "Hair loss consultation and scalp assessment",
+  name: "Pigmentation consultation and skin assessment",
   procedureType: "https://schema.org/NoninvasiveProcedure",
-  bodyLocation: "Scalp",
+  bodyLocation: "Skin",
   url: absUrl("/diagnosis/"),
 });
 

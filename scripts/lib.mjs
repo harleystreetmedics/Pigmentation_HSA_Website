@@ -11,7 +11,7 @@ export function htmlFiles(dir = OUT) {
     if (statSync(p).isDirectory()) {
       if (name === "_next") continue;
       files.push(...htmlFiles(p));
-    } else if (name.endsWith(".html")) files.push(p);
+    } else if (name.endsWith(".html") && name !== "__forms.html") files.push(p);
   }
   return files;
 }

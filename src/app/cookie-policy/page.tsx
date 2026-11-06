@@ -4,7 +4,7 @@ import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
   title: "Cookie Policy",
-  description: "The cookies and local storage used on the Harley Street Aesthetics hair loss website, and how to change your choices.",
+  description: "The cookies and local storage used on the Harley Street Aesthetics pigmentation website, and how to change your choices.",
   path: "/cookie-policy/",
 });
 

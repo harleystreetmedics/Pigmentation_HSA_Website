@@ -29,7 +29,7 @@ const playfair = localFont({
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: { default: "Hair Loss Treatment London & Glasgow | Harley Street Medical Wellness", template: "%s | Harley Street Medical Wellness" },
+  title: { default: "Pigmentation Treatment London & Glasgow | Harley Street Aesthetics", template: "%s | Harley Street Aesthetics" },
   applicationName: BRAND.siteName,
   robots: robotsMeta,
   formatDetection: { telephone: false },

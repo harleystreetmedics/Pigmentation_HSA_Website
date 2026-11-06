@@ -7,7 +7,7 @@ export const dynamic = "force-static";
 // Blocks all crawling until NEXT_PUBLIC_ALLOW_INDEXING=true at launch (docs/decisions.md #13).
 export default function robots(): MetadataRoute.Robots {
   return {
-    rules: ALLOW_INDEXING ? { userAgent: "*", allow: "/" } : { userAgent: "*", disallow: "/" },
+    rules: ALLOW_INDEXING ? { userAgent: "*", allow: "/", disallow: ["/__forms.html"] } : { userAgent: "*", disallow: "/" },
     host: SITE_URL,
     sitemap: absUrl("/sitemap.xml"),
   };
