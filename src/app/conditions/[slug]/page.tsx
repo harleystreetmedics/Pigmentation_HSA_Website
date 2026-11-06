@@ -58,7 +58,7 @@ export default async function ConditionPage({ params }: PageProps<"/conditions/[
       <Section labelledBy="about-title">
         <div className="grid gap-12 lg:grid-cols-12">
           <div className="lg:col-span-7">
-            <SectionHeading id="about-title" eyebrow="Overview" title={<>About {c.shortName.toLowerCase()}</>} />
+            <SectionHeading id="about-title" eyebrow="Overview" title={<>About {c.shortName}</>} />
             <div className="space-y-5 text-lg leading-relaxed text-stone">
               {c.intro.map((p) => (
                 <p key={p}>{p}</p>

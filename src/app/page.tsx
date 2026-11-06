@@ -27,7 +27,7 @@ export default function Home() {
 
       <section className="relative overflow-hidden bg-black-rich text-white" aria-labelledby="hero-title">
         <div aria-hidden="true" className="absolute inset-y-0 right-0 hidden w-1/2 opacity-80 lg:block">
-          <SkinToneArt className="h-full w-full" />
+          <SkinToneArt className="h-full w-full" swatches={false} />
         </div>
         <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-r from-black-rich via-black-rich/90 to-black-rich/10" />
         <div className="container-x relative pt-16 pb-14 sm:pt-24 lg:pt-32">

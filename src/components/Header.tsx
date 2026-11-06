@@ -1,4 +1,4 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 import { BRAND } from "@/lib/site";
 import { HeaderPhone, LocationSwitcher } from "./location";
 import { MobileMenu, NavLinks } from "./MobileMenu";
@@ -29,7 +29,7 @@ export function Header() {
         <a href={BRAND.mainSite} className="shrink-0">
           <Wordmark />
         </a>
-        <nav aria-label="Main" className="hidden min-[1400px]:block">
+        <nav aria-label="Main" className="hidden min-[1720px]:block">
           <NavLinks />
         </nav>
         <div className="flex items-center gap-3">

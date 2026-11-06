@@ -60,7 +60,7 @@ export default async function TreatmentPage({ params }: PageProps<"/treatments/[
       <Section labelledBy="what-title">
         <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
           <div className="lg:col-span-7">
-            <SectionHeading id="what-title" eyebrow="How it works" title={<>About {t.shortName === "IPL" || t.shortName === "VI Peel" ? t.shortName : t.name.charAt(0).toLowerCase() + t.name.slice(1)}</>} />
+            <SectionHeading id="what-title" eyebrow="How it works" title={t.name} />
             <div className="space-y-5 text-lg leading-relaxed text-stone">
               {[...t.intro, ...t.howItWorks].map((p) => (
                 <p key={p}>{p}</p>
@@ -162,7 +162,7 @@ export default async function TreatmentPage({ params }: PageProps<"/treatments/[
         <Disclaimer className="mt-6" />
       </Section>
 
-      <CtaBand title={`Is ${t.shortName === "IPL" || t.shortName === "VI Peel" ? t.shortName : t.shortName.toLowerCase()} right for you?`} />
+      <CtaBand title="Is this treatment right for you?" />
     </>
   );
 }

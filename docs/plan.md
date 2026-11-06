@@ -77,7 +77,7 @@ Reused from the hair loss site: Header (utility bar, wordmark, nav, switcher, ph
 New: SkinCheckNotice (skin cancer warning), SkinToneNote (skin-of-colour note), SkinToneArt (abstract tone spectrum), AiAnalysisCard, ReviewsPlaceholder.
 
 ## Content outline
-- `src/lib/conditions.ts`: 15 conditions with intro, appearance, causes/triggers, assessment, treatments, options, prevention, referral notes, FAQs, related.
+- `src/lib/conditions.ts`: 14 conditions with intro, appearance, causes/triggers, assessment, treatments, options, prevention, referral notes, FAQs, related.
 - `src/lib/treatments.ts`: 11 treatments with facts, how it works, concerns, suitability, skin-tone note, on the day, aftercare, risks, FAQs, prices.
 - `src/lib/faqs.ts`: general FAQs from Copilot themes.
 - Compliance wording rules: see decisions #9–#13.

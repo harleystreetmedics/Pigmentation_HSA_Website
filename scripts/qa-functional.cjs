@@ -2,7 +2,7 @@
 // Browser QA: cookie consent, clinic switcher, quiz, enquiry form, FAQ and console errors.
 // Needs playwright-core (npm i -D playwright-core) and Chrome; serve ./out on port 4173 first (npx serve out -l 4173).
 const { chromium } = require('playwright-core');
-const B = 'http://127.0.0.1:4173';
+const B = 'http://localhost:4173';
 const ok = (c, m) => console.log((c ? 'PASS ' : 'FAIL ') + m);
 (async () => {
   const b = await chromium.launch({ executablePath: 'C:/Program Files/Google/Chrome/Application/chrome.exe' });
@@ -19,7 +19,7 @@ const ok = (c, m) => console.log((c ? 'PASS ' : 'FAIL ') + m);
   ok(!requests.some((u) => /googletagmanager|facebook\.net/.test(u)), 'no analytics/pixel requests before consent');
   await p.getByRole('button', { name: 'Reject non-essential' }).click();
   ok(!(await p.getByRole('dialog', { name: 'Your privacy' }).isVisible().catch(() => false)), 'banner closes on reject');
-  const stored = await p.evaluate(() => localStorage.getItem('hsw-cookie-consent'));
+  const stored = await p.evaluate(() => localStorage.getItem('hsa-cookie-consent'));
   ok(stored && JSON.parse(stored).analytics === false, 'rejection stored');
 
   // Location switcher changes sticky call link
@@ -32,28 +32,44 @@ const ok = (c, m) => console.log((c ? 'PASS ' : 'FAIL ') + m);
   await p.reload({ waitUntil: 'networkidle' });
   ok((await p.getByRole('link', { name: /Call our Glasgow clinic/ }).count()) === 1, 'clinic choice persists after reload');
 
-  // Quiz: red-flag path
+  // Quiz: red-flag path (changing mole)
   await p.goto(B + '/which-treatment/', { waitUntil: 'networkidle' });
-  await p.getByRole('button', { name: 'Woman' }).click();
-  await p.getByRole('button', { name: 'Round or smooth bald patches' }).click();
-  await p.getByRole('button', { name: 'Less than 3 months' }).click();
-  await p.getByRole('button', { name: /started suddenly/ }).click();
+  await p.getByRole('button', { name: /Flat brown spots/ }).click();
+  await p.getByRole('button', { name: 'Face', exact: true }).click();
+  await p.getByRole('button', { name: /new, growing or changing/ }).click();
+  await p.getByRole('button', { name: 'Next' }).click();
+  await p.getByRole('button', { name: /Always burns/ }).click();
+  await p.getByRole('button', { name: 'None of these' }).click();
   await p.getByRole('button', { name: 'Next' }).click();
   await p.getByRole('button', { name: "I'm not sure yet" }).click();
   const txt = await p.locator('main').innerText();
-  ok(txt.includes('should be medically assessed'), 'quiz red-flag answers show medical assessment warning');
-  ok(txt.includes('Alopecia areata') && !txt.includes('Options you could ask about'), 'quiz red-flag path suggests condition reading, no treatments');
+  ok(txt.includes('Please see a doctor first'), 'quiz red-flag answers show see-a-doctor warning');
+  ok(txt.includes('Sun spots') && !txt.includes('Options you could ask about'), 'quiz red-flag path suggests reading only, no treatments');
   ok(await p.getByRole('link', { name: 'Book consultation' }).first().isVisible(), 'quiz ends with Book consultation');
-  // Quiz: standard path
+  // Quiz: darker skin path removes IPL
   await p.getByRole('button', { name: 'Start again' }).click();
-  await p.getByRole('button', { name: 'Man', exact: true }).click();
-  await p.getByRole('button', { name: 'My hairline is moving back' }).click();
-  await p.getByRole('button', { name: 'More than a year' }).click();
+  await p.getByRole('button', { name: /Flat brown spots/ }).click();
+  await p.getByRole('button', { name: 'Face', exact: true }).click();
   await p.getByRole('button', { name: 'None of these' }).click();
   await p.getByRole('button', { name: 'Next' }).click();
-  await p.getByRole('button', { name: /open to in-clinic/ }).click();
+  await p.getByRole('button', { name: /Very rarely or never burns/ }).click();
+  await p.getByRole('button', { name: 'None of these' }).click();
+  await p.getByRole('button', { name: 'Next' }).click();
+  await p.getByRole('button', { name: "I'm not sure yet" }).click();
   const txt2 = await p.locator('main').innerText();
-  ok(txt2.includes('PRP hair treatment') && txt2.includes('Male pattern baldness'), 'quiz standard path suggests PRP and male pattern reading');
+  ok(txt2.includes('Options you could ask about') && !/\bIPL\b(?! isn)/.test(txt2.split('Options you could ask about')[1].split('check')[0]), 'darker skin path suggests treatments without IPL');
+  ok(txt2.includes('Read about pigmentation in darker skin tones'), 'darker skin path shows skin-of-colour note');
+  // Quiz: lighter skin path can include IPL
+  await p.getByRole('button', { name: 'Start again' }).click();
+  await p.getByRole('button', { name: /Flat brown spots/ }).click();
+  await p.getByRole('button', { name: 'Face', exact: true }).click();
+  await p.getByRole('button', { name: 'None of these' }).click();
+  await p.getByRole('button', { name: 'Next' }).click();
+  await p.getByRole('button', { name: /Always burns/ }).click();
+  await p.getByRole('button', { name: 'None of these' }).click();
+  await p.getByRole('button', { name: 'Next' }).click();
+  await p.getByRole('button', { name: "I'm not sure yet" }).click();
+  ok((await p.locator('main').innerText()).includes('IPL'), 'lighter skin path can suggest IPL');
   const quizReq = requests.filter((u) => u.includes('which-treatment') === false && /\/api|__forms/.test(u));
   ok(quizReq.length === 0, 'quiz sends no network requests');
 
@@ -65,7 +81,7 @@ const ok = (c, m) => console.log((c ? 'PASS ' : 'FAIL ') + m);
   await p.getByLabel('Full name').fill('Test Person');
   await p.getByLabel('Phone', { exact: true }).fill('07700 900123');
   await p.getByLabel('Email', { exact: true }).fill('test@example.com');
-  await p.getByLabel('Main concern').selectOption('Thinning crown');
+  await p.getByLabel('Main concern').selectOption('Sun spots or age spots');
   await p.getByRole('checkbox').check();
   let posted = null;
   await p.route('**/__forms.html', async (route) => {
@@ -74,7 +90,7 @@ const ok = (c, m) => console.log((c ? 'PASS ' : 'FAIL ') + m);
   });
   await p.getByRole('button', { name: 'Request my consultation' }).click();
   await p.getByRole('status').waitFor({ timeout: 5000 });
-  ok(posted && posted.includes('form-name=hair-enquiry') && posted.includes('concern=Thinning+crown') && posted.includes('consent=yes'), 'form posts Netlify-encoded data');
+  ok(posted && posted.includes('form-name=pigmentation-enquiry') && posted.includes('concern=Sun+spots+or+age+spots') && posted.includes('consent=yes'), 'form posts Netlify-encoded data');
   ok((await p.getByRole('status').innerText()).includes('Thank you'), 'thank-you message shown');
 
   // FAQ accordion
@@ -85,9 +101,9 @@ const ok = (c, m) => console.log((c ? 'PASS ' : 'FAIL ') + m);
 
   // Client-side navigation has no 404 payloads
   await p.goto(B + '/', { waitUntil: 'networkidle' });
-  await p.getByRole('link', { name: /Learn more about PRP/ }).first().click();
-  await p.waitForURL('**/treatments/prp-hair-treatment/');
-  ok(true, 'client navigation to PRP page');
+  await p.getByRole('link', { name: /Learn more about Cosmelan/ }).first().click();
+  await p.waitForURL('**/treatments/cosmelan-peel/');
+  ok(true, 'client navigation to Cosmelan page');
   ok(errors.length === 0, 'no console errors' + (errors.length ? ': ' + errors.slice(0, 3).join(' | ') : ''));
   await b.close();
 })();

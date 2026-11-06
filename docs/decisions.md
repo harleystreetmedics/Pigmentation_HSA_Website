@@ -25,3 +25,5 @@
 | 21 | 2026-11-06 | Netlify is the primary host, Vercel the alternative. | Brief. Note: the AI app on the `pigmentation.` subdomain is already on Vercel. |
 | 22 | 2026-11-06 | Medical team shown from the main site's team page (bios shortened, initials instead of photos). Dr Nina Ku is highlighted for pigmentation because her published bio lists pigmentation and skin cancer screening. Which doctors see pigmentation patients is `[TBC]`. No GMC numbers. | Main site [HSA]; brief says only show GMC numbers if Copilot confirms them. |
 | 23 | 2026-11-06 | The glutathione "skin brightening drip" (Wellness) is not mentioned. | Different brand; brightening/whitening claims and weak evidence. |
+| 24 | 2026-11-06 | Full desktop nav shows from 1720 px (burger menu below), up from 1400 px on the hair loss site. | The extra "Darker skin" nav item and the AI analysis link made the header overflow at 1440–1536 px. |
+| 25 | 2026-11-06 | Reviews carousel component kept but empty (`src/lib/reviews.ts`); it appears automatically when verified reviews are added. | Brief asks for a carousel; no verified pigmentation reviews exist yet. |

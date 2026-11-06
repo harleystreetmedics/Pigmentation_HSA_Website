@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -54,7 +54,7 @@ export function MobileMenu() {
       <button
         ref={buttonRef}
         type="button"
-        className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/20 min-[1400px]:hidden"
+        className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/20 min-[1720px]:hidden"
         aria-expanded={open}
         aria-controls="mobile-menu"
         onClick={() => setOpen((o) => !o)}
@@ -64,7 +64,7 @@ export function MobileMenu() {
       </button>
       {/* Portalled to <body>: the header's backdrop-filter would otherwise trap this fixed panel inside the header box. */}
       {open && createPortal(
-        <div id="mobile-menu" className="fixed inset-x-0 top-[4.5rem] bottom-0 lg:top-[6.75rem] z-50 overflow-y-auto border-t border-white/10 bg-ink min-[1400px]:hidden">
+        <div id="mobile-menu" className="fixed inset-x-0 top-[4.5rem] bottom-0 lg:top-[6.75rem] z-50 overflow-y-auto border-t border-white/10 bg-ink min-[1720px]:hidden">
           <nav aria-label="Mobile" className="container-x py-6">
             <LocationSwitcher className="md:hidden" />
             <ul className="mt-6 divide-y divide-white/10">
