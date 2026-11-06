@@ -18,7 +18,7 @@ Everything here needs a human check before launch. Run `npm run check` to rebuil
 | Horizontal overflow | None on 20 pages at 360-1920 px (header nav moved to 1720 px) |
 | Browser tests (scripts/qa-functional.cjs) | 19/19 pass |
 | Screenshots | docs/screens/<page>-{mobile,tablet,desktop}.jpg for 20 pages, plus ref-hsa-* references |
-| Lighthouse | **Not finished**: run was in progress when work stopped. Re-run before launch. |
+| Lighthouse 12.8 (7 pages, mobile / desktop) | Performance 95-97 / 100; accessibility 100; best practices 100, except /book/ at 78-79 (the embedded booking calendar sets third-party cookies, same as the hair loss site); SEO 66 only because the preview is deliberately noindex + Disallow. It should reach 100 with NEXT_PUBLIC_ALLOW_INDEXING=true. |
 
 ## 2. Compliance review (ASA/CAP, POM rules, skin cancer, skin of colour): please confirm
 
