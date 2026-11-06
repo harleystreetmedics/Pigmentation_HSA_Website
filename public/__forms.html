@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<!-- Hidden form definition so Netlify Forms can detect the "hair-enquiry" form at deploy time.
+     Field names must match src/components/EnquiryForm.tsx. Not linked from the site. -->
+<html lang="en-GB">
+  <head><meta charset="utf-8" /><meta name="robots" content="noindex" /><title>Forms</title></head>
+  <body>
+    <form name="hair-enquiry" data-netlify="true" netlify-honeypot="company" hidden>
+      <input type="text" name="company" />
+      <input type="text" name="name" />
+      <input type="tel" name="phone" />
+      <input type="email" name="email" />
+      <select name="clinic"><option>London</option><option>Glasgow</option><option>Not sure yet</option></select>
+      <select name="preferred_time"><option>Any time</option></select>
+      <select name="concern"><option>Not sure / general advice</option></select>
+      <textarea name="message"></textarea>
+      <input type="checkbox" name="consent" value="yes" />
+    </form>
+  </body>
+</html>
