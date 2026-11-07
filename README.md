@@ -22,7 +22,7 @@ Open http://localhost:3000.
 | `node scripts/qa-screenshots.cjs docs/screens <name> <url> …` | Screenshots at mobile/tablet/desktop |
 
 ## Where things live
-- Content: `src/lib/conditions.ts` (14 concerns), `src/lib/treatments.ts` (11 treatments), `src/lib/faqs.ts`, `src/lib/reviews.ts` (empty until verified)
+- Content: `src/lib/conditions.ts` (14 concerns), `src/lib/treatments.ts` (10 treatments), `src/lib/faqs.ts`, `src/lib/reviews.ts` (empty until verified)
 - Brand, clinics, team, consultation prices, nav, tracking env vars: `src/lib/site.ts`
 - Enquiry form: `src/components/EnquiryForm.tsx`, `src/lib/form.ts`, `public/__forms.html` (Netlify Forms)
 - SEO and JSON-LD: `src/lib/seo.ts`, `src/lib/schema.ts`, `src/app/sitemap.ts`, `src/app/robots.ts`

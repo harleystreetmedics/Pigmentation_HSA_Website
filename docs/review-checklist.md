@@ -1,10 +1,12 @@
 # Review checklist
 
+> **Updated 7 Nov 2026:** the site now follows the main website only (decision #28). Signature Programme at £349 a session, no Q-switched laser page, no `[TBC]` placeholders (`npm run check:tbc` reports 0). Re-checked: lint, types, build, links, compliance scan, 19 browser tests, overflow; screenshots refreshed.
+
 Everything here needs a human check before launch. Run `npm run check` to rebuild and re-run the automated checks, and `npm run check:tbc` to list the placeholders still on the site.
 
 ## Start here: decisions only you can make
 1. **Subdomain.** `pigmentation.harleystreetaesthetic.co.uk` is already the AI analysis app. Pick the site's subdomain (placeholder `pigmentation-treatment.`).
-2. ~~Signature treatment.~~ Resolved 7 Nov from the Copilot: the site now shows the VirtueRF + Helios III + mesotherapy protocol from £399. **Please update the main website**, which still shows the old £349 colostrum programme, so the two sites match.
+2. ~~Signature treatment.~~ Resolved 7 Nov: the site follows the main website (£349 a session, needle-free). **The Copilot playbook still describes a VirtueRF + Helios III + mesotherapy protocol from £399 and says "never say it is not a laser"**, so update the Copilot so staff and the websites say the same thing.
 3. **Footer cross-links** to the Endolift and hair loss sites: yes or no.
 4. **301 redirects** from the 19 Medics URLs listed in `docs/deployment.md`.
 
@@ -56,13 +58,14 @@ Automated scan (`npm run check:compliance`, passes) plus a manual read of every 
 21. Privacy policy company details (Harley Street Medics Ltd, 211B Main Street, Bellshill ML4 1AJ, ICO ZB819731) come from the Endolift privacy policy. Confirm they're current.
 
 ## 3. Main-website issues spotted (not on this site)
-- **The main site still sells the old needle-free Signature Pigmentation Programme at £349**, while this site (following the Copilot) shows the VirtueRF + Helios III + mesotherapy protocol from £399. Please align them before launch.
 - The main site's footer "Privacy Policy" and "Terms of Service" links go nowhere, and /privacy-policy returns 404.
 - CO2 prices on the main site are "special offers" with crossed-out prices; check them against the CAP Code rules on reference pricing and time pressure.
 - The main site and the AI app still show 10 Harley Street.
 - Main-site treatment pages name isotretinoin; the Virtue RF page says "Zero Pain" and "Suitable for all skin tones (Fitzpatrick I–VI)".
 - The main-site reviews block ("2 days ago", "Dr. Vincent") can't be verified.
 
-## 4. Every `[TBC]` placeholder on the site
+## 4. Placeholders
+
+None. Details the main website doesn't publish are left off the site (decision #28). Earlier list, for reference:
 
 Run `npm run check:tbc -- --md` for the live list (23 unique placeholders on 6 Nov). Each is also covered in docs/open-questions.md.

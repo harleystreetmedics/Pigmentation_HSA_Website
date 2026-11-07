@@ -1,5 +1,5 @@
 import { ClinicCards, CtaBand, TeamGrid } from "@/components/sections";
-import { CheckList, Disclaimer, JsonLd, PageHero, Section, SectionHeading, Tbc } from "@/components/ui";
+import { CheckList, Disclaimer, JsonLd, PageHero, Section, SectionHeading } from "@/components/ui";
 import { clinicsSchema } from "@/lib/schema";
 import { pageMetadata } from "@/lib/seo";
 import { BRAND } from "@/lib/site";
@@ -61,9 +61,6 @@ export default function AboutPage() {
       <Section labelledBy="clinics-title">
         <SectionHeading id="clinics-title" eyebrow="Our clinics" title="London and Glasgow" />
         <ClinicCards />
-        <p className="mt-8 text-sm text-stone">
-          <Tbc>CQC registration (London) and Healthcare Improvement Scotland registration (Glasgow): wording and numbers</Tbc>
-        </p>
         <Disclaimer className="mt-12" />
       </Section>
       <CtaBand />

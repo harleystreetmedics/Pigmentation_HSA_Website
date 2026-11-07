@@ -92,6 +92,7 @@ export function AiAnalysisCard({ className = "" }: { className?: string }) {
 
 /** Reviews: shows the carousel once verified reviews exist; until then an honest placeholder. */
 export function ReviewsSection() {
+  if (REVIEWS.length === 0) return null;
   return (
     <section aria-labelledby="reviews-title" className="bg-charcoal py-16 text-white sm:py-20 lg:py-24">
       <div className="container-x">
@@ -111,16 +112,7 @@ export function ReviewsSection() {
               </p>
             )}
           </>
-        ) : (
-          <div className="rounded-2xl border border-cream/10 bg-card p-7 text-stone">
-            <p>
-              We only show verified reviews from patients who have agreed to share them, and we never edit what they say.
-            </p>
-            <p className="mt-3">
-              <Tbc>verified pigmentation patient reviews with permission to publish</Tbc>
-            </p>
-          </div>
-        )}
+        ) : null}
       </div>
     </section>
   );
@@ -161,7 +153,7 @@ export function TeamGrid({ limit }: { limit?: number }) {
         <a href={`${BRAND.mainSite}/london/team`} className="text-gold underline underline-offset-2 hover:text-cream">
           Read full profiles on our main website
         </a>
-        . <Tbc>which team members see pigmentation patients, and GMC numbers</Tbc>
+        .
       </p>
     </>
   );
@@ -202,12 +194,6 @@ export function ClinicCards({ stacked = false }: { stacked?: boolean }) {
                 </span>
               </p>
             ))}
-            <p className="flex gap-3">
-              <Icon name="clock" className="mt-0.5 h-5 w-5 shrink-0 text-gold" />
-              <span>
-                {c.hours} <Tbc>confirm opening hours</Tbc>
-              </span>
-            </p>
           </address>
           <div className="mt-6 flex flex-wrap gap-3">
             <a href={c.phone.href} className="inline-flex min-h-11 items-center gap-2 rounded-full border border-gold px-5 text-sm font-semibold text-gold">

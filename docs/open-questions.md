@@ -1,5 +1,8 @@
 # Open questions
 
+> **7 Nov 2026: you asked for the site to follow the main website only.** Anything the website doesn't publish is now left off the site instead of shown as `[TBC]`, so none of the items below blocks launch. They're kept as a record of what could be added later if it appears on the main website.
+
+
 Things I couldn't confirm from the Copilot, the main website or Facebook. Each one shows on the site as an amber `[TBC: …]` placeholder or is noted in the review checklist. Run `npm run check:tbc` to list every placeholder still on the site.
 
 ## Decisions for you

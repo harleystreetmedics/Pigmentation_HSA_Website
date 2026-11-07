@@ -215,7 +215,7 @@ export default function Home() {
               items={[
                 <>Online consultation: free. In-clinic consultation: £195, redeemable against treatment</>,
                 <>
-                  Signature Pigmentation Protocol: from £399, or £1,299 for four sessions
+                  Signature Pigmentation Programme: £349 a session, usually 2–6 sessions
                 </>,
                 <>Chemical peels from £149, VI Peel £595, Cosmelan £995</>,
                 <>0% finance options, subject to status</>,

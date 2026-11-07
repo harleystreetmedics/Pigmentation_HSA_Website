@@ -141,10 +141,6 @@ export function ClinicTabs() {
             </span>
           </p>
         ))}
-        <p className="mt-3 flex gap-3 text-stone">
-          <Icon name="clock" className="mt-0.5 h-5 w-5 shrink-0 text-gold" />
-          {c.hours}
-        </p>
         <p className="mt-3 flex gap-3">
           <Icon name="phone" className="mt-0.5 h-5 w-5 shrink-0 text-gold" />
           <a href={c.phone.href} className="font-semibold text-cream hover:text-gold">

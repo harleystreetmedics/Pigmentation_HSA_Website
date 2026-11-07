@@ -1,6 +1,6 @@
 import { StepTimeline } from "@/components/cards";
 import { AiAnalysisCard, CtaBand, SkinCheckNotice } from "@/components/sections";
-import { Button, CheckList, Disclaimer, JsonLd, PageHero, Section, SectionHeading, Tbc } from "@/components/ui";
+import { Button, CheckList, Disclaimer, JsonLd, PageHero, Section, SectionHeading } from "@/components/ui";
 import { DIAGNOSIS_STEPS, RX_SENTENCE } from "@/lib/conditions";
 import { consultationSchema } from "@/lib/schema";
 import { pageMetadata } from "@/lib/seo";
@@ -86,9 +86,6 @@ export default function DiagnosisPage() {
                 If a mark is new, changing, raised, irregular, bleeding or itchy, we won&rsquo;t treat it cosmetically. We&rsquo;ll advise you
                 to see your GP or a dermatologist first.
               </p>
-              <p>
-                <Tbc>whether a Wood&rsquo;s lamp or dermatoscope is used at consultation</Tbc>
-              </p>
             </div>
           </div>
           <div>
@@ -99,8 +96,7 @@ export default function DiagnosisPage() {
                 waxing or treatments in the past. This guides which treatments are suitable and how strong they should be.
               </p>
               <p>
-                Where it helps, we recommend a patch test before your first full treatment, to see how your skin responds. A patch test is{" "}
-                {CONSULTATIONS.patchTest.price}. A patch test may be advised before treatments such as the Signature Protocol, peels, IPL or a carbon laser facial, particularly for darker or sensitive skin. <Tbc>whether the £50 patch test is redeemable against treatment</Tbc>
+                Where it helps, we recommend a patch test before your first full treatment, to see how your skin responds. A patch test may be advised before treatments such as the Signature Programme, peels, IPL or a carbon laser facial, particularly for darker or sensitive skin.
               </p>
             </div>
           </div>

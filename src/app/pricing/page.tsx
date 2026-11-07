@@ -1,6 +1,6 @@
 ﻿import Link from "next/link";
 import { CtaBand } from "@/components/sections";
-import { CheckList, Disclaimer, PageHero, Section, SectionHeading, Tbc } from "@/components/ui";
+import { CheckList, Disclaimer, PageHero, Section, SectionHeading } from "@/components/ui";
 import { pageMetadata } from "@/lib/seo";
 import { BRAND, CONSULTATIONS } from "@/lib/site";
 import { TREATMENTS } from "@/lib/treatments";
@@ -8,7 +8,7 @@ import { TREATMENTS } from "@/lib/treatments";
 export const metadata = pageMetadata({
   title: "Pigmentation Treatment Prices",
   description:
-    "Guide prices for pigmentation consultations and treatments at Harley Street Aesthetics in London and Glasgow: peels from £149, Signature Protocol from £399. Free online consultation.",
+    "Guide prices for pigmentation consultations and treatments at Harley Street Aesthetics in London and Glasgow: peels from £149, Signature Programme £349 a session. Free online consultation.",
   path: "/pricing/",
 });
 
@@ -25,12 +25,11 @@ export default function PricingPage() {
       />
       <Section labelledBy="consult-title">
         <SectionHeading id="consult-title" eyebrow="Start here" title="Consultations and assessment" />
-        <ul className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+        <ul className="grid gap-5 md:grid-cols-3">
           {[
             { name: "Online consultation", ...CONSULTATIONS.online },
             { name: "In-clinic consultation", ...CONSULTATIONS.inClinic },
             { name: "3D skin analysis", ...CONSULTATIONS.skinAnalysis },
-            { name: "Patch test", time: "Where advised", ...CONSULTATIONS.patchTest },
           ].map((o) => (
             <li key={o.name} className="flex flex-col rounded-2xl border border-cream/10 bg-card p-6 shadow-card">
               <h3 className="font-serif text-xl text-cream">{o.name}</h3>
@@ -82,7 +81,7 @@ export default function PricingPage() {
                       {p.option}
                       {p.note && <span className="block text-xs">{p.note}</span>}
                     </td>
-                    <td className={`${ROW} text-cream`}>{p.price || <Tbc>{t.pricesTbc ?? "price"}</Tbc>}</td>
+                    <td className={`${ROW} text-cream`}>{p.price}</td>
                   </tr>
                 )),
               )}
@@ -90,9 +89,7 @@ export default function PricingPage() {
           </table>
         </div>
         <div className="mt-6 space-y-2">
-          <p>
-            <Tbc>whether the £50 patch test is redeemable against treatment</Tbc>
-          </p>
+
         </div>
       </Section>
 

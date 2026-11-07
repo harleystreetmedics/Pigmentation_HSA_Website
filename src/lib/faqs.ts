@@ -11,7 +11,7 @@ export const GENERAL_FAQS: Faq[] = [
   },
   {
     q: "Which treatments do you offer for pigmentation?",
-    a: "Depending on your skin, options we may discuss include our Signature Pigmentation Protocol (VirtueRF microneedling, the Helios III laser and regenerative mesotherapy), chemical peels, VI Peel, Cosmelan, IPL (lighter skin only), a Q-switched laser, Virtue RF microneedling, a carbon laser facial, CO2 resurfacing and a dark circles treatment. Prescription treatments may be discussed at your consultation if clinically appropriate.",
+    a: "Depending on your skin, options we may discuss include our Signature Pigmentation Programme, chemical peels, chemical peel + mesotherapy, VI Peel, Cosmelan, IPL (lighter skin only), Virtue RF microneedling, a carbon laser facial, CO2 resurfacing and a dark circles treatment. Prescription treatments may be discussed at your consultation if clinically appropriate.",
   },
   {
     q: "Can you guarantee my pigmentation will go?",
@@ -31,11 +31,11 @@ export const GENERAL_FAQS: Faq[] = [
   },
   {
     q: "How many sessions will I need?",
-    a: "It depends on the treatment and your pigmentation. For example, most people need at least two sessions of our Signature Protocol, and chemical peels are usually 3–6 sessions, 2–4 weeks apart. Your clinician recommends a plan at consultation.",
+    a: "It depends on the treatment and your pigmentation. For example, our Signature Programme is usually 2–6 sessions and chemical peels 3–6, a few weeks apart. Your clinician recommends a plan at consultation.",
   },
   {
     q: "How much does treatment cost?",
-    a: "Your online consultation is free. Chemical peels start at £149, the Signature Pigmentation Protocol starts from £399, and other treatments are listed on our pricing page. Your plan and its cost are confirmed after your consultation, and a £50 deposit secures appointments.",
+    a: "Your online consultation is free. Chemical peels start at £149, the Signature Pigmentation Programme is £349 a session, and other treatments are listed on our pricing page. Your plan and its cost are confirmed after your consultation, and a £50 deposit secures appointments.",
   },
   {
     q: "Can I have treatment while pregnant or breastfeeding?",

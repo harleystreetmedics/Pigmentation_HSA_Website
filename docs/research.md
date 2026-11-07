@@ -185,3 +185,6 @@ I rendered 22 pages of harleystreetaesthetic.co.uk in headless Chrome, with ever
 **Conflict still open:** the website pricing page and the pigmentation page still sell the **needle-free Signature Pigmentation Programme at £349 a session (60 minutes, 2–6 sessions)**, while the Copilot says the current treatment is the VirtueRF + Helios III + mesotherapy protocol from £399. Since 7 Nov the site follows the Copilot (decision #26).
 
 **Other main-site notes:** CO2 prices are shown as "special offers" with crossed-out "was" prices (e.g. full face £999 → £799). This site shows only the current price, with no offer wording, to avoid time-pressure and reference-pricing issues under the CAP Code.
+
+## 11. Source rule (7 Nov 2026)
+You asked that the site follow the main website for prices and facts, and leave out anything the website doesn't mention. The Copilot findings above remain here for reference, but where they differ from or go beyond the website (Signature protocol, packages, Q-switched laser, patch-test price), the site uses the website or leaves the item out.

@@ -22,13 +22,12 @@
 | `/conditions/hypopigmentation-and-vitiligo/` | White patches and vitiligo (assess + refer) | white patches on skin |
 | `/pigmentation-in-darker-skin/` | Skin of colour page | pigmentation treatment for dark skin |
 | `/treatments/` | All treatments | pigmentation treatments |
-| `/treatments/signature-pigmentation-protocol/` | Signature Protocol (see decision #26) | pigmentation treatment London |
+| `/treatments/signature-pigmentation-programme/` | Signature Programme (see decision #28) | pigmentation treatment London |
 | `/treatments/chemical-peels/` | Chemical peels | chemical peel for pigmentation |
 | `/treatments/peel-and-mesotherapy/` | Chemical peel + mesotherapy | |
 | `/treatments/vi-peel/` | VI Peel | VI Peel London |
 | `/treatments/cosmelan-peel/` | Cosmelan | Cosmelan peel London |
 | `/treatments/ipl-photofacial/` | IPL | IPL sun spots |
-| `/treatments/q-switched-laser/` | Q-switched Nd:YAG (Helios III) | Q-switched laser pigmentation |
 | `/treatments/virtue-rf-microneedling/` | Virtue RF | RF microneedling acne marks |
 | `/treatments/carbon-laser-facial/` | Carbon laser facial | carbon laser peel |
 | `/treatments/dark-circles-treatment/` | Dark circles | dark circles treatment London |

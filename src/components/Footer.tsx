@@ -4,7 +4,7 @@ import { BRAND, CLINIC_LIST } from "@/lib/site";
 import { TREATMENTS } from "@/lib/treatments";
 import { CookieSettingsButton } from "./CookieConsent";
 import { Icon } from "./Icon";
-import { Tbc, Wordmark } from "./ui";
+import { Wordmark } from "./ui";
 
 const EXPLORE = [
   { href: "/pigmentation-in-darker-skin/", label: "Pigmentation in darker skin" },
@@ -131,9 +131,6 @@ export function Footer() {
           <p>
             Treatments are for adults aged 18 and over. All treatments require a consultation with a qualified medical practitioner, who
             will assess your suitability. Results vary from person to person and are not guaranteed.
-          </p>
-          <p>
-            London: <Tbc>CQC registration statement and number</Tbc> · Glasgow: <Tbc>Healthcare Improvement Scotland registration statement</Tbc>
           </p>
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <p>

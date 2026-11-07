@@ -48,12 +48,6 @@ export function LocationPage({ id }: { id: ClinicId }) {
                 </li>
               ))}
               <li className="flex gap-3">
-                <Icon name="clock" className="mt-0.5 h-5 w-5 shrink-0 text-gold" />
-                <span>
-                  {c.hours} <Tbc>confirm opening hours</Tbc>
-                </span>
-              </li>
-              <li className="flex gap-3">
                 <Icon name="phone" className="mt-0.5 h-5 w-5 shrink-0 text-gold" />
                 <a href={c.phone.href} className="font-semibold text-cream hover:text-gold">
                   {c.phone.display}

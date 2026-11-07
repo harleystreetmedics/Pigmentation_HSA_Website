@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 import { FactStrip, FaqAccordion, RiskList, StepTimeline } from "@/components/cards";
 import { CtaBand, RelatedLinks, SkinCheckNotice, SkinToneNote, TbcNotes } from "@/components/sections";
 import { SkinToneArt } from "@/components/SkinToneArt";
-import { Button, CheckList, Disclaimer, JsonLd, PageHero, Section, SectionHeading, Tbc } from "@/components/ui";
+import { Button, CheckList, Disclaimer, JsonLd, PageHero, Section, SectionHeading } from "@/components/ui";
 import { CONDITIONS, RX_SENTENCE } from "@/lib/conditions";
 import { faqSchema, treatmentSchema } from "@/lib/schema";
 import { pageMetadata } from "@/lib/seo";
@@ -126,7 +126,7 @@ export default async function TreatmentPage({ params }: PageProps<"/treatments/[
 
       <Section labelledBy="price-title">
         <SectionHeading id="price-title" eyebrow="Price" title="Guide prices" intro="Your plan and its cost are confirmed after your consultation. A £50 deposit secures appointments and is redeemable against treatment." />
-        {t.prices.length > 0 ? (
+        {t.prices.length > 0 && (
           <ul className="divide-y divide-cream/10 rounded-2xl border border-cream/10 bg-card">
             {t.prices.map((p) => (
               <li key={p.option} className="flex items-center justify-between gap-4 px-6 py-4">
@@ -138,10 +138,6 @@ export default async function TreatmentPage({ params }: PageProps<"/treatments/[
               </li>
             ))}
           </ul>
-        ) : (
-          <p>
-            <Tbc>{t.pricesTbc ?? "price"}</Tbc>
-          </p>
         )}
       </Section>
 

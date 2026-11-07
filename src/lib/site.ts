@@ -32,7 +32,6 @@ export type Clinic = {
   phone: { display: string; href: string; e164: string };
   mapsUrl: string;
   mapEmbed: string;
-  hours: string;
   geo: { lat: number; lng: number };
 };
 
@@ -46,7 +45,6 @@ export const CLINICS: Record<ClinicId, Clinic> = {
     phone: { display: "020 4628 3165", href: "tel:+442046283165", e164: "+442046283165" },
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=2+Grosvenor+Gardens+London+SW1W+0DH",
     mapEmbed: "https://www.google.com/maps?q=2%20Grosvenor%20Gardens%2C%20Belgravia%2C%20London%2C%20SW1W%200DH&output=embed",
-    hours: "Tuesday to Friday 9am–7pm, Saturday 9am–6pm",
     geo: { lat: 51.4973, lng: -0.1449 },
   },
   glasgow: {
@@ -57,7 +55,6 @@ export const CLINICS: Record<ClinicId, Clinic> = {
     phone: { display: "0141 488 8985", href: "tel:+441414888985", e164: "+441414888985" },
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Ingram+House+227+Ingram+Street+Glasgow+G1+1DA",
     mapEmbed: "https://www.google.com/maps?q=Ingram%20House%2C%20227%20Ingram%20Street%2C%20Glasgow%20G1%201DA&output=embed",
-    hours: "Monday to Friday 9am–6pm",
     geo: { lat: 55.8597, lng: -4.2465 },
   },
 };
@@ -104,12 +101,11 @@ export const TEAM = [
   },
 ] as const;
 
-/** From harleystreetaesthetic.co.uk/london/pricing (Consultations tab, 6 Nov 2026) and the Copilot (patch test). */
+/** From harleystreetaesthetic.co.uk/london/pricing (Consultations tab, 6–7 Nov 2026). */
 export const CONSULTATIONS = {
   online: { price: "Free", time: "15 minutes", detail: "Video assessment, medical history review and preliminary advice. No obligation." },
   inClinic: { price: "£195", time: "30 minutes", detail: "Full assessment, medical history review and a bespoke treatment plan. Redeemable against treatment." },
   skinAnalysis: { price: "£50", time: "30 minutes", detail: "3D skin analysis (Visia/Observ) with a pigmentation and texture check and a detailed report." },
-  patchTest: { price: "£50", detail: "A patch test before your first full treatment, where your clinician advises one." },
   deposit:
     "A £50 deposit is required to secure appointments. It is fully redeemable against your treatment cost. If you decide not to go ahead after your consultation, it is refundable provided you give 48 hours' notice.",
 };

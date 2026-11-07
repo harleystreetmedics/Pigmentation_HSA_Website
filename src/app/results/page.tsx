@@ -1,5 +1,5 @@
 import { CtaBand, ReviewsSection } from "@/components/sections";
-import { CheckList, Disclaimer, PageHero, Section, SectionHeading, Tbc } from "@/components/ui";
+import { CheckList, Disclaimer, PageHero, Section, SectionHeading } from "@/components/ui";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
@@ -43,9 +43,6 @@ export default function ResultsPage() {
                 "A range of skin tones, and no stock images presented as results.",
               ]}
             />
-            <p className="mt-6">
-              <Tbc>before-and-after photos with written patient consent for website use</Tbc>
-            </p>
           </div>
         </div>
       </Section>

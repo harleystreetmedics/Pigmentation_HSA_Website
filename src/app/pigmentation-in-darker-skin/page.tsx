@@ -39,7 +39,7 @@ const FAQS: Faq[] = [
   },
 ];
 
-const OPTIONS = ["chemical-peels", "cosmelan-peel", "virtue-rf-microneedling", "carbon-laser-facial", "vi-peel"]
+const OPTIONS = ["signature-pigmentation-programme", "chemical-peels", "cosmelan-peel", "virtue-rf-microneedling", "carbon-laser-facial", "vi-peel"]
   .map(treatmentBySlug)
   .filter((t): t is Treatment => Boolean(t));
 
@@ -114,7 +114,7 @@ export default function DarkerSkinPage() {
                   </Link>{" "}
                   is not suitable for Fitzpatrick skin types V–VI or tanned skin
                 </>,
-                <>Lasers, including the Q-switched laser, need careful settings and often a test patch</>,
+                <>Lasers and other heat-based treatments need careful settings and often a patch test</>,
                 <>
                   <Link href="/treatments/co2-laser-resurfacing/" className="text-gold underline underline-offset-2">
                     CO2 resurfacing

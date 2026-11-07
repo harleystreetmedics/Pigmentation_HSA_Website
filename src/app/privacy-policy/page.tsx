@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { LegalPage } from "@/components/LegalPage";
-import { Tbc } from "@/components/ui";
 import { pageMetadata } from "@/lib/seo";
 import { BRAND } from "@/lib/site";
 
@@ -43,7 +42,7 @@ export default function PrivacyPage() {
       </ul>
       <h2>Who we share it with</h2>
       <p>
-        Our website hosting and form provider (<Tbc>hosting and form provider, e.g. Netlify</Tbc>), our online booking calendar provider, our email
+        Our website hosting and form provider, our online booking calendar provider, our email
         and customer-management providers and, if you consent, Google and Meta for analytics and advertising measurement. Some of these
         providers may process data outside the UK under appropriate safeguards.
       </p>
