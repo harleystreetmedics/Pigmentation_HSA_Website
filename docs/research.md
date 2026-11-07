@@ -161,3 +161,27 @@ One more internal chat question covering every `[TBC]` item. The Copilot checked
 - **Dr Ahmad** fronts the pigmentation adverts; the protocol is "doctor-led and medically supervised by the Harley Street medical team".
 
 **Still not documented anywhere in Copilot:** standalone Helios III price/sessions/spacing/downtime; which treatments need a patch test and whether the £50 is redeemable; treat-or-refer for café-au-lait/birthmarks, vitiligo/white patches and drug/heat-induced pigmentation; Wood's lamp/dermatoscope; the £50 3D skin analysis (it's on the main website, not in Copilot); dark circles device/downtime/side effects; practitioners and GMC numbers; CQC/HIS wording and numbers; opening hours; enquiry destination; GA4/GTM/Pixel IDs; review verification and before/after consent; company name, address and ICO number. These stay as `[TBC]` and need the clinic manager.
+
+## 10. Main website re-check for missing details (7 Nov 2026, at your request)
+I rendered 22 pages of harleystreetaesthetic.co.uk in headless Chrome, with every tab and accordion opened: home, London, Glasgow, both team pages, both galleries, both contact pages, free skin consultation, finance, treatments, pricing (all tabs), and the pigmentation, Virtue RF, peel, Cosmelan, VI Peel, IPL, carbon laser and peel + mesotherapy pages. I also looked for privacy, terms and cookie pages, and recorded the analytics requests the site makes.
+
+**Found and added to the site:**
+- **Team by clinic:** /glasgow/team lists only Mr Khalil Al-Nakib and Dr Ayda Soltanzadeh. Dr Nina Ku, Dr Afraa Mohammed and Dr Mazhar Khan are London only. The team cards now show this.
+- **Dark circles:** 45 minutes a session; £395, or £995 for 3 (matches the Copilot).
+- **IPL:** "Some people with Fitzpatrick type IV skin can be treated cautiously with conservative settings after a patch test, but that is a clinical decision made at consultation." Added to the IPL skin-tone note.
+- **Patch tests:** the website mentions them for the pigmentation programme, IPL, carbon laser and peels ("where advised/appropriate"). The diagnosis page now says this. Whether the £50 is redeemable still isn't stated.
+
+**Not on the website (still `[TBC]`):**
+- Opening hours: not shown anywhere (footer, contact or clinic pages).
+- CQC / Healthcare Improvement Scotland registration: not mentioned.
+- GMC numbers: the site says "GMC-registered" but gives no numbers.
+- Company name, address and ICO number: the footer says only "© 2026 Harley Street Aesthetics". The "Privacy Policy" and "Terms of Service" links go nowhere, and /privacy-policy, /privacy, /terms and /cookie-policy return 404.
+- Tracking IDs: the site loads no GA4, GTM or Meta Pixel (only Google Maps).
+- Enquiry form destination: the contact form submits within the site's own app, and its endpoint isn't visible.
+- Before/after photos: the gallery has Endolift, dermal filler, PLACL thread and "Body & Skin" (PB Serum) results, but **no pigmentation results**.
+- Reviews: the same five undated, unverifiable review cards appear on every page; not reused.
+- Standalone Q-switched laser price, Wood's lamp or dermatoscope, and treat-or-refer for birthmarks, vitiligo and drug/heat pigmentation: not mentioned.
+
+**Conflict still open:** the website pricing page and the pigmentation page still sell the **needle-free Signature Pigmentation Programme at £349 a session (60 minutes, 2–6 sessions)**, while the Copilot says the current treatment is the VirtueRF + Helios III + mesotherapy protocol from £399. Since 7 Nov the site follows the Copilot (decision #26).
+
+**Other main-site notes:** CO2 prices are shown as "special offers" with crossed-out "was" prices (e.g. full face £999 → £799). This site shows only the current price, with no offer wording, to avoid time-pressure and reference-pricing issues under the CAP Code.

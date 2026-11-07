@@ -40,3 +40,5 @@ Things I couldn't confirm from the Copilot, the main website or Facebook. Each o
 27. No Harley Street Medics pigmentation playbook was found in the Copilot. The only cross-brand reference is the Wellness skin brightening drip. Nothing outdated to flag there.
 
 _7 Nov 2026: I asked the Copilot about every item above. Apart from #2 and #6, it has nothing documented, so these need the clinic manager (see research.md §9)._
+
+_7 Nov 2026 (later): I also checked every relevant page of harleystreetaesthetic.co.uk (research.md §10). It adds team locations, dark-circle session length, IPL type IV guidance and patch-test wording. It has nothing on opening hours, CQC/HIS, GMC numbers, company/ICO details (its privacy and terms links are broken), tracking IDs, the form destination, pigmentation before/after photos or verified reviews. Those still need the clinic manager. It also still shows the old £349 Signature Programme._

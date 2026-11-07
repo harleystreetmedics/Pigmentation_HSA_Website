@@ -91,7 +91,7 @@ export default function PricingPage() {
         </div>
         <div className="mt-6 space-y-2">
           <p>
-            <Tbc>which treatments need a patch test, and whether the £50 is redeemable</Tbc>
+            <Tbc>whether the £50 patch test is redeemable against treatment</Tbc>
           </p>
         </div>
       </Section>

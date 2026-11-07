@@ -56,6 +56,9 @@ Automated scan (`npm run check:compliance`, passes) plus a manual read of every 
 21. Privacy policy company details (Harley Street Medics Ltd, 211B Main Street, Bellshill ML4 1AJ, ICO ZB819731) come from the Endolift privacy policy. Confirm they're current.
 
 ## 3. Main-website issues spotted (not on this site)
+- **The main site still sells the old needle-free Signature Pigmentation Programme at £349**, while this site (following the Copilot) shows the VirtueRF + Helios III + mesotherapy protocol from £399. Please align them before launch.
+- The main site's footer "Privacy Policy" and "Terms of Service" links go nowhere, and /privacy-policy returns 404.
+- CO2 prices on the main site are "special offers" with crossed-out prices; check them against the CAP Code rules on reference pricing and time pressure.
 - The main site and the AI app still show 10 Harley Street.
 - Main-site treatment pages name isotretinoin; the Virtue RF page says "Zero Pain" and "Suitable for all skin tones (Fitzpatrick I–VI)".
 - The main-site reviews block ("2 days ago", "Dr. Vincent") can't be verified.

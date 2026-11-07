@@ -425,7 +425,8 @@ export const TREATMENTS: Treatment[] = [
       "Melasma, active infection, cold sores or broken skin in the area",
       "Light-triggered epilepsy or a history of keloid scarring",
     ],
-    skinTone: "IPL is not suitable for darker skin types (Fitzpatrick V–VI) or tanned skin. A carbon laser facial or a chemical peel may be recommended instead.",
+    skinTone:
+      "IPL is not suitable for darker skin types (Fitzpatrick V–VI) or tanned skin. Some people with type IV skin can be treated cautiously with conservative settings after a patch test, but that is a clinical decision made at consultation. A carbon laser facial or a chemical peel may be recommended instead.",
     onTheDay: [
       { title: "Skin typing", text: "Your clinician confirms your skin type and checks for any recent tan." },
       { title: "Protection", text: "Protective eyewear and a cooling gel are used throughout." },
@@ -620,6 +621,7 @@ export const TREATMENTS: Treatment[] = [
       "Results vary, and dark circles can return with sleep, allergies, sun exposure and age.",
     ],
     facts: [
+      { label: "Appointment", value: "45 minutes" },
       { label: "Course", value: "1 or 3 sessions" },
       { label: "Downtime", value: "Confirmed at consultation", tbc: true },
       { label: "Price", value: "From £395" },

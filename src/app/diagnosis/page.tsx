@@ -100,7 +100,7 @@ export default function DiagnosisPage() {
               </p>
               <p>
                 Where it helps, we recommend a patch test before your first full treatment, to see how your skin responds. A patch test is{" "}
-                {CONSULTATIONS.patchTest.price}. <Tbc>which treatments need a patch test, and whether the £50 is redeemable</Tbc>
+                {CONSULTATIONS.patchTest.price}. A patch test may be advised before treatments such as the Signature Protocol, peels, IPL or a carbon laser facial, particularly for darker or sensitive skin. <Tbc>whether the £50 patch test is redeemable against treatment</Tbc>
               </p>
             </div>
           </div>

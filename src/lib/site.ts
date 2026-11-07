@@ -64,37 +64,42 @@ export const CLINICS: Record<ClinicId, Clinic> = {
 
 export const CLINIC_LIST = [CLINICS.london, CLINICS.glasgow];
 
-// Medical team as listed on harleystreetaesthetic.co.uk/london/team (6 Nov 2026). Bios shortened.
+// Medical team as listed on harleystreetaesthetic.co.uk/london/team and /glasgow/team (7 Nov 2026). Bios shortened.
 // Which of them see pigmentation patients is not stated (docs/open-questions.md #15).
 export const TEAM = [
   {
     name: "Dr Nina Ku",
     post: "",
     role: "Dermatologist",
+    clinics: "London",
     bio: "Dermatologist with an international clinical background and a particular interest in dermoscopy, skin cancer screening, pigmentation, acne scarring and laser and energy-based treatments.",
   },
   {
     name: "Dr Ayda Soltanzadeh",
     post: "",
     role: "Consultant Dermatologist",
+    clinics: "London and Glasgow",
     bio: "Consultant Dermatologist with a background in clinical dermatology and a meticulous approach to aesthetic medicine.",
   },
   {
     name: "Dr Afraa Mohammed",
     post: "MBBS, MD (Dermatology)",
     role: "Dermatologist",
+    clinics: "London",
     bio: "Dermatologist with more than 12 years of experience in dermatology and aesthetic medicine.",
   },
   {
     name: "Mr Khalil Al-Nakib",
     post: "FRCSEd",
     role: "Consultant Plastic Surgeon",
+    clinics: "London and Glasgow",
     bio: "Consultant Plastic Surgeon skilled in the use of lasers, and a member of the British Laser Association. Fellow of the Royal College of Surgeons of Edinburgh.",
   },
   {
     name: "Dr Mazhar Khan",
     post: "MBBS, MRCGP, DRCOG, DFFP",
     role: "Medical Doctor",
+    clinics: "London",
     bio: "Medical doctor with over 23 years of clinical experience, including more than 20 years as a GP in NHS and private practice.",
   },
 ] as const;

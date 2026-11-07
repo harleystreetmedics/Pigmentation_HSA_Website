@@ -151,6 +151,7 @@ export function TeamGrid({ limit }: { limit?: number }) {
               {p.role}
               {p.post && <span className="font-normal text-stone"> · {p.post}</span>}
             </p>
+            <p className="mt-1 text-xs tracking-[0.15em] text-stone uppercase">{p.clinics}</p>
             <p className="mt-4 text-sm leading-relaxed text-stone">{p.bio}</p>
           </li>
         ))}
