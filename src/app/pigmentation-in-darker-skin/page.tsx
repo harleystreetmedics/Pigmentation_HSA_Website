@@ -39,7 +39,7 @@ const FAQS: Faq[] = [
   },
 ];
 
-const OPTIONS = ["chemical-peels", "cosmelan-peel", "signature-pigmentation-programme", "virtue-rf-microneedling", "carbon-laser-facial", "vi-peel"]
+const OPTIONS = ["chemical-peels", "cosmelan-peel", "virtue-rf-microneedling", "carbon-laser-facial", "vi-peel"]
   .map(treatmentBySlug)
   .filter((t): t is Treatment => Boolean(t));
 

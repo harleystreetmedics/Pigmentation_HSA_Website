@@ -98,7 +98,7 @@ const CONDITION_FOR: Record<string, string> = {
 };
 const AREA_FOR: Record<string, string> = { lips: "lip-and-perioral-pigmentation", hands: "hands-and-chest-pigmentation", body: "body-pigmentation" };
 const HIGH_DOWNTIME = ["cosmelan-peel", "vi-peel", "co2-laser-resurfacing"];
-const PROGRAMMES = ["signature-pigmentation-programme", "cosmelan-peel"];
+const PROGRAMMES = ["signature-pigmentation-protocol", "cosmelan-peel"];
 
 const link = (slug: string, kind: "conditions" | "treatments"): LinkItem | null => {
   const item = kind === "conditions" ? conditionBySlug(slug) : treatmentBySlug(slug);

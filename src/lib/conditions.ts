@@ -70,7 +70,7 @@ export const CONDITIONS: Condition[] = [
       "Irritating skincare or treatments that inflame the skin",
     ],
     assessment: STANDARD_ASSESSMENT,
-    treatments: ["signature-pigmentation-programme", "cosmelan-peel", "vi-peel", "chemical-peels", "q-switched-laser"],
+    treatments: ["signature-pigmentation-protocol", "cosmelan-peel", "vi-peel", "chemical-peels", "q-switched-laser"],
     options: [
       "Melasma can darken if the skin is irritated or overheated, so it needs a gentle approach. We don't use IPL for melasma.",
       "A home skincare plan and strict daily sun protection are as important as in-clinic treatment.",
@@ -92,7 +92,7 @@ export const CONDITIONS: Condition[] = [
     summary: "Flat, clearly defined brown spots on areas that get the most sun, such as the face, hands and chest.",
     metaTitle: "Sun Spot Removal London & Glasgow",
     metaDescription:
-      "Sun spot (solar lentigo) treatment at Harley Street Aesthetics in London and Glasgow: laser, IPL, peels and our Signature Programme, after a skin check. Results vary.",
+      "Sun spot (solar lentigo) treatment at Harley Street Aesthetics in London and Glasgow: laser, IPL, peels and our Signature Protocol, after a skin check. Results vary.",
     intro: [
       "Sun spots, also called solar lentigines, are flat, well-defined brown spots caused by years of sun exposure. They are very common from middle age onwards, especially in lighter skin.",
       "They often respond well to treatment, although new spots can form with further sun exposure. Because some skin cancers can look like a dark spot, every spot is checked before cosmetic treatment.",
@@ -100,7 +100,7 @@ export const CONDITIONS: Condition[] = [
     appearance: ["Flat, light to dark brown spots with clear edges", "On the face, backs of the hands, forearms, chest and shoulders", "Usually more numerous with age and sun exposure"],
     causes: ["Cumulative sun exposure over many years", "Sunbed use", "Lighter skin types are more prone"],
     assessment: STANDARD_ASSESSMENT,
-    treatments: ["q-switched-laser", "ipl-photofacial", "signature-pigmentation-programme", "cosmelan-peel", "chemical-peels", "co2-laser-resurfacing"],
+    treatments: ["q-switched-laser", "ipl-photofacial", "signature-pigmentation-protocol", "cosmelan-peel", "chemical-peels", "co2-laser-resurfacing"],
     options: ["The right option depends on your skin type and how many spots you have. IPL is only suitable for lighter, untanned skin.", RX_SENTENCE],
     prevention: [SPF, "Covering up and seeking shade between 11am and 3pm", "Avoiding sunbeds"],
     faqs: [
@@ -125,7 +125,7 @@ export const CONDITIONS: Condition[] = [
     appearance: ["Flat brown marks on the face, hands, forearms or chest", "Gradually more numerous over time", "Raised, rough or crusty marks are assessed separately"],
     causes: ["Sun exposure over many years", "Age", "Lighter skin types are more prone"],
     assessment: STANDARD_ASSESSMENT,
-    treatments: ["q-switched-laser", "ipl-photofacial", "chemical-peels", "co2-laser-resurfacing", "signature-pigmentation-programme"],
+    treatments: ["q-switched-laser", "ipl-photofacial", "chemical-peels", "co2-laser-resurfacing", "signature-pigmentation-protocol"],
     options: ["Flat spots assessed as harmless may be treated cosmetically. Raised or changing marks are not treated as cosmetic pigmentation.", RX_SENTENCE],
     prevention: [SPF, "Sunscreen on the backs of your hands, which are often missed", "Hats and covering up"],
     faqs: [
@@ -150,7 +150,7 @@ export const CONDITIONS: Condition[] = [
     appearance: ["Small, flat, light-brown flecks", "Mostly on the nose, cheeks, shoulders and arms", "Darker in summer and lighter in winter"],
     causes: ["Genetics, especially in fair or red-haired people", "Sun exposure, which darkens existing freckles"],
     assessment: STANDARD_ASSESSMENT,
-    treatments: ["q-switched-laser", "ipl-photofacial", "signature-pigmentation-programme", "chemical-peels"],
+    treatments: ["q-switched-laser", "ipl-photofacial", "signature-pigmentation-protocol", "chemical-peels"],
     options: ["Freckles fade with some treatments but usually return with sun exposure.", RX_SENTENCE],
     prevention: [SPF, "Hats and shade in summer"],
     faqs: [{ q: "Will treated freckles come back?", a: "Usually, yes, especially in summer. Sun protection slows this down." }],
@@ -176,7 +176,7 @@ export const CONDITIONS: Condition[] = [
     ],
     causes: ["Acne and spots, especially if picked", "Eczema, insect bites, rashes, cuts or burns", "Waxing, threading or shaving irritation", "Lasers, peels or other procedures that inflamed the skin"],
     assessment: STANDARD_ASSESSMENT,
-    treatments: ["chemical-peels", "signature-pigmentation-programme", "vi-peel", "cosmelan-peel", "virtue-rf-microneedling", "peel-and-mesotherapy"],
+    treatments: ["chemical-peels", "signature-pigmentation-protocol", "vi-peel", "cosmelan-peel", "virtue-rf-microneedling", "peel-and-mesotherapy"],
     options: ["Treating active acne or irritation first helps prevent new marks.", "In darker skin, gentle options and careful preparation are used to avoid causing more inflammation.", RX_SENTENCE],
     prevention: [SPF, "Not picking or squeezing spots", "Gentle skincare that doesn't sting or burn", "Getting acne treated early"],
     faqs: [
@@ -201,7 +201,7 @@ export const CONDITIONS: Condition[] = [
     appearance: ["Symmetrical patches on the cheeks, forehead, upper lip or chin", "Darkening of existing pigmentation", "Changes that started with a pregnancy or a new hormonal medicine"],
     causes: ["Pregnancy", "Combined contraceptive pill or other hormonal contraception", "Hormone treatment, including HRT", "Sun exposure, which makes hormonal pigmentation darker"],
     assessment: [...STANDARD_ASSESSMENT, "Questions about pregnancy, breastfeeding and hormonal medicines, which affect which treatments are suitable and when"],
-    treatments: ["signature-pigmentation-programme", "cosmelan-peel", "vi-peel", "chemical-peels"],
+    treatments: ["signature-pigmentation-protocol", "cosmelan-peel", "vi-peel", "chemical-peels"],
     options: [
       "Most in-clinic treatments wait until after pregnancy and breastfeeding. Sun protection and gentle skincare help in the meantime.",
       "Never stop a prescribed medicine without talking to the doctor who prescribed it.",
@@ -230,7 +230,7 @@ export const CONDITIONS: Condition[] = [
     appearance: ["Mottled or blotchy colour across the face", "A tired, dull look", "Rough texture alongside colour changes"],
     causes: ["Long-term sun exposure", "A build-up of dead surface cells", "A mix of different pigmentation types", "Smoking and lifestyle factors"],
     assessment: STANDARD_ASSESSMENT,
-    treatments: ["chemical-peels", "peel-and-mesotherapy", "carbon-laser-facial", "signature-pigmentation-programme", "ipl-photofacial", "co2-laser-resurfacing"],
+    treatments: ["chemical-peels", "peel-and-mesotherapy", "carbon-laser-facial", "signature-pigmentation-protocol", "ipl-photofacial", "co2-laser-resurfacing"],
     options: [TONE_NOTE, RX_SENTENCE],
     prevention: [SPF, "A consistent, gentle skincare routine", "Not smoking"],
     faqs: [{ q: "Which treatment helps dull skin?", a: "It depends on whether the main issue is texture, pigment or both. Your clinician will look at your skin and suggest options." }],
@@ -322,8 +322,8 @@ export const CONDITIONS: Condition[] = [
     appearance: ["A darker band above the upper lip", "Darker skin around the corners of the mouth", "Dark patches or spots on the lips"],
     causes: ["Melasma and sun exposure", "Waxing, threading or other hair removal", "Eczema, lip-licking or irritation", "Smoking", "Some medicines or medical conditions"],
     assessment: STANDARD_ASSESSMENT,
-    treatments: ["signature-pigmentation-programme"],
-    options: ["The area above the upper lip is one of the areas our Signature Programme covers.", RX_SENTENCE],
+    treatments: ["signature-pigmentation-protocol"],
+    options: ["The area above the upper lip is one of the facial zones our Signature Protocol covers.", RX_SENTENCE],
     tbc: ["whether we treat pigmentation on the lips themselves"],
     referral: "Dark spots on the lips, or changes inside the mouth, are checked by a doctor before any cosmetic treatment is considered.",
     prevention: ["Lip balm with SPF", "Sunscreen above the lip", "Gentle hair removal"],

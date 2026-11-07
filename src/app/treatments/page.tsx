@@ -10,7 +10,7 @@ import { TREATMENTS, type Treatment } from "@/lib/treatments";
 export const metadata = pageMetadata({
   title: "Pigmentation Treatments London & Glasgow",
   description:
-    "Pigmentation treatments at Harley Street Aesthetics: Signature Pigmentation Programme, chemical peels, VI Peel, Cosmelan, IPL, Q-switched laser, Virtue RF and more, chosen after assessment.",
+    "Pigmentation treatments at Harley Street Aesthetics: Signature Pigmentation Protocol, chemical peels, VI Peel, Cosmelan, IPL, Q-switched laser, Virtue RF and more, chosen after assessment.",
   path: "/treatments/",
 });
 

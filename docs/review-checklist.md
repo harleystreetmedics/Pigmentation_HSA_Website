@@ -4,7 +4,7 @@ Everything here needs a human check before launch. Run `npm run check` to rebuil
 
 ## Start here: decisions only you can make
 1. **Subdomain.** `pigmentation.harleystreetaesthetic.co.uk` is already the AI analysis app. Pick the site's subdomain (placeholder `pigmentation-treatment.`).
-2. **Signature treatment.** The main website says a needle-free colostrum programme at £349 a session; the Copilot says VirtueRF + Helios III laser + mesotherapy from £399. The site follows the website. Confirm which is right, and update the other source too.
+2. ~~Signature treatment.~~ Resolved 7 Nov from the Copilot: the site now shows the VirtueRF + Helios III + mesotherapy protocol from £399. **Please update the main website**, which still shows the old £349 colostrum programme, so the two sites match.
 3. **Footer cross-links** to the Endolift and hair loss sites: yes or no.
 4. **301 redirects** from the 19 Medics URLs listed in `docs/deployment.md`.
 
@@ -16,7 +16,7 @@ Everything here needs a human check before launch. Run `npm run check` to rebuil
 | check:links | All internal links resolve; phones tel:+442046283165, tel:+441414888985 |
 | check:compliance | Pass |
 | Horizontal overflow | None on 20 pages at 360-1920 px (header nav moved to 1720 px) |
-| Browser tests (scripts/qa-functional.cjs) | 19/19 pass |
+| Browser tests (scripts/qa-functional.cjs) | 19/19 pass (re-run 7 Nov after the Signature change) |
 | Screenshots | docs/screens/<page>-{mobile,tablet,desktop}.jpg for 20 pages, plus ref-hsa-* references |
 | Lighthouse 12.8 (7 pages, mobile / desktop) | Performance 95-97 / 100; accessibility 100; best practices 100, except /book/ at 78-79 (the embedded booking calendar sets third-party cookies, same as the hair loss site); SEO 66 only because the preview is deliberately noindex + Disallow. It should reach 100 with NEXT_PUBLIC_ALLOW_INDEXING=true. |
 
@@ -28,7 +28,7 @@ Automated scan (`npm run check:compliance`, passes) plus a manual read of every 
 1. No POM is named anywhere: no hydroquinone, tretinoin, triple-combination creams, isotretinoin, tranexamic acid or glutathione. The scan blocks these names. Wording used: "Prescription treatments may be discussed at your consultation if clinically appropriate." It appears on the home page, every treatment page, most condition pages, the treatments index, the darker-skin page and the prevention page.
 2. **Borderline:** contraindication lists say "certain acne medicines taken in the last six months" instead of naming isotretinoin, which the main website names. Confirm this is clear enough clinically.
 3. **Borderline:** the drug-induced pigmentation page names medicine *classes* ("some antibiotics, antimalarials, heart medicines and chemotherapy") as possible causes. It doesn't name or promote any product. Confirm you're comfortable.
-4. **Borderline:** the Copilot's Signature protocol uses tranexamic acid in injected mesotherapy, and its home skincare list includes tranexamic acid. Neither is mentioned on the site. If you switch the Signature page to the Copilot version, keep tranexamic acid out of the copy.
+4. **Borderline:** the Signature Protocol's mesotherapy step uses tranexamic acid (a POM when injected) and exosomes. The site describes it only as "a clinician-selected mesotherapy blend, including exosomes" with "evidence … still developing", and never names tranexamic acid. Confirm this wording, and the regulatory status of the exosome product.
 5. **Borderline:** the Virtue RF page mentions an "option with exosomes" with "evidence … is still developing". Exosome products are not licensed medicines in the UK. Confirm the product and wording.
 6. The prevention page names cosmetic ingredients (vitamin C, niacinamide) as examples of brightening skincare. These are cosmetic, not prescription. Alpha arbutin is left out.
 

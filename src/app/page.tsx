@@ -1,9 +1,9 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 import { ConditionCard, FaqAccordion, StepTimeline, TreatmentCard } from "@/components/cards";
 import { Icon } from "@/components/Icon";
 import { AiAnalysisCard, BookingCalendar, ClinicsSection, CtaBand, ReviewsSection, SkinCheckNotice, TeamGrid } from "@/components/sections";
 import { SkinToneArt } from "@/components/SkinToneArt";
-import { Button, CheckList, Disclaimer, JsonLd, Section, SectionHeading, Tbc } from "@/components/ui";
+import { Button, CheckList, Disclaimer, JsonLd, Section, SectionHeading } from "@/components/ui";
 import { CONDITIONS, DIAGNOSIS_STEPS, PATTERNS, RX_SENTENCE } from "@/lib/conditions";
 import { GENERAL_FAQS } from "@/lib/faqs";
 import { clinicsSchema, consultationSchema, faqSchema, treatmentsListSchema } from "@/lib/schema";
@@ -215,7 +215,7 @@ export default function Home() {
               items={[
                 <>Online consultation: free. In-clinic consultation: £195, redeemable against treatment</>,
                 <>
-                  Signature Pigmentation Programme: £349 a session <Tbc>confirm current Signature treatment and price</Tbc>
+                  Signature Pigmentation Protocol: from £399, or £1,299 for four sessions
                 </>,
                 <>Chemical peels from £149, VI Peel £595, Cosmelan £995</>,
                 <>0% finance options, subject to status</>,

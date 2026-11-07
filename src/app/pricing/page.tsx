@@ -1,4 +1,4 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 import { CtaBand } from "@/components/sections";
 import { CheckList, Disclaimer, PageHero, Section, SectionHeading, Tbc } from "@/components/ui";
 import { pageMetadata } from "@/lib/seo";
@@ -8,7 +8,7 @@ import { TREATMENTS } from "@/lib/treatments";
 export const metadata = pageMetadata({
   title: "Pigmentation Treatment Prices",
   description:
-    "Guide prices for pigmentation consultations and treatments at Harley Street Aesthetics in London and Glasgow: peels from £149, Signature Programme £349 a session. Free online consultation.",
+    "Guide prices for pigmentation consultations and treatments at Harley Street Aesthetics in London and Glasgow: peels from £149, Signature Protocol from £399. Free online consultation.",
   path: "/pricing/",
 });
 
@@ -91,10 +91,7 @@ export default function PricingPage() {
         </div>
         <div className="mt-6 space-y-2">
           <p>
-            <Tbc>confirm the current Signature treatment and price (website £349 a session; Copilot &ldquo;from £399&rdquo; with Standard and Enhanced packages)</Tbc>
-          </p>
-          <p>
-            <Tbc>whether the Copilot packages (Laser + Mesotherapy £399, VI Peel + Mesotherapy £299, Enhanced VI Peel Ultimate Programme £599) are offered</Tbc>
+            <Tbc>which treatments need a patch test, and whether the £50 is redeemable</Tbc>
           </p>
         </div>
       </Section>

@@ -22,7 +22,7 @@
 | `/conditions/hypopigmentation-and-vitiligo/` | White patches and vitiligo (assess + refer) | white patches on skin |
 | `/pigmentation-in-darker-skin/` | Skin of colour page | pigmentation treatment for dark skin |
 | `/treatments/` | All treatments | pigmentation treatments |
-| `/treatments/signature-pigmentation-programme/` | Signature Programme (see decision #6) | pigmentation treatment London |
+| `/treatments/signature-pigmentation-protocol/` | Signature Protocol (see decision #26) | pigmentation treatment London |
 | `/treatments/chemical-peels/` | Chemical peels | chemical peel for pigmentation |
 | `/treatments/peel-and-mesotherapy/` | Chemical peel + mesotherapy | |
 | `/treatments/vi-peel/` | VI Peel | VI Peel London |

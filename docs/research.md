@@ -148,3 +148,16 @@ Stack and config, design tokens, components, cookie consent (`hsa-cookie-consent
 
 ## 8. Keywords (unvalidated, no search-volume tool available)
 Primary: pigmentation treatment London, pigmentation treatment Glasgow, melasma treatment London/Glasgow, hyperpigmentation treatment, sun spot removal, age spot removal, dark spot treatment face, acne marks / post-inflammatory hyperpigmentation treatment, pigmentation treatment for dark skin. Secondary: Cosmelan peel London, VI Peel London, IPL for sun spots, Q-switched laser pigmentation, dark circles treatment, freckle treatment, uneven skin tone treatment, pregnancy mask (chloasma), dark underarms. Validate in Search Console / Google Ads before launch.
+
+---
+
+## 9. Copilot follow-up (7 Nov 2026, at your request)
+One more internal chat question covering every `[TBC]` item. The Copilot checked all 15 HSA playbooks and the clinic brief (the brief is empty).
+
+**Answered:**
+- **Signature treatment:** the current, clinic-supported version is the **Signature Pigmentation Protocol** (VirtueRF microneedling + Helios III Q-switched Nd:YAG laser + regenerative mesotherapy), from £399 [PB-SIG]. The needle-free colostrum programme on the main website is not in any playbook. **The site now follows the Copilot** (decision #26).
+- **Packages** (website menu dated 28 Sep 2026 in [PB-SIG]): Standard £399 / £1,299 for 4; Enhanced £499 / £1,599 for 4; Peel + Mesotherapy £299; VI Peel + Mesotherapy £299; Laser + Mesotherapy £399; Enhanced VI Peel Ultimate Programme £599; patch test £50.
+- **Treatment areas:** the protocol is facial (forehead, cheeks, band above the upper lip, under-eye, nose, jawline). Lips themselves, underarms, inner thighs, knees, elbows, hands, neck and chest are **not documented** as pigmentation treatment areas.
+- **Dr Ahmad** fronts the pigmentation adverts; the protocol is "doctor-led and medically supervised by the Harley Street medical team".
+
+**Still not documented anywhere in Copilot:** standalone Helios III price/sessions/spacing/downtime; which treatments need a patch test and whether the £50 is redeemable; treat-or-refer for café-au-lait/birthmarks, vitiligo/white patches and drug/heat-induced pigmentation; Wood's lamp/dermatoscope; the £50 3D skin analysis (it's on the main website, not in Copilot); dark circles device/downtime/side effects; practitioners and GMC numbers; CQC/HIS wording and numbers; opening hours; enquiry destination; GA4/GTM/Pixel IDs; review verification and before/after consent; company name, address and ICO number. These stay as `[TBC]` and need the clinic manager.
