@@ -20,6 +20,9 @@ if (!existsSync(OUT)) {
   console.error(`  Next.js output mode used by the build: ${output} (this site needs "export")`);
   console.error(`  Files in project root: ${readdirSync(process.cwd()).join(", ")}`);
   if (existsSync(next)) console.error(`  Files in .next: ${readdirSync(next).join(", ")}`);
+  try {
+    console.error(`  .next/export-detail.json: ${readFileSync(join(next, "export-detail.json"), "utf8")}`);
+  } catch {}
   const envNames = Object.keys(process.env).filter((k) => /NEXT|HOSTINGER|OUTPUT|STANDALONE/i.test(k));
   console.error(`  Related environment variable names: ${envNames.join(", ") || "none"}`);
   for (const f of ["next.config.ts", "next.config.js", "next.config.mjs"]) {
