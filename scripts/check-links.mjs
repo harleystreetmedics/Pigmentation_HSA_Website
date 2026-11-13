@@ -23,7 +23,7 @@ for (const f of htmlFiles()) {
       continue;
     }
     const path = url.split(/[?#]/)[0];
-    const target = path.endsWith("/") ? join(OUT, path, "index.html") : join(OUT, path);
+    const p2 = decodeURIComponent(path); const target = p2.endsWith("/") ? join(OUT, p2, "index.html") : join(OUT, p2);
     if (!existsSync(target)) broken.push(`${routeOf(f)} -> ${url}`);
   }
 }
