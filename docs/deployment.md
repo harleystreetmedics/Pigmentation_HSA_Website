@@ -11,10 +11,7 @@ The steps follow the hair loss project's `docs/deployment.md` (the Endolift sour
 
 ## Option A: Netlify (recommended)
 
-1. **Repository.** The project is a local git repo (`main`). Create an empty GitHub repo (e.g. under `harleystreetmedics`, as for the hair loss site), then:
-   ```bash
-   git remote add origin https://github.com/harleystreetmedics/<repo-name>.git
-   ```
+1. **Repository.** Already on GitHub: **https://github.com/harleystreetmedics/Pigmentation_HSA_Website** (branch `main`, pushed 13 Nov 2026). Push later changes with:
    ```bash
    git push -u origin main
    ```
